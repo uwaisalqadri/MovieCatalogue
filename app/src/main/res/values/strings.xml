@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">MovieCatalogue</string>
+    <string name="movie">Movie</string>
+    <string name="tvShow">TvShow</string>
+    <string name="detail">Detail</string>
+    <string name="splash_copyright">Copyright © 2020 by Uwais Alqadri</string>
+</resources>
