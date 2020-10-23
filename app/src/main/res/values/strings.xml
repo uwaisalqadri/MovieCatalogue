@@ -4,4 +4,8 @@
     <string name="tvShow">TvShow</string>
     <string name="detail">Detail</string>
     <string name="splash_copyright">Copyright © 2020 by Uwais Alqadri</string>
+    <string name="overview">Overview</string>
+    <string name="vote">Vote Average</string>
+    <string name="release">Release date</string>
+    <string name="title">Title</string>
 </resources>

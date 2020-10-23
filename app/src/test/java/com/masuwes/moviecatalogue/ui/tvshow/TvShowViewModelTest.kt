@@ -6,7 +6,7 @@ import org.junit.Before
 class TvShowViewModelTest : TestCase() {
 
     /**
-     * melakukan pengecekan viewModel apakah
+     * melakukan pengecekan pada viewModel apakah
      * data sesuai dengan jumlah yang diperkirakan (10)
      * **/
 

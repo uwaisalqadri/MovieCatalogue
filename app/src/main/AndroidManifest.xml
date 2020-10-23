@@ -12,11 +12,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieCatalogue">
         <activity android:name=".ui.main.MainActivity"
-            android:theme="@style/Theme.Design.NoActionBar"/>
+            android:theme="@style/Theme.NoActionBar"/>
         <activity android:name=".ui.detail.DetailActivity" />
         <activity
             android:name=".ui.main.SplashScreen"
-            android:theme="@style/Theme.Design.NoActionBar">
+            android:theme="@style/Theme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
