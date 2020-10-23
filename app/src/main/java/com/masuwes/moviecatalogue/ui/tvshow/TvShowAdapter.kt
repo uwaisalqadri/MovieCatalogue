@@ -13,13 +13,6 @@ import kotlinx.android.synthetic.main.item_rv.view.*
 
 class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
 
-    private val listShow = arrayListOf<TvShowModel>()
-
-    fun setShows(shows: List<TvShowModel>?) {
-        if (shows == null) return
-        listShow.clear()
-        listShow.addAll(shows)
-    }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
         ViewHolder(
@@ -28,18 +21,12 @@ class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
 
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val data = listShow[position]
-        holder.bind(data)
 
-        holder.itemView.setOnClickListener { view ->
-            view.context.startActivity(
-                Intent(view.context, DetailActivity::class.java)
-                    .putExtra(DetailActivity.SHOW, listShow[position].tvId)
-            )
-        }
     }
 
-    override fun getItemCount(): Int = listShow.size
+    override fun getItemCount(): Int {
+        TODO("Not yet implemented")
+    }
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         fun bind(show: TvShowModel) {
@@ -51,6 +38,8 @@ class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
             }
         }
     }
+
+
 }
 
 

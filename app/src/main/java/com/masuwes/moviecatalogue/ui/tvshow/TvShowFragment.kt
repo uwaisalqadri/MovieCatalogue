@@ -25,16 +25,7 @@ class TvShowFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(TvShowViewModel::class.java)
-        val show = viewModel.getTvShows()
-        showAdapter = TvShowAdapter()
-        showAdapter.setShows(show)
 
-        with(rv_show) {
-            layoutManager = GridLayoutManager(context, 2)
-            setHasFixedSize(true)
-            adapter = showAdapter
-        }
     }
 
 }

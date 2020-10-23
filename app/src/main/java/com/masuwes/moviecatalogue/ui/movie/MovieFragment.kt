@@ -12,8 +12,7 @@ import kotlinx.android.synthetic.main.fragment_movie.*
 
 class MovieFragment : Fragment() {
 
-    private lateinit var viewModel: MovieViewModel
-    private lateinit var movieAdapter: MovieAdapter
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -25,16 +24,6 @@ class MovieFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        viewModel = ViewModelProvider(this, ViewModelProvider.NewInstanceFactory()).get(MovieViewModel::class.java)
-        val movie = viewModel.getMovies()
-        movieAdapter = MovieAdapter()
-        movieAdapter.setMovies(movie)
-
-        with(rv_movie) {
-            layoutManager = GridLayoutManager(context, 2)
-            setHasFixedSize(true)
-            adapter = movieAdapter
-        }
 
     }
 
