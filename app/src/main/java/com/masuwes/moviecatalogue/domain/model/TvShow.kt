@@ -1,4 +1,4 @@
-package com.masuwes.moviecatalogue.domain
+package com.masuwes.moviecatalogue.domain.model
 
 data class TvShow(
     val backdrop_path: String,

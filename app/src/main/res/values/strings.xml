@@ -8,4 +8,5 @@
     <string name="vote">Vote Average</string>
     <string name="release">Release date</string>
     <string name="title">Title</string>
+    <string name="error">Data Kosong</string>
 </resources>

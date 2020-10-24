@@ -3,6 +3,7 @@
     package="com.masuwes.moviecatalogue">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -11,10 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MovieCatalogue">
-        <activity android:name=".ui.main.MainActivity"
+        <activity android:name=".ui.main.SplashScreen"
             android:theme="@style/Theme.NoActionBar"/>
         <activity
-            android:name=".ui.main.SplashScreen"
+            android:name=".ui.main.MainActivity"
             android:theme="@style/Theme.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

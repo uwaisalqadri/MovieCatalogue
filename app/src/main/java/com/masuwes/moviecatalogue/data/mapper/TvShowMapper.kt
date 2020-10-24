@@ -1,7 +1,7 @@
 package com.masuwes.moviecatalogue.data.mapper
 
 import com.masuwes.moviecatalogue.data.model.tvshow.TvShowItem
-import com.masuwes.moviecatalogue.domain.TvShow
+import com.masuwes.moviecatalogue.domain.model.TvShow
 
 class TvShowMapper : BaseMapper<TvShowItem, TvShow> {
     override fun mapToDomain(model: TvShowItem): TvShow {

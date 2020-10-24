@@ -12,9 +12,6 @@ import kotlinx.android.synthetic.main.fragment_tv_show.*
 
 class TvShowFragment : Fragment() {
 
-    private lateinit var viewModel: TvShowViewModel
-    private lateinit var showAdapter: TvShowAdapter
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

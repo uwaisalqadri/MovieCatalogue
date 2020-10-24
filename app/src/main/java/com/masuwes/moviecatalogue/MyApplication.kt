@@ -1,8 +1,7 @@
 package com.masuwes.moviecatalogue
 
 import android.app.Application
-import com.masuwes.moviecatalogue.di.appModule
-import com.masuwes.moviecatalogue.di.dataModule
+import com.masuwes.moviecatalogue.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
 import org.koin.core.context.startKoin
@@ -18,7 +17,9 @@ class MyApplication : Application() {
             modules(
                 listOf(
                     appModule,
-                    dataModule
+                    repositoryModule,
+                    useCaseModule,
+                    viewModelModule
                 )
             )
         }
