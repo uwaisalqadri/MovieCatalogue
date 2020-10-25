@@ -8,6 +8,7 @@ interface MovieRepository {
     fun getMovies(
         api_key: String,
         language: String,
+        sort_by: String,
         page: Int
     ) : Single<List<Movie>>
 }

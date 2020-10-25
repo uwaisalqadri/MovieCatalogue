@@ -3,12 +3,12 @@ package com.masuwes.moviecatalogue.di
 import com.google.gson.GsonBuilder
 import com.masuwes.moviecatalogue.data.mapper.MovieMapper
 import com.masuwes.moviecatalogue.data.mapper.TvShowMapper
-import com.masuwes.moviecatalogue.domain.repository.MovieRepository
 import com.masuwes.moviecatalogue.data.repository.MovieRepositoryImpl
-import com.masuwes.moviecatalogue.domain.repository.TvShowRepository
 import com.masuwes.moviecatalogue.data.repository.TvShowRepositoryImpl
 import com.masuwes.moviecatalogue.data.service.ApiService
 import com.masuwes.moviecatalogue.data.service.LoggingInterceptor
+import com.masuwes.moviecatalogue.domain.repository.MovieRepository
+import com.masuwes.moviecatalogue.domain.repository.TvShowRepository
 import com.masuwes.moviecatalogue.domain.usecase.MovieInteractor
 import com.masuwes.moviecatalogue.domain.usecase.MovieUseCase
 import com.masuwes.moviecatalogue.domain.usecase.TvShowInteractor
@@ -47,6 +47,12 @@ val repositoryModule = module {
             get()
         ) as TvShowRepository
     }
+
+}
+
+val mapperModule = module {
+    single { MovieMapper() }
+    single { TvShowMapper() }
 }
 
 val useCaseModule = module {
@@ -56,7 +62,7 @@ val useCaseModule = module {
 
 val viewModelModule = module {
     viewModel { MovieViewModel(get()) }
-    viewModel { TvShowViewModel() }
+    viewModel { TvShowViewModel(get()) }
 }
 
 fun createOkHttpClient(interceptor: LoggingInterceptor): OkHttpClient {
@@ -74,7 +80,7 @@ fun createOkHttpClient(interceptor: LoggingInterceptor): OkHttpClient {
 
 inline fun <reified T> createWebService(okHttpClient: OkHttpClient, url: String): T {
     val gson = GsonBuilder()
-        .setDateFormat("dd/MM/yyyy")
+        .setDateFormat("yyyy-MM-dd HH:mm:ss")
         .create()
     val retrofit = Retrofit.Builder()
         .baseUrl(url)

@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.masuwes.moviecatalogue.R
 import kotlinx.android.synthetic.main.fragment_movie.*
 import org.koin.android.ext.android.inject
@@ -45,12 +46,16 @@ class MovieFragment : Fragment() {
             })
 
             showProgressBar.observe(viewLifecycleOwner, Observer {
-
+                if (it == true) {
+                    progress_circular.visibility = View.VISIBLE
+                } else {
+                    progress_circular.visibility = View.GONE
+                }
             })
         }
 
         with(rv_movie) {
-            layoutManager = GridLayoutManager(context, 2)
+            layoutManager = StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
             setHasFixedSize(true)
             adapter = movieAdapter
         }

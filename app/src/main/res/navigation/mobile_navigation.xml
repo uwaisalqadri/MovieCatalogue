@@ -2,17 +2,18 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
-    app:startDestination="@id/movieFragment">
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@id/navigation_movie">
 
     <fragment
-        android:id="@+id/movieFragment"
+        android:id="@+id/navigation_movie"
         android:name="com.masuwes.moviecatalogue.ui.movie.MovieFragment"
-        android:label="fragment_movie"
+        android:label="@string/movie_catalogue"
         tools:layout="@layout/fragment_movie" />
+
     <fragment
-        android:id="@+id/tvShowFragment"
+        android:id="@+id/navigation_tvshow"
         android:name="com.masuwes.moviecatalogue.ui.tvshow.TvShowFragment"
-        android:label="fragment_tv_show"
+        android:label="@string/tvShow_catalogue"
         tools:layout="@layout/fragment_tv_show" />
 </navigation>

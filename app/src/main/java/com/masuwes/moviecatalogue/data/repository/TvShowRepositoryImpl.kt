@@ -13,9 +13,10 @@ class TvShowRepositoryImpl(
     override fun getTvShows(
         api_key: String,
         language: String,
+        sort_by: String,
         page: Int
     ): Single<List<TvShow>> {
-        return apiService.getTvShows(api_key, language, page
+        return apiService.getTvShows(api_key, language, sort_by, page
         ).map {
             itemTvShowMapper.mapToListDomain(it.results)
         }

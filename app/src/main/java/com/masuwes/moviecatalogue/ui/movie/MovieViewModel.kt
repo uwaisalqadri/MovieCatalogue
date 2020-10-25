@@ -1,15 +1,13 @@
 package com.masuwes.moviecatalogue.ui.movie
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.masuwes.moviecatalogue.R
 import com.masuwes.moviecatalogue.domain.model.Movie
 import com.masuwes.moviecatalogue.domain.usecase.MovieUseCase
 import com.masuwes.moviecatalogue.ui.BaseViewModel
 import com.masuwes.moviecatalogue.utils.Constants
 import com.masuwes.moviecatalogue.utils.RxUtils
-import kotlinx.android.synthetic.main.fragment_movie.*
+import timber.log.Timber
 
 class MovieViewModel(private val movieUseCase: MovieUseCase) : BaseViewModel() {
 
@@ -20,7 +18,7 @@ class MovieViewModel(private val movieUseCase: MovieUseCase) : BaseViewModel() {
     fun getMovies() {
         showProgressBar.value = true
         compositeDisposable.add(
-            movieUseCase.getMovies(Constants.API_KEY, Constants.LANG, 1)
+            movieUseCase.getMovies(Constants.API_KEY, Constants.LANG, Constants.SORT_BY,1)
                 .compose(RxUtils.applySingleAsync())
                 .subscribe({ result ->
                     if (result.isNotEmpty()) {
@@ -28,7 +26,7 @@ class MovieViewModel(private val movieUseCase: MovieUseCase) : BaseViewModel() {
                         showProgressBar.value = false
                     } else {
                         messageData.value = "${R.string.error}"
-                        Log.d("Error","${R.string.error}")
+                        Timber.d("${R.string.error}")
                     }
                 }, this::onError)
         )

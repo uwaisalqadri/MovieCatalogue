@@ -8,6 +8,7 @@ interface TvShowUseCase {
     fun getTvShows(
         api_key: String,
         language: String,
+        sort_by: String,
         page: Int
-    ) : Single<List<TvShow>>
+    ): Single<List<TvShow>>
 }

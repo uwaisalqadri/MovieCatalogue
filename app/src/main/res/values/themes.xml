@@ -28,8 +28,8 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="MyCustomTextAppearance" parent="TextAppearance.Design.Tab">
-        <item name="textAllCaps">true</item>
+    <style name="ProgressBar">
+        <item name="colorAccent">@color/light_green</item> <!-- Whatever color you want-->
     </style>
 
     <style name="roundedImageView" parent="">

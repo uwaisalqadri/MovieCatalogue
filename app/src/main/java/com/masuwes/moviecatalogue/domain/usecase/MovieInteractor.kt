@@ -8,7 +8,8 @@ class MovieInteractor(private val movieRepository: MovieRepository) : MovieUseCa
     override fun getMovies(
         api_key: String,
         language: String,
+        sort_by: String,
         page: Int
     ): Single<List<Movie>> =
-        movieRepository.getMovies(api_key, language, page)
+        movieRepository.getMovies(api_key, language, sort_by, page)
 }

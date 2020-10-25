@@ -8,17 +8,19 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("/discover/movie")
+    @GET("3/discover/movie")
     fun getMovies(
         @Query("api_key") api_key: String,
         @Query("language") language: String,
+        @Query("sort_by") sort_by: String,
         @Query("page") page: Int
     ) : Single<ResponseMovie>
 
-    @GET("/discover/tv")
+    @GET("3/discover/tv")
     fun getTvShows(
         @Query("api_key") api_key: String,
         @Query("language") language: String,
+        @Query("sort_by") sort_by: String,
         @Query("page") page: Int
     ) : Single<ResponseTvShow>
 }

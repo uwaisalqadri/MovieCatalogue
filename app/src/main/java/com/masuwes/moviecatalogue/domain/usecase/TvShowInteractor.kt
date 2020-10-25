@@ -8,7 +8,9 @@ class TvShowInteractor(private val tvShowRepository: TvShowRepository) : TvShowU
     override fun getTvShows(
         api_key: String,
         language: String,
+        sort_by: String,
         page: Int
     ): Single<List<TvShow>> =
-        tvShowRepository.getTvShows(api_key, language, page)
+        tvShowRepository.getTvShows(api_key, language, sort_by, page)
+
 }

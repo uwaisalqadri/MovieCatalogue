@@ -37,6 +37,10 @@ android {
 }
 
 dependencies {
+    implementation 'androidx.navigation:navigation-fragment:2.3.1'
+    implementation 'androidx.navigation:navigation-ui:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
+
 
     //kotlin
     def coreVersion = '1.3.2'
@@ -85,6 +89,7 @@ dependencies {
     implementation "androidx.test.espresso:espresso-idling-resource:3.3.0"
     implementation 'androidx.annotation:annotation:1.1.0'
     androidTestImplementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'com.jakewharton.timber:timber:4.7.1'
 
 
     //architecture component

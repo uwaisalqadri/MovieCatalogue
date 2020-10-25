@@ -13,11 +13,13 @@ class MovieRepositoryImpl(
     override fun getMovies(
         api_key: String,
         language: String,
+        sort_by: String,
         page: Int
     ): Single<List<Movie>> {
-        return apiService.getMovies(api_key, language, page
+        return apiService.getMovies(api_key, language, sort_by, page
         ).map {
             itemMovieMapper.mapToListDomain(it.results)
         }
     }
+
 }
