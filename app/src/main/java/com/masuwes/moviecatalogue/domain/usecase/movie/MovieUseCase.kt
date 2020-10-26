@@ -1,4 +1,4 @@
-package com.masuwes.moviecatalogue.domain.usecase
+package com.masuwes.moviecatalogue.domain.usecase.movie
 
 import com.masuwes.moviecatalogue.domain.model.Movie
 import io.reactivex.Single

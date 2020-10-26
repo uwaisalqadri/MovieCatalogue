@@ -1,5 +1,7 @@
 package com.masuwes.moviecatalogue.data.service
 
+import com.masuwes.moviecatalogue.data.model.detail.DetailMovieItem
+import com.masuwes.moviecatalogue.data.model.detail.DetailTvShowItem
 import com.masuwes.moviecatalogue.data.model.movie.ResponseMovie
 import com.masuwes.moviecatalogue.data.model.tvshow.ResponseTvShow
 import io.reactivex.Single
@@ -23,7 +25,25 @@ interface ApiService {
         @Query("sort_by") sort_by: String,
         @Query("page") page: Int
     ) : Single<ResponseTvShow>
+
+    // detail
+    @GET("movie/{movie_id}")
+    fun getMovieDetail(
+        @Query("movie_id") movie_id: String,
+        @Query("api_key") api_key: String,
+        @Query("language") language: String
+    ) : Single<DetailMovieItem>
+
+    @GET("tv/{tv_id}")
+    fun getTvShowDetail(
+        @Query("tv_id") tv_id: String,
+        @Query("api_key") api_key: String,
+        @Query("language") language: String
+    ) : Single<DetailTvShowItem>
 }
+
+
+
 
 
 

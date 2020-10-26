@@ -29,7 +29,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@color/darker_gray" />
+            app:srcCompat="@android:color/darker_gray" />
 
         <TextView
             android:id="@+id/rate_list_item"

@@ -1,5 +1,6 @@
 package com.masuwes.moviecatalogue.ui.movie
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +12,9 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.masuwes.moviecatalogue.R
+import com.masuwes.moviecatalogue.domain.model.Movie
+import com.masuwes.moviecatalogue.ui.detail.DetailActivity
+import com.masuwes.moviecatalogue.ui.detail.DetailActivity.Companion.BUNDLE_KEY
 import kotlinx.android.synthetic.main.fragment_movie.*
 import org.koin.android.ext.android.inject
 
@@ -34,7 +38,15 @@ class MovieFragment : Fragment() {
     }
 
     private fun populateMovies() {
-        val movieAdapter = MovieAdapter()
+        val movieAdapter = MovieAdapter(object : MovieAdapter.OnItemClick {
+            override fun onClick(item: Movie) {
+                startActivity(
+                    Intent(context, DetailActivity::class.java)
+                        .putExtra(BUNDLE_KEY, item.id.toString())
+                )
+            }
+
+        })
 
         with(viewModel) {
             postMovieData.observe(viewLifecycleOwner, Observer {

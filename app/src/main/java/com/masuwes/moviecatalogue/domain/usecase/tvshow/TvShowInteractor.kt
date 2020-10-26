@@ -1,4 +1,4 @@
-package com.masuwes.moviecatalogue.domain.usecase
+package com.masuwes.moviecatalogue.domain.usecase.tvshow
 
 import com.masuwes.moviecatalogue.domain.model.TvShow
 import com.masuwes.moviecatalogue.domain.repository.TvShowRepository

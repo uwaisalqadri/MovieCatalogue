@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:cardCornerRadius="@dimen/_5sdp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="15dp">
+
+        <TextView
+            android:id="@+id/tv5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/overview"
+            android:textColor="?android:attr/textColorPrimary"
+            android:textSize="20sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/overview_detail"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv5"
+            android:layout_marginTop="@dimen/_10sdp"
+            tools:text="wuodbpiqipsbowdbouwbdubwudbw;dwlyivdewuylvfuwevfuelwfwhvflieyvfevwfyewuvfilywaevfiyewvfilyewffvdliyfvidwbcibdlcjkbalwiubdib.bcbk.abwck.jbdnx cknxbcjkbsdliuvwVDEWILVivfilubvwl.kfubdjsbcniwjl"
+            android:textSize="@dimen/_12ssp" />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>

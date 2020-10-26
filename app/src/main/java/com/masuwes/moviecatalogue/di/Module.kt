@@ -1,18 +1,21 @@
 package com.masuwes.moviecatalogue.di
 
 import com.google.gson.GsonBuilder
+import com.masuwes.moviecatalogue.data.mapper.DetailMovieMapper
+import com.masuwes.moviecatalogue.data.mapper.DetailTvShowMapper
 import com.masuwes.moviecatalogue.data.mapper.MovieMapper
 import com.masuwes.moviecatalogue.data.mapper.TvShowMapper
+import com.masuwes.moviecatalogue.data.repository.DetailRepositoryImpl
 import com.masuwes.moviecatalogue.data.repository.MovieRepositoryImpl
 import com.masuwes.moviecatalogue.data.repository.TvShowRepositoryImpl
 import com.masuwes.moviecatalogue.data.service.ApiService
 import com.masuwes.moviecatalogue.data.service.LoggingInterceptor
 import com.masuwes.moviecatalogue.domain.repository.MovieRepository
 import com.masuwes.moviecatalogue.domain.repository.TvShowRepository
-import com.masuwes.moviecatalogue.domain.usecase.MovieInteractor
-import com.masuwes.moviecatalogue.domain.usecase.MovieUseCase
-import com.masuwes.moviecatalogue.domain.usecase.TvShowInteractor
-import com.masuwes.moviecatalogue.domain.usecase.TvShowUseCase
+import com.masuwes.moviecatalogue.domain.usecase.movie.*
+import com.masuwes.moviecatalogue.domain.usecase.tvshow.TvShowInteractor
+import com.masuwes.moviecatalogue.domain.usecase.tvshow.TvShowUseCase
+import com.masuwes.moviecatalogue.ui.detail.DetailViewModel
 import com.masuwes.moviecatalogue.ui.movie.MovieViewModel
 import com.masuwes.moviecatalogue.ui.tvshow.TvShowViewModel
 import com.masuwes.moviecatalogue.utils.Constants
@@ -36,8 +39,8 @@ val repositoryModule = module {
 
     single {
         MovieRepositoryImpl(
-        get(),
-        get()
+            get(),
+            get()
         ) as MovieRepository
     }
 
@@ -48,21 +51,33 @@ val repositoryModule = module {
         ) as TvShowRepository
     }
 
+    single {
+        DetailRepositoryImpl(
+            get(),
+            get(),
+            get()
+        )
+    }
+
 }
 
 val mapperModule = module {
     single { MovieMapper() }
     single { TvShowMapper() }
+    single { DetailMovieMapper() }
+    single { DetailTvShowMapper() }
 }
 
 val useCaseModule = module {
     factory<MovieUseCase> { MovieInteractor(get()) }
     factory<TvShowUseCase> { TvShowInteractor(get()) }
+    factory<DetailUseCase> { DetailInteractor(get()) }
 }
 
 val viewModelModule = module {
     viewModel { MovieViewModel(get()) }
     viewModel { TvShowViewModel(get()) }
+    viewModel { DetailViewModel(get()) }
 }
 
 fun createOkHttpClient(interceptor: LoggingInterceptor): OkHttpClient {

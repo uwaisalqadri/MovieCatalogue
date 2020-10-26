@@ -1,6 +1,6 @@
-package com.masuwes.moviecatalogue.domain.model
+package com.masuwes.moviecatalogue.data.model.detail
 
-data class TvShow(
+data class DetailTvShowItem(
     val backdrop_path: String?,
     val first_air_date: String?,
     val genre_ids: List<Int>?,

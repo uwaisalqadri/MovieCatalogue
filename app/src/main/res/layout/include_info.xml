@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <ImageView
+        android:id="@+id/backdrop_image_detail"
+        android:layout_width="0dp"
+        android:layout_height="230dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@android:color/darker_gray" />
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:id="@+id/poster_image_detail"
+        android:layout_width="161dp"
+        android:layout_height="220dp"
+        android:scaleType="centerCrop"
+        android:layout_marginTop="140dp"
+        app:srcCompat="@color/light_green"
+        app:shapeAppearanceOverlay="@style/roundedImageView"
+        android:layout_marginStart="@dimen/_10sdp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/title_detail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="@string/title"
+        android:textColor="?android:attr/textColorPrimary"
+        android:textSize="@dimen/_17ssp"
+        android:textStyle="bold"
+        android:layout_marginTop="10dp"
+        android:paddingStart="@dimen/_10ssp"
+        android:paddingEnd="@dimen/_10ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/poster_image_detail"
+        app:layout_constraintTop_toBottomOf="@+id/backdrop_image_detail" />
+
+    <TextView
+        android:id="@+id/date_lang_detail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        tools:text="2020-08-01 . en"
+        android:textSize="@dimen/_12ssp"
+        android:paddingStart="@dimen/_10ssp"
+        android:paddingEnd="@dimen/_10ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/poster_image_detail"
+        app:layout_constraintTop_toBottomOf="@+id/title_detail" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
