@@ -12,8 +12,12 @@ import com.masuwes.moviecatalogue.utils.EspressoIdlingResource
 import com.masuwes.moviecatalogue.utils.RxUtils
 import timber.log.Timber
 
+sealed class DetailState
+data class DetailMovieDataLoaded(val detailMovieDomain: DetailMovie) : DetailState()
+data class DetailShowDataLoaded(val detailShowDomain: DetailTvShow) : DetailState()
 class DetailViewModel(private val detailUseCase: DetailUseCase) : BaseViewModel() {
 
+    val detailState = MutableLiveData<DetailState>()
     val postDataMovie = MutableLiveData<DetailMovie>()
     val postDataTvShow = MutableLiveData<DetailTvShow>()
     val messageData = MutableLiveData<String>()

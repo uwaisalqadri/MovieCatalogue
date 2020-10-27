@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
 import com.masuwes.moviecatalogue.R
+import com.masuwes.moviecatalogue.domain.model.Movie
 import com.masuwes.moviecatalogue.utils.Constants
 import com.masuwes.moviecatalogue.utils.loadImage
 import kotlinx.android.synthetic.main.include_info.*
@@ -13,32 +14,62 @@ import org.koin.android.ext.android.inject
 class DetailActivity : AppCompatActivity() {
 
     private val viewModel: DetailViewModel by inject()
-    private lateinit var idMovie: String
-    private lateinit var idTvShow: String
 
     companion object {
-        const val BUNDLE_KEY = "bundle_key"
+        const val MOVIE_ID = "movie_id"
+        const val SHOW_ID = "show_id"
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-        val data = intent.getStringExtra(BUNDLE_KEY)
-        idMovie = data.toString()
-        idTvShow = data.toString()
-        viewModel.getDetailMovie(data.toString())
+//        viewModel.detailState.observe(this, startObserver)
 
-        with(viewModel) {
-            postDataMovie.observe(this@DetailActivity, Observer { movies ->
-                backdrop_image_detail.loadImage(Constants.URL_IMAGE + movies.backdrop_path)
-                poster_image_detail.loadImage(Constants.URL_IMAGE + movies.poster_path)
-                title_detail.text = movies.title
-                date_lang_detail.text = " ${movies.release_date} . ${movies.original_language} "
-                overview_detail.text = movies.overview
-            })
+        val extras = intent.extras
+        val movieId = extras?.getString(MOVIE_ID)
+        val showId = extras?.getString(SHOW_ID)
+
+        if (movieId != null) {
+            viewModel.getDetailMovie(movieId.toString())
+        } else if (showId != null) {
+            viewModel.getDetailTvShow(showId.toString())
         }
+
     }
+
+//    private val startObserver = Observer<DetailState> { dataState ->
+//        when(dataState) {
+//            is DetailMovieDataLoaded -> {
+//                val dataMovie = dataState.detailMovieDomain
+//                backdrop_image_detail.loadImage(Constants.URL_IMAGE + dataMovie.backdrop_path)
+//                poster_image_detail.loadImage(Constants.URL_IMAGE + dataMovie.poster_path)
+//                title_detail.text = dataMovie.title
+//                date_lang_detail.text = " ${dataMovie.release_date} . ${dataMovie.original_language}"
+//                overview_detail.text = dataMovie.overview
+//            }
+//            is DetailShowDataLoaded -> {
+//                val dataShow = dataState.detailShowDomain
+//                backdrop_image_detail.loadImage(Constants.URL_IMAGE + dataShow.backdrop_path)
+//                poster_image_detail.loadImage(Constants.URL_IMAGE + dataShow.poster_path)
+//                title_detail.text = dataShow.name
+//                date_lang_detail.text = " ${dataShow.first_air_date} . ${dataShow.original_language}"
+//                overview_detail.text = dataShow.overview
+//            }
+//        }
+//    }
+
+//    private fun populateMovie(movies: Movie) {
+//        with(viewModel) {
+//            postDataMovie.observe(this@DetailActivity, Observer { data ->
+//                backdrop_image_detail.loadImage(Constants.URL_IMAGE + data.backdrop_path)
+//                poster_image_detail.loadImage(Constants.URL_IMAGE + data.poster_path)
+//                title_detail.text = data.title
+//                date_lang_detail.text = " ${data.release_date} . ${data.original_language}"
+//                overview_detail.text = data.overview
+//            })
+//        }
+//    }
 
     override fun onDestroy() {
         finish()

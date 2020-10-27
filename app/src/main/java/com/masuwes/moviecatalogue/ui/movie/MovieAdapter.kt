@@ -1,16 +1,18 @@
 package com.masuwes.moviecatalogue.ui.movie
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.masuwes.moviecatalogue.R
 import com.masuwes.moviecatalogue.domain.model.Movie
+import com.masuwes.moviecatalogue.ui.detail.DetailActivity
 import com.masuwes.moviecatalogue.utils.Constants
 import com.masuwes.moviecatalogue.utils.loadImage
 import kotlinx.android.synthetic.main.item_rv.view.*
 
-class MovieAdapter(private val onItemClick: OnItemClick) : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
+class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
 
     private val listMovies = ArrayList<Movie>()
 
@@ -29,6 +31,13 @@ class MovieAdapter(private val onItemClick: OnItemClick) : RecyclerView.Adapter<
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = listMovies[position]
         holder.bind(data)
+
+        holder.itemView.setOnClickListener { view ->
+            view.context.startActivity(
+                Intent(view.context, DetailActivity::class.java)
+                    .putExtra(DetailActivity.MOVIE_ID, listMovies[position].id)
+            )
+        }
     }
 
     override fun getItemCount(): Int = listMovies.size
@@ -40,16 +49,8 @@ class MovieAdapter(private val onItemClick: OnItemClick) : RecyclerView.Adapter<
                 title_list_item.text = movies.title
                 rate_list_item.text = movies.vote_average.toString()
                 date_list_item.text = movies.release_date
-
-                itemView.setOnClickListener {
-                    onItemClick.onClick(movies)
-                }
             }
         }
-    }
-
-    interface OnItemClick {
-        fun onClick(item: Movie)
     }
 }
 
