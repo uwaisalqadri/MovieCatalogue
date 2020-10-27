@@ -18,8 +18,6 @@ data class DetailShowDataLoaded(val detailShowDomain: DetailTvShow) : DetailStat
 class DetailViewModel(private val detailUseCase: DetailUseCase) : BaseViewModel() {
 
     val detailState = MutableLiveData<DetailState>()
-    val postDataMovie = MutableLiveData<DetailMovie>()
-    val postDataTvShow = MutableLiveData<DetailTvShow>()
     val messageData = MutableLiveData<String>()
     val showProgressBar = MutableLiveData<Boolean>()
 
@@ -31,7 +29,7 @@ class DetailViewModel(private val detailUseCase: DetailUseCase) : BaseViewModel(
                 .compose(RxUtils.applySingleAsync())
                 .subscribe({ result ->
                     if (result != null) {
-                        postDataMovie.value = result
+                        detailState.value = DetailMovieDataLoaded(result)
                         showProgressBar.value = false
                     } else {
                         messageData.value = "${R.string.error}"
@@ -49,7 +47,7 @@ class DetailViewModel(private val detailUseCase: DetailUseCase) : BaseViewModel(
                 .compose(RxUtils.applySingleAsync())
                 .subscribe({ result ->
                     if (result != null) {
-                        postDataTvShow.value = result
+                        detailState.value = DetailShowDataLoaded(result)
                         showProgressBar.value = false
                     } else {
                         messageData.value = "${R.string.error}"

@@ -24,7 +24,7 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
-//        viewModel.detailState.observe(this, startObserver)
+        viewModel.detailState.observe(this, startObserver)
 
         val extras = intent.extras
         val movieId = extras?.getString(MOVIE_ID)
@@ -38,38 +38,27 @@ class DetailActivity : AppCompatActivity() {
 
     }
 
-//    private val startObserver = Observer<DetailState> { dataState ->
-//        when(dataState) {
-//            is DetailMovieDataLoaded -> {
-//                val dataMovie = dataState.detailMovieDomain
-//                backdrop_image_detail.loadImage(Constants.URL_IMAGE + dataMovie.backdrop_path)
-//                poster_image_detail.loadImage(Constants.URL_IMAGE + dataMovie.poster_path)
-//                title_detail.text = dataMovie.title
-//                date_lang_detail.text = " ${dataMovie.release_date} . ${dataMovie.original_language}"
-//                overview_detail.text = dataMovie.overview
-//            }
-//            is DetailShowDataLoaded -> {
-//                val dataShow = dataState.detailShowDomain
-//                backdrop_image_detail.loadImage(Constants.URL_IMAGE + dataShow.backdrop_path)
-//                poster_image_detail.loadImage(Constants.URL_IMAGE + dataShow.poster_path)
-//                title_detail.text = dataShow.name
-//                date_lang_detail.text = " ${dataShow.first_air_date} . ${dataShow.original_language}"
-//                overview_detail.text = dataShow.overview
-//            }
-//        }
-//    }
+    private val startObserver = Observer<DetailState> { dataState ->
+        when(dataState) {
+            is DetailMovieDataLoaded -> {
+                val dataMovie = dataState.detailMovieDomain
+                backdrop_image_detail.loadImage(Constants.URL_IMAGE + dataMovie.backdrop_path)
+                poster_image_detail.loadImage(Constants.URL_IMAGE + dataMovie.poster_path)
+                title_detail.text = dataMovie.title
+                date_lang_detail.text = " ${dataMovie.release_date} . ${dataMovie.original_language}"
+                overview_detail.text = dataMovie.overview
+            }
+            is DetailShowDataLoaded -> {
+                val dataShow = dataState.detailShowDomain
+                backdrop_image_detail.loadImage(Constants.URL_IMAGE + dataShow.backdrop_path)
+                poster_image_detail.loadImage(Constants.URL_IMAGE + dataShow.poster_path)
+                title_detail.text = dataShow.name
+                date_lang_detail.text = " ${dataShow.first_air_date} . ${dataShow.original_language}"
+                overview_detail.text = dataShow.overview
+            }
+        }
+    }
 
-//    private fun populateMovie(movies: Movie) {
-//        with(viewModel) {
-//            postDataMovie.observe(this@DetailActivity, Observer { data ->
-//                backdrop_image_detail.loadImage(Constants.URL_IMAGE + data.backdrop_path)
-//                poster_image_detail.loadImage(Constants.URL_IMAGE + data.poster_path)
-//                title_detail.text = data.title
-//                date_lang_detail.text = " ${data.release_date} . ${data.original_language}"
-//                overview_detail.text = data.overview
-//            })
-//        }
-//    }
 
     override fun onDestroy() {
         finish()
