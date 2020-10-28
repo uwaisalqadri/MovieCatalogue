@@ -16,8 +16,15 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
 
+        useLibrary 'android.test.runner'
+
+        useLibrary 'android.test.base'
+        useLibrary 'android.test.mock'
+    }
+    testOptions {
+        unitTests.returnDefaultValues = true
+    }
     buildTypes {
         release {
             minifyEnabled false
@@ -37,10 +44,6 @@ android {
 }
 
 dependencies {
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.1'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.1'
-    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
-
 
     //kotlin
     def coreVersion = '1.3.2'
@@ -51,15 +54,16 @@ dependencies {
     implementation "org.koin:koin-android:$koinVersion"
     implementation "org.koin:koin-android-scope:$koinVersion"
     implementation "org.koin:koin-android-viewmodel:$koinVersion"
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.3.9'
-    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.9"
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.4.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.4.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.3.1'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0'
+    testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.4.0'
 
 
     //ui
-    def appCompatVersion = '1.1.0'
-    def constraintLayoutVersion = '1.1.3'
+    def appCompatVersion = '1.2.0'
+    def constraintLayoutVersion = '2.0.2'
     def materialVersion = '1.2.1'
     def glideVersion = '4.11.0'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -67,8 +71,8 @@ dependencies {
     implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
     implementation "com.google.android.material:material:$materialVersion"
     implementation "com.github.bumptech.glide:glide:$glideVersion"
-    implementation 'com.intuit.sdp:sdp-android:1.0.5'
-    implementation 'com.intuit.ssp:ssp-android:1.0.5'
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.3.1'
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.1'
 
@@ -76,34 +80,32 @@ dependencies {
     def junitVersion = '4.13.1'
     def espressoVersion = '3.3.0'
     def androidXTestVersion = '1.3.0'
-    def archLifecycleVersion = '2.1.0'
+    def archLifecycleVersion = '2.2.0'
+    def mockitoVersion = '3.6.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.2'
-    testImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
-    implementation "androidx.test.espresso:espresso-idling-resource:3.3.0"
-    implementation 'androidx.annotation:annotation:1.1.0'
-    androidTestImplementation 'androidx.annotation:annotation:1.1.0'
-    implementation 'com.jakewharton.timber:timber:4.7.1'
-
-
-    //architecture component
+    implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
-    androidTestImplementation "androidx.test:rules:$androidXTestVersion"
+    implementation 'androidx.appcompat:appcompat:1.2.0'
+    implementation 'androidx.test.ext:junit:1.1.2'
+    implementation "junit:junit:$junitVersion"
+    implementation "junit:junit:$junitVersion"
+    implementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
+    implementation 'androidx.annotation:annotation:1.1.0'
+    implementation 'com.jakewharton.timber:timber:4.7.1'
+    implementation "org.mockito:mockito-core:$mockitoVersion"
+    implementation "org.mockito:mockito-android:$mockitoVersion"
+    implementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
+    implementation "androidx.test:rules:$androidXTestVersion"
 
     // networking
-    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.9.0'
+    def retrofitVersion = "2.9.0"
+    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.19'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.8.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.20'
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
 }
 
 repositories {
