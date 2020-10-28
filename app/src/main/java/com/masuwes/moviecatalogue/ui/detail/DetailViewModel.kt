@@ -19,17 +19,22 @@ data class DetailShowDataLoaded(val detailShowDomain: DetailTvShow) : DetailStat
 class DetailViewModel(private val detailUseCase: DetailUseCase) : BaseViewModel() {
 
     val detailState = MutableLiveData<DetailState>()
+    val progressBar = MutableLiveData<Boolean>()
+    val messageData = MutableLiveData<String>()
 
     fun getDetailMovie(idMovie: String) {
         EspressoIdlingResource.increment()
+        progressBar.value = true
         compositeDisposable.add(
             detailUseCase.getDetailMovie(idMovie, Constants.API_KEY, Constants.LANG)
                 .compose(RxUtils.applySingleAsync())
                 .subscribe({ result ->
                     if (result != null) {
                         detailState.value = DetailMovieDataLoaded(result)
+                        progressBar.value = false
                     } else {
                         Timber.i("${R.string.error}")
+                        messageData.value = "${R.string.error}"
                     }
                 }, this::onError)
         )
@@ -37,14 +42,16 @@ class DetailViewModel(private val detailUseCase: DetailUseCase) : BaseViewModel(
 
     fun getDetailTvShow(idShow: String) {
         EspressoIdlingResource.increment()
+        progressBar.value = true
         compositeDisposable.add(
             detailUseCase.getDetailTvShow(idShow, Constants.API_KEY, Constants.LANG)
                 .compose(RxUtils.applySingleAsync())
                 .subscribe({ result ->
                     if (result != null) {
                         detailState.value = DetailShowDataLoaded(result)
+                        progressBar.value = false
                     } else {
-
+                        messageData.value = "${R.string.error}"
                         Timber.i("${R.string.error}")
                     }
                 }, this::onError)
@@ -52,6 +59,6 @@ class DetailViewModel(private val detailUseCase: DetailUseCase) : BaseViewModel(
     }
 
     override fun onError(error: Throwable) {
-
+        messageData.value = error.message
     }
 }

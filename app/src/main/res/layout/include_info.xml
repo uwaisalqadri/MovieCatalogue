@@ -14,6 +14,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ProgressBar
+        android:id="@+id/progress_circular_detail"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:theme="@style/ProgressBar"
+        app:layout_constraintBottom_toBottomOf="@+id/backdrop_image_detail"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.345" />
+
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/poster_image_detail"
         android:layout_width="151dp"
@@ -29,11 +41,11 @@
         android:id="@+id/title_detail"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="@string/title"
+        tools:text="@string/title"
         android:textColor="?android:attr/textColorPrimary"
         android:textSize="@dimen/_17ssp"
         android:textStyle="bold"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="5dp"
         android:paddingStart="@dimen/_10ssp"
         android:paddingEnd="@dimen/_10ssp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -52,5 +64,40 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/poster_image_detail"
         app:layout_constraintTop_toBottomOf="@+id/title_detail" />
+
+
+    <TextView
+        android:id="@+id/rate_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:paddingStart="@dimen/_10ssp"
+        android:paddingEnd="@dimen/_10ssp"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/poster_image_detail"
+        app:layout_constraintTop_toBottomOf="@+id/date_lang_detail"
+        tools:text="8.3"
+        android:drawablePadding="3sp"
+        app:drawableTint="?android:attr/textColorPrimary"
+        app:drawableStartCompat="@drawable/ic_star" />
+
+    <TextView
+        android:id="@+id/popular_detail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:paddingStart="@dimen/_10ssp"
+        android:paddingEnd="@dimen/_10ssp"
+        android:textSize="@dimen/_12ssp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/rate_detail"
+        app:layout_constraintTop_toBottomOf="@+id/date_lang_detail"
+        tools:text="8.3"
+        app:drawableTint="?android:attr/textColorPrimary"
+        android:drawablePadding="3sp"
+        app:drawableStartCompat="@drawable/ic_people" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
