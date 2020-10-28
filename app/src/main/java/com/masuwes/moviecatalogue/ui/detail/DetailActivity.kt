@@ -1,5 +1,6 @@
 package com.masuwes.moviecatalogue.ui.detail
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.lifecycle.Observer
@@ -24,18 +25,18 @@ class DetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail)
 
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         viewModel.detailState.observe(this, startObserver)
 
-        val extras = intent.extras
-        val movieId = extras?.getString(MOVIE_ID)
-        val showId = extras?.getString(SHOW_ID)
+        val movieId = intent?.extras?.getString(MOVIE_ID)
+        val showId = intent?.extras?.getString(SHOW_ID)
 
         if (movieId != null) {
             viewModel.getDetailMovie(movieId.toString())
         } else if (showId != null) {
             viewModel.getDetailTvShow(showId.toString())
         }
-
     }
 
     private val startObserver = Observer<DetailState> { dataState ->
@@ -47,6 +48,7 @@ class DetailActivity : AppCompatActivity() {
                 title_detail.text = dataMovie.title
                 date_lang_detail.text = " ${dataMovie.release_date} . ${dataMovie.original_language}"
                 overview_detail.text = dataMovie.overview
+                supportActionBar?.title = dataMovie.original_title
             }
             is DetailShowDataLoaded -> {
                 val dataShow = dataState.detailShowDomain
@@ -55,14 +57,15 @@ class DetailActivity : AppCompatActivity() {
                 title_detail.text = dataShow.name
                 date_lang_detail.text = " ${dataShow.first_air_date} . ${dataShow.original_language}"
                 overview_detail.text = dataShow.overview
+                supportActionBar?.title = dataShow.original_name
             }
         }
     }
 
 
-    override fun onDestroy() {
+    override fun onSupportNavigateUp(): Boolean {
         finish()
-        super.onDestroy()
+        return super.onSupportNavigateUp()
     }
 }
 

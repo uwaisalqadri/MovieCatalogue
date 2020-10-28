@@ -35,7 +35,7 @@ class MovieAdapter : RecyclerView.Adapter<MovieAdapter.ViewHolder>() {
         holder.itemView.setOnClickListener { view ->
             view.context.startActivity(
                 Intent(view.context, DetailActivity::class.java)
-                    .putExtra(DetailActivity.MOVIE_ID, listMovies[position].id)
+                    .putExtra(DetailActivity.MOVIE_ID, listMovies[position].id.toString())
             )
         }
     }

@@ -12,16 +12,14 @@
         android:layout_height="230dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@android:color/darker_gray" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/poster_image_detail"
-        android:layout_width="161dp"
-        android:layout_height="220dp"
+        android:layout_width="151dp"
+        android:layout_height="210dp"
         android:scaleType="centerCrop"
         android:layout_marginTop="140dp"
-        app:srcCompat="@color/light_green"
         app:shapeAppearanceOverlay="@style/roundedImageView"
         android:layout_marginStart="@dimen/_10sdp"
         app:layout_constraintStart_toStartOf="parent"

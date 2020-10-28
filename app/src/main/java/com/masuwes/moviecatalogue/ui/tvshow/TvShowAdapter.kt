@@ -1,11 +1,13 @@
 package com.masuwes.moviecatalogue.ui.tvshow
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.masuwes.moviecatalogue.R
 import com.masuwes.moviecatalogue.domain.model.TvShow
+import com.masuwes.moviecatalogue.ui.detail.DetailActivity
 import com.masuwes.moviecatalogue.utils.Constants
 import com.masuwes.moviecatalogue.utils.loadImage
 import kotlinx.android.synthetic.main.item_rv.view.*
@@ -29,6 +31,13 @@ class TvShowAdapter : RecyclerView.Adapter<TvShowAdapter.ViewHolder>() {
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val data = listShows[position]
         holder.bind(data)
+
+        holder.itemView.setOnClickListener { view ->
+            view.context.startActivity(
+                Intent(view.context, DetailActivity::class.java)
+                    .putExtra(DetailActivity.SHOW_ID, listShows[position].id.toString())
+            )
+        }
     }
 
     override fun getItemCount(): Int = listShows.size

@@ -6,6 +6,7 @@ import com.masuwes.moviecatalogue.data.model.movie.ResponseMovie
 import com.masuwes.moviecatalogue.data.model.tvshow.ResponseTvShow
 import io.reactivex.Single
 import retrofit2.http.GET
+import retrofit2.http.Path
 import retrofit2.http.Query
 
 interface ApiService {
@@ -27,16 +28,16 @@ interface ApiService {
     ) : Single<ResponseTvShow>
 
     // detail
-    @GET("movie/{movie_id}")
+    @GET("3/movie/{movie_id}")
     fun getMovieDetail(
-        @Query("movie_id") movie_id: String,
+        @Path("movie_id") movie_id: String,
         @Query("api_key") api_key: String,
         @Query("language") language: String
     ) : Single<DetailMovieItem>
 
-    @GET("tv/{tv_id}")
+    @GET("3/tv/{tv_id}")
     fun getTvShowDetail(
-        @Query("tv_id") tv_id: String,
+        @Path("tv_id") tv_id: String,
         @Query("api_key") api_key: String,
         @Query("language") language: String
     ) : Single<DetailTvShowItem>
