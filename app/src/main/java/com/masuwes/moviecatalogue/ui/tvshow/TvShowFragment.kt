@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.masuwes.moviecatalogue.R
+import com.masuwes.moviecatalogue.utils.showToast
 import kotlinx.android.synthetic.main.fragment_movie.*
 import kotlinx.android.synthetic.main.fragment_tv_show.*
 import kotlinx.android.synthetic.main.fragment_tv_show.progress_circular
@@ -46,7 +47,7 @@ class TvShowFragment : Fragment() {
             })
 
             messageData.observe(viewLifecycleOwner, Observer { messageInfo ->
-                Toast.makeText(context, messageInfo, Toast.LENGTH_SHORT).show()
+                context?.showToast(messageInfo.toString())
                 Timber.i(messageInfo.toString())
             })
 

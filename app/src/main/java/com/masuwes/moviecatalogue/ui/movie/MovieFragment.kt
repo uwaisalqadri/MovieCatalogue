@@ -9,8 +9,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.masuwes.moviecatalogue.R
+import com.masuwes.moviecatalogue.utils.showToast
 import kotlinx.android.synthetic.main.fragment_movie.*
 import org.koin.android.ext.android.inject
+import timber.log.Timber
 
 class MovieFragment : Fragment() {
 
@@ -40,7 +42,8 @@ class MovieFragment : Fragment() {
             })
 
             messageData.observe(viewLifecycleOwner, Observer { message ->
-                Toast.makeText(context, message, Toast.LENGTH_SHORT).show()
+                context?.showToast(message.toString())
+                Timber.i(message.toString())
             })
 
             showProgressBar.observe(viewLifecycleOwner, Observer {

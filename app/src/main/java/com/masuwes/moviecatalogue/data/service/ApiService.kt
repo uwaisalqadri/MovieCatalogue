@@ -11,7 +11,7 @@ import retrofit2.http.Query
 
 interface ApiService {
 
-    @GET("3/discover/movie")
+    @GET("discover/movie")
     fun getMovies(
         @Query("api_key") api_key: String,
         @Query("language") language: String,
@@ -19,7 +19,7 @@ interface ApiService {
         @Query("page") page: Int
     ) : Single<ResponseMovie>
 
-    @GET("3/discover/tv")
+    @GET("discover/tv")
     fun getTvShows(
         @Query("api_key") api_key: String,
         @Query("language") language: String,
@@ -28,14 +28,14 @@ interface ApiService {
     ) : Single<ResponseTvShow>
 
     // detail
-    @GET("3/movie/{movie_id}")
+    @GET("movie/{movie_id}")
     fun getMovieDetail(
         @Path("movie_id") movie_id: String,
         @Query("api_key") api_key: String,
         @Query("language") language: String
     ) : Single<DetailMovieItem>
 
-    @GET("3/tv/{tv_id}")
+    @GET("tv/{tv_id}")
     fun getTvShowDetail(
         @Path("tv_id") tv_id: String,
         @Query("api_key") api_key: String,

@@ -7,7 +7,6 @@ class LoggingInterceptor : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
         var request = chain.request()
         request = request.newBuilder()
-//            .addHeader("token_key", BuildConfig.TOKEN_KEY)
             .build()
         return chain.proceed(request)
     }
