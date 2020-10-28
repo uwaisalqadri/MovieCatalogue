@@ -2,13 +2,16 @@ package com.masuwes.moviecatalogue.ui.detail
 
 import com.masuwes.moviecatalogue.domain.model.DetailMovie
 import com.masuwes.moviecatalogue.domain.model.DetailTvShow
+import com.masuwes.moviecatalogue.domain.model.Movie
 import com.masuwes.moviecatalogue.domain.usecase.movie.DetailUseCase
 import com.masuwes.moviecatalogue.utils.Constants
 import io.reactivex.Single
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
-import org.mockito.*
+import org.mockito.Mock
+import org.mockito.Mockito
+import org.mockito.MockitoAnnotations
 
 class DetailViewModelTest  {
 

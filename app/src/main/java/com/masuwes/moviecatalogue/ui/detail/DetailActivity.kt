@@ -81,7 +81,7 @@ class DetailActivity : AppCompatActivity() {
 
 
     override fun onSupportNavigateUp(): Boolean {
-        finish()
+        onBackPressed()
         return super.onSupportNavigateUp()
     }
 }

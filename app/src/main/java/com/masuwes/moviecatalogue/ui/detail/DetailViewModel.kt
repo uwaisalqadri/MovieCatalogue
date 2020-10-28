@@ -32,6 +32,7 @@ class DetailViewModel(private val detailUseCase: DetailUseCase) : BaseViewModel(
                     if (result != null) {
                         detailState.value = DetailMovieDataLoaded(result)
                         progressBar.value = false
+                        EspressoIdlingResource.decrement()
                     } else {
                         Timber.i("${R.string.error}")
                         messageData.value = "${R.string.error}"
@@ -50,6 +51,7 @@ class DetailViewModel(private val detailUseCase: DetailUseCase) : BaseViewModel(
                     if (result != null) {
                         detailState.value = DetailShowDataLoaded(result)
                         progressBar.value = false
+                        EspressoIdlingResource.decrement()
                     } else {
                         messageData.value = "${R.string.error}"
                         Timber.i("${R.string.error}")
