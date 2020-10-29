@@ -18,7 +18,6 @@ class MovieViewModel(private val movieUseCase: MovieUseCase) : BaseViewModel() {
 
     fun getMovies() {
         EspressoIdlingResource.increment()
-        showProgressBar.value = true
         compositeDisposable.add(
             movieUseCase.getMovies(Constants.API_KEY, Constants.LANG, Constants.SORT_BY,1)
                 .compose(RxUtils.applySingleAsync())

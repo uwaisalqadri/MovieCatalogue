@@ -91,8 +91,11 @@ dependencies {
     implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
     implementation 'androidx.annotation:annotation:1.1.0'
     implementation 'com.jakewharton.timber:timber:4.7.1'
+
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
     androidTestImplementation "org.mockito:mockito-android:$mockitoVersion"
+    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
+
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
     androidTestImplementation "androidx.test:rules:$androidXTestVersion"
 

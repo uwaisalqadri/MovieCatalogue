@@ -18,7 +18,6 @@ class TvShowViewModel(private val tvShowUseCase: TvShowUseCase) : BaseViewModel(
 
     fun getTvShows() {
         EspressoIdlingResource.increment()
-        showProgressBar.value = true
         compositeDisposable.add(
             tvShowUseCase.getTvShows(Constants.API_KEY, Constants.LANG, Constants.SORT_BY, 1)
                 .compose(RxUtils.applySingleAsync())

@@ -24,7 +24,6 @@ class DetailViewModel(private val detailUseCase: DetailUseCase) : BaseViewModel(
 
     fun getDetailMovie(idMovie: String) {
         EspressoIdlingResource.increment()
-        progressBar.value = true
         compositeDisposable.add(
             detailUseCase.getDetailMovie(idMovie, Constants.API_KEY, Constants.LANG)
                 .compose(RxUtils.applySingleAsync())
@@ -43,7 +42,6 @@ class DetailViewModel(private val detailUseCase: DetailUseCase) : BaseViewModel(
 
     fun getDetailTvShow(idShow: String) {
         EspressoIdlingResource.increment()
-        progressBar.value = true
         compositeDisposable.add(
             detailUseCase.getDetailTvShow(idShow, Constants.API_KEY, Constants.LANG)
                 .compose(RxUtils.applySingleAsync())

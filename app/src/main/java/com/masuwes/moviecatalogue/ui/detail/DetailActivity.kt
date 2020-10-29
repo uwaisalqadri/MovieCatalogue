@@ -42,8 +42,8 @@ class DetailActivity : AppCompatActivity() {
 
         with(viewModel) {
             progressBar.observe(this@DetailActivity, Observer {
-                if (it == true) progress_circular_detail.visibility = View.VISIBLE
-                else progress_circular_detail.visibility = View.GONE
+                if (it == false) progress_circular_detail.visibility = View.GONE
+                else progress_circular_detail.visibility = View.VISIBLE
             })
 
             messageData.observe(this@DetailActivity, Observer { error ->

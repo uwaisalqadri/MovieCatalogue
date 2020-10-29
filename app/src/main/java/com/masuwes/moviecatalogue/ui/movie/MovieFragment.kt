@@ -47,8 +47,8 @@ class MovieFragment : Fragment() {
             })
 
             showProgressBar.observe(viewLifecycleOwner, Observer {
-                if (it == true) progress_circular.visibility = View.VISIBLE
-                else progress_circular.visibility = View.GONE
+                if (it == false) progress_circular.visibility = View.GONE
+                else progress_circular.visibility = View.VISIBLE
             })
         }
 

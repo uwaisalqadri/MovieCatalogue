@@ -2,18 +2,20 @@ package com.masuwes.moviecatalogue.ui.detail
 
 import com.masuwes.moviecatalogue.domain.model.DetailMovie
 import com.masuwes.moviecatalogue.domain.model.DetailTvShow
-import com.masuwes.moviecatalogue.domain.model.Movie
 import com.masuwes.moviecatalogue.domain.usecase.movie.DetailUseCase
 import com.masuwes.moviecatalogue.utils.Constants
 import io.reactivex.Single
 import kotlinx.coroutines.runBlocking
 import org.junit.Before
 import org.junit.Test
+import org.junit.runner.RunWith
 import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
+import org.mockito.junit.MockitoJUnitRunner
 
-class DetailViewModelTest  {
+@RunWith(MockitoJUnitRunner::class)
+class DetailViewModelTest{
 
     private lateinit var viewModel: DetailViewModel
 
@@ -26,6 +28,7 @@ class DetailViewModelTest  {
     @Mock
     private lateinit var useCase: DetailUseCase
 
+
     @Before
     fun setUp() {
         MockitoAnnotations.openMocks(this)
@@ -33,20 +36,25 @@ class DetailViewModelTest  {
     }
 
     @Test
-    fun getDetailMovies() {
-        val movieResponse = responseMovie
+    fun getDetailMovies(){
+        val moviesRespone = responseMovie
         runBlocking {
             Mockito.`when`(useCase.getDetailMovie("330457", Constants.API_KEY, Constants.LANG))
-        }.thenReturn(Single.just(movieResponse))
+        }
+            .thenReturn(Single.just(moviesRespone))
         viewModel.getDetailMovie("330457")
+
     }
 
     @Test
-    fun getDetailShows() {
-        val showResponse = responseShow
+    fun getDetailTvShows(){
+        val showsResponse = responseShow
         runBlocking {
             Mockito.`when`(useCase.getDetailTvShow("60735", Constants.API_KEY, Constants.LANG))
-        }.thenReturn(Single.just(showResponse))
+        }
+            .thenReturn(Single.just(showsResponse))
         viewModel.getDetailTvShow("60735")
+
+
     }
 }
