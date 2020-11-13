@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.masuwes.moviecatalogue.R
+import com.masuwes.moviecatalogue.utils.isRefresh
 import com.masuwes.moviecatalogue.utils.showToast
 import kotlinx.android.synthetic.main.fragment_movie.*
 import kotlinx.android.synthetic.main.fragment_tv_show.*
@@ -52,8 +53,7 @@ class TvShowFragment : Fragment() {
             })
 
             showProgressBar.observe(viewLifecycleOwner, Observer {
-                if (it == false) progress_circular.visibility = View.GONE
-                else progress_circular.visibility = View.VISIBLE
+                progress_circular.isRefresh(it)
             })
         }
 

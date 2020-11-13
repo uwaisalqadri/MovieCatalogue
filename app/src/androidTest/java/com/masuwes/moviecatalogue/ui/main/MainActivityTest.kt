@@ -36,13 +36,12 @@ class MainActivityTest  {
     fun testMovie() {
         onView(withId(R.id.rv_movie)).check(ViewAssertions.matches(isDisplayed()))
         onView(withId(R.id.rv_movie)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(7))
-        Thread.sleep(3000)
 
         onView(withId(R.id.rv_movie)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
             6, ViewActions.click()
         ))
         onView(withId(R.id.overview_detail)).check(ViewAssertions.matches(isDisplayed()))
-        Thread.sleep(3000)
+
         Espresso.pressBack()
     }
 
@@ -51,13 +50,12 @@ class MainActivityTest  {
         onView(withId(R.id.navigation_tvshow)).perform(ViewActions.click())
         onView(withId(R.id.rv_show)).check(ViewAssertions.matches(isDisplayed()))
         onView(withId(R.id.rv_show)).perform(RecyclerViewActions.scrollToPosition<RecyclerView.ViewHolder>(7))
-        Thread.sleep(3000)
 
         onView(withId(R.id.rv_show)).perform(RecyclerViewActions.actionOnItemAtPosition<RecyclerView.ViewHolder>(
             6, ViewActions.click()
         ))
         onView(withId(R.id.overview_detail)).check(ViewAssertions.matches(isDisplayed()))
-        Thread.sleep(3000)
+
         Espresso.pressBack()
     }
 

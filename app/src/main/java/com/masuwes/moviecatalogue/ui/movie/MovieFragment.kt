@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.masuwes.moviecatalogue.R
+import com.masuwes.moviecatalogue.utils.isRefresh
 import com.masuwes.moviecatalogue.utils.showToast
 import kotlinx.android.synthetic.main.fragment_movie.*
 import org.koin.android.ext.android.inject
@@ -47,8 +48,7 @@ class MovieFragment : Fragment() {
             })
 
             showProgressBar.observe(viewLifecycleOwner, Observer {
-                if (it == false) progress_circular.visibility = View.GONE
-                else progress_circular.visibility = View.VISIBLE
+                progress_circular.isRefresh(it)
             })
         }
 

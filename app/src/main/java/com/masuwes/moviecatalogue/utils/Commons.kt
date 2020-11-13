@@ -1,7 +1,9 @@
 package com.masuwes.moviecatalogue.utils
 
 import android.content.Context
+import android.view.View
 import android.widget.ImageView
+import android.widget.ProgressBar
 import android.widget.Toast
 import com.bumptech.glide.Glide
 
@@ -19,4 +21,11 @@ fun Context.showToast(msg: String) {
         msg,
         Toast.LENGTH_SHORT
     ).show()
+}
+
+fun ProgressBar.isRefresh(state: Boolean) {
+    visibility = when(state) {
+        true -> View.VISIBLE
+        false -> View.GONE
+    }
 }

@@ -62,7 +62,7 @@ dependencies {
 
     //ui
     def appCompatVersion = '1.2.0'
-    def constraintLayoutVersion = '2.0.2'
+    def constraintLayoutVersion = '2.0.4'
     def materialVersion = '1.2.1'
     def glideVersion = '4.11.0'
     implementation fileTree(dir: 'libs', include: ['*.jar'])
@@ -79,14 +79,16 @@ dependencies {
     def junitVersion = '4.13.1'
     def espressoVersion = '3.3.0'
     def androidXTestVersion = '1.3.0'
-    def archLifecycleVersion = '2.2.0'
+    def lifecycleVersion = '2.2.0'
     def mockitoVersion = '3.6.0'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation "androidx.lifecycle:lifecycle-extensions:$archLifecycleVersion"
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"
     implementation 'androidx.appcompat:appcompat:1.2.0'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     testImplementation "junit:junit:$junitVersion"
+    // For RxJava 2
+    testImplementation 'com.github.Plastix.RxSchedulerRule:rx2:1.0.2'
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
     implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
     implementation 'androidx.annotation:annotation:1.1.0'
@@ -95,6 +97,7 @@ dependencies {
     testImplementation "org.mockito:mockito-core:$mockitoVersion"
     androidTestImplementation "org.mockito:mockito-android:$mockitoVersion"
     testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:2.1.0"
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
 
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
     androidTestImplementation "androidx.test:rules:$androidXTestVersion"

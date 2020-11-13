@@ -10,6 +10,7 @@
         android:id="@+id/backdrop_image_detail"
         android:layout_width="0dp"
         android:layout_height="230dp"
+        android:scaleType="centerCrop"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

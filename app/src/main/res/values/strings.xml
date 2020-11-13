@@ -2,17 +2,10 @@
     <string name="app_name">MovieCatalogue</string>
     <string name="movie">Movie</string>
     <string name="tvShow">TvShow</string>
-    <string name="detail">Detail</string>
     <string name="splash_copyright">Copyright © 2020 by Uwais Alqadri</string>
     <string name="overview">Overview</string>
-    <string name="vote">Vote Average</string>
-    <string name="release">Release date</string>
     <string name="title">Title</string>
     <string name="error">Data Kosong</string>
-    <string name="title_activity_main2">MainActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
     <string name="movie_catalogue">Movie Catalogue</string>
     <string name="tvShow_catalogue">Tv Show Catalogue</string>
 </resources>

@@ -1,13 +1,12 @@
 package com.masuwes.moviecatalogue.ui.detail
 
-import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.masuwes.moviecatalogue.R
-import com.masuwes.moviecatalogue.domain.model.Movie
 import com.masuwes.moviecatalogue.utils.Constants
+import com.masuwes.moviecatalogue.utils.isRefresh
 import com.masuwes.moviecatalogue.utils.loadImage
 import com.masuwes.moviecatalogue.utils.showToast
 import kotlinx.android.synthetic.main.include_info.*
@@ -42,8 +41,7 @@ class DetailActivity : AppCompatActivity() {
 
         with(viewModel) {
             progressBar.observe(this@DetailActivity, Observer {
-                if (it == false) progress_circular_detail.visibility = View.GONE
-                else progress_circular_detail.visibility = View.VISIBLE
+                progress_circular_detail.isRefresh(it)
             })
 
             messageData.observe(this@DetailActivity, Observer { error ->

@@ -28,11 +28,6 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="MyCustomTextAppearance" parent="TextAppearance.Design.Tab">
-        <item name="textAllCaps">true</item>
-        <item name="android:textColor">@android:color/white</item>
-    </style>
-
     <style name="roundedImageView" parent="">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">14dp</item>

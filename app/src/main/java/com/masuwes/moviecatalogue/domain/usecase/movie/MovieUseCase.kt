@@ -1,5 +1,6 @@
 package com.masuwes.moviecatalogue.domain.usecase.movie
 
+import androidx.lifecycle.MutableLiveData
 import com.masuwes.moviecatalogue.domain.model.Movie
 import io.reactivex.Single
 
