@@ -1,5 +1,8 @@
 package com.masuwes.moviecatalogue.domain.model
 
+import androidx.room.Entity
+
+@Entity(tableName = "tb_detail_tvshow")
 open class DetailMovie(
     val adult: Boolean?,
     val backdrop_path: String?,

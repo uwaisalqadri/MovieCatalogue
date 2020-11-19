@@ -1,4 +1,4 @@
-package com.masuwes.moviecatalogue.data.service
+package com.masuwes.moviecatalogue.data.remote
 
 import okhttp3.Interceptor
 import okhttp3.Response

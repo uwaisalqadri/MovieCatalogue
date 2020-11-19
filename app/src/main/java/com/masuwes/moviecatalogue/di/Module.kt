@@ -8,8 +8,8 @@ import com.masuwes.moviecatalogue.data.mapper.TvShowMapper
 import com.masuwes.moviecatalogue.data.repository.DetailRepositoryImpl
 import com.masuwes.moviecatalogue.data.repository.MovieRepositoryImpl
 import com.masuwes.moviecatalogue.data.repository.TvShowRepositoryImpl
-import com.masuwes.moviecatalogue.data.service.ApiService
-import com.masuwes.moviecatalogue.data.service.LoggingInterceptor
+import com.masuwes.moviecatalogue.data.remote.ApiService
+import com.masuwes.moviecatalogue.data.remote.LoggingInterceptor
 import com.masuwes.moviecatalogue.domain.repository.DetailRepository
 import com.masuwes.moviecatalogue.domain.repository.MovieRepository
 import com.masuwes.moviecatalogue.domain.repository.TvShowRepository

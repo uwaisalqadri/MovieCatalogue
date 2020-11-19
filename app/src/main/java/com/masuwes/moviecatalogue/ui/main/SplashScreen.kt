@@ -9,7 +9,7 @@ import com.masuwes.moviecatalogue.R
 
 class SplashScreen : AppCompatActivity() {
 
-    private val handler =  Handler(Looper.getMainLooper())
+    private val handler = Handler(Looper.getMainLooper())
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

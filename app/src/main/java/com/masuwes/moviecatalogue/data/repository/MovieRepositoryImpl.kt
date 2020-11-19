@@ -1,7 +1,7 @@
 package com.masuwes.moviecatalogue.data.repository
 
 import com.masuwes.moviecatalogue.data.mapper.MovieMapper
-import com.masuwes.moviecatalogue.data.service.ApiService
+import com.masuwes.moviecatalogue.data.remote.ApiService
 import com.masuwes.moviecatalogue.domain.model.Movie
 import com.masuwes.moviecatalogue.domain.repository.MovieRepository
 import io.reactivex.Single

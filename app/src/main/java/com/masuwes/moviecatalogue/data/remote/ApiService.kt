@@ -1,4 +1,4 @@
-package com.masuwes.moviecatalogue.data.service
+package com.masuwes.moviecatalogue.data.remote
 
 import com.masuwes.moviecatalogue.data.model.detail.DetailMovieItem
 import com.masuwes.moviecatalogue.data.model.detail.DetailTvShowItem

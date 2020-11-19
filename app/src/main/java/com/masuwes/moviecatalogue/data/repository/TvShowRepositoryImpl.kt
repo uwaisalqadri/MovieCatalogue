@@ -1,7 +1,7 @@
 package com.masuwes.moviecatalogue.data.repository
 
 import com.masuwes.moviecatalogue.data.mapper.TvShowMapper
-import com.masuwes.moviecatalogue.data.service.ApiService
+import com.masuwes.moviecatalogue.data.remote.ApiService
 import com.masuwes.moviecatalogue.domain.model.TvShow
 import com.masuwes.moviecatalogue.domain.repository.TvShowRepository
 import io.reactivex.Single

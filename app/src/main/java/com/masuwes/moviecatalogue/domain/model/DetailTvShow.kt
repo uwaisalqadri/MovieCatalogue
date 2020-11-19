@@ -1,5 +1,8 @@
 package com.masuwes.moviecatalogue.domain.model
 
+import androidx.room.Entity
+
+@Entity(tableName = "tb_detail_movie")
 open class DetailTvShow(
     val backdrop_path: String?,
     val first_air_date: String?,
