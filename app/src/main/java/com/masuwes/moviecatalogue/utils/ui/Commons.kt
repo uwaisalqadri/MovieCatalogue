@@ -1,4 +1,4 @@
-package com.masuwes.moviecatalogue.utils
+package com.masuwes.moviecatalogue.utils.ui
 
 import android.content.Context
 import android.view.View

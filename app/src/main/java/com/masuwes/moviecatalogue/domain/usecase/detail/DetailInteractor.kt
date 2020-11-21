@@ -1,4 +1,4 @@
-package com.masuwes.moviecatalogue.domain.usecase.movie
+package com.masuwes.moviecatalogue.domain.usecase.detail
 
 import com.masuwes.moviecatalogue.domain.repository.DetailRepository
 

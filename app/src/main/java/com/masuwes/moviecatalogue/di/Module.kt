@@ -15,6 +15,8 @@ import com.masuwes.moviecatalogue.data.remote.BaseInterceptor
 import com.masuwes.moviecatalogue.domain.repository.DetailRepository
 import com.masuwes.moviecatalogue.domain.repository.MovieRepository
 import com.masuwes.moviecatalogue.domain.repository.TvShowRepository
+import com.masuwes.moviecatalogue.domain.usecase.detail.DetailInteractor
+import com.masuwes.moviecatalogue.domain.usecase.detail.DetailUseCase
 import com.masuwes.moviecatalogue.domain.usecase.movie.*
 import com.masuwes.moviecatalogue.domain.usecase.tvshow.TvShowInteractor
 import com.masuwes.moviecatalogue.domain.usecase.tvshow.TvShowUseCase
@@ -41,13 +43,7 @@ val appModule = module {
     single { createOkHttpClient(get()) }
     single { createWebService<ApiService>(get(), Constants.BASE_URL) }
 
-    single {
-        Room.databaseBuilder(
-            androidApplication(),
-            AppDatabase::class.java,
-            Constants.DATABASE_NAME
-        ).build()
-    }
+    // TODO = "Adding single room"
 }
 
 val repositoryModule = module {

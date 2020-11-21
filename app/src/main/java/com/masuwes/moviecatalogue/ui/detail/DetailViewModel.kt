@@ -4,9 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.masuwes.moviecatalogue.R
 import com.masuwes.moviecatalogue.domain.model.DetailMovie
 import com.masuwes.moviecatalogue.domain.model.DetailTvShow
-import com.masuwes.moviecatalogue.domain.model.TvShow
-import com.masuwes.moviecatalogue.domain.repository.DetailRepository
-import com.masuwes.moviecatalogue.domain.usecase.movie.DetailUseCase
+import com.masuwes.moviecatalogue.domain.usecase.detail.DetailUseCase
 import com.masuwes.moviecatalogue.ui.BaseViewModel
 import com.masuwes.moviecatalogue.utils.Constants
 import com.masuwes.moviecatalogue.utils.EspressoIdlingResource

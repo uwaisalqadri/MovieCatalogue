@@ -2,7 +2,7 @@ package com.masuwes.moviecatalogue.ui.detail
 
 import com.masuwes.moviecatalogue.domain.model.DetailMovie
 import com.masuwes.moviecatalogue.domain.model.DetailTvShow
-import com.masuwes.moviecatalogue.domain.usecase.movie.DetailUseCase
+import com.masuwes.moviecatalogue.domain.usecase.detail.DetailUseCase
 import com.masuwes.moviecatalogue.utils.Constants
 import io.reactivex.Single
 import kotlinx.coroutines.runBlocking

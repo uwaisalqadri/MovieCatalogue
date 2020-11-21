@@ -10,25 +10,31 @@ import com.masuwes.moviecatalogue.utils.EspressoIdlingResource
 import com.masuwes.moviecatalogue.utils.RxUtils
 import timber.log.Timber
 
+sealed class MovieState
+data class MovieDataLoaded(val movie: List<Movie>) : MovieState()
+object LoadingState : MovieState()
+object LastPageState : MovieState()
+object DataNotFoundState : MovieState()
 class MovieViewModel(private val movieUseCase: MovieUseCase) : BaseViewModel() {
 
-    val postMovieData = MutableLiveData<List<Movie>>()
+    val postMovieData = MutableLiveData<MovieState>()
     val showProgressBar = MutableLiveData<Boolean>()
     val messageData = MutableLiveData<String>()
 
-    fun getMovies() {
+    fun getMovies(page: Int) {
         EspressoIdlingResource.increment()
+        postMovieData.value = LoadingState
         compositeDisposable.add(
             movieUseCase.getMovies(Constants.API_KEY, Constants.LANG, Constants.SORT_BY,1)
                 .compose(RxUtils.applySingleAsync())
                 .subscribe({ result ->
                     if (result.isNotEmpty()) {
-                        postMovieData.value = result
+                        postMovieData.value = MovieDataLoaded(result)
                         showProgressBar.value = false
                         EspressoIdlingResource.decrement()
                     } else {
-                        messageData.value = "${R.string.error}"
-                        Timber.d("${R.string.error}")
+                        if (page == 1) postMovieData.value = DataNotFoundState
+                        else postMovieData.value = LastPageState
                     }
                 }, this::onError)
         )

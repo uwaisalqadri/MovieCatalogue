@@ -1,14 +1,13 @@
 package com.masuwes.moviecatalogue.ui.detail
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import com.masuwes.moviecatalogue.R
 import com.masuwes.moviecatalogue.utils.Constants
-import com.masuwes.moviecatalogue.utils.isRefresh
-import com.masuwes.moviecatalogue.utils.loadImage
-import com.masuwes.moviecatalogue.utils.showToast
+import com.masuwes.moviecatalogue.utils.ui.isRefresh
+import com.masuwes.moviecatalogue.utils.ui.loadImage
+import com.masuwes.moviecatalogue.utils.ui.showToast
 import kotlinx.android.synthetic.main.include_info.*
 import kotlinx.android.synthetic.main.include_overview.*
 import org.koin.android.ext.android.inject
