@@ -10,25 +10,31 @@ import com.masuwes.moviecatalogue.utils.EspressoIdlingResource
 import com.masuwes.moviecatalogue.utils.RxUtils
 import timber.log.Timber
 
+sealed class TvShowState
+data class TvShowLoadedState(val tvShow: List<TvShow>) : TvShowState()
+object LoadingState : TvShowState()
+object LastPageState : TvShowState()
+object DataNotFoundState : TvShowState()
 class TvShowViewModel(private val tvShowUseCase: TvShowUseCase) : BaseViewModel() {
 
-    val postTvShowData = MutableLiveData<List<TvShow>>()
+    val postTvShowData = MutableLiveData<TvShowState>()
     val messageData = MutableLiveData<String>()
     val showProgressBar = MutableLiveData<Boolean>()
 
-    fun getTvShows() {
+    fun getTvShows(page: Int) {
         EspressoIdlingResource.increment()
+        postTvShowData.value = LoadingState
         compositeDisposable.add(
             tvShowUseCase.getTvShows(Constants.API_KEY, Constants.LANG, Constants.SORT_BY, 1)
                 .compose(RxUtils.applySingleAsync())
                 .subscribe({ result ->
                     if (result.isNotEmpty()) {
-                        postTvShowData.value = result
+                        postTvShowData.value = TvShowLoadedState(result)
                         showProgressBar.value = false
                         EspressoIdlingResource.decrement()
                     } else {
-                        messageData.value = "${R.string.error}"
-                        Timber.e("${R.string.error}")
+                        if (page == 1) postTvShowData.value = DataNotFoundState
+                        else postTvShowData.value = LastPageState
                     }
                 }, this::onError)
         )
