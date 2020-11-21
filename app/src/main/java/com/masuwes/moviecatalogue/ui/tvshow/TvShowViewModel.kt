@@ -41,7 +41,7 @@ class TvShowViewModel(private val tvShowUseCase: TvShowUseCase) : BaseViewModel(
     }
 
     override fun onError(error: Throwable) {
-        messageData.value = error.message
+        messageData.value = error.message.toString()
     }
 
 }

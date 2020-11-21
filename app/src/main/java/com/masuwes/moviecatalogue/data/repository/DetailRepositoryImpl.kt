@@ -14,7 +14,7 @@ class DetailRepositoryImpl(
     private val itemDetailTvShowMapper: DetailTvShowMapper
 ) : DetailRepository {
     override fun getDetailMovie(
-        movie_id: String,
+        movie_id: Int,
         api_key: String,
         language: String
     ): Single<DetailMovie> {

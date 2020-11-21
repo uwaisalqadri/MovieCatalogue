@@ -7,7 +7,7 @@ import io.reactivex.Single
 interface DetailUseCase {
 
     fun getDetailMovie(
-        movie_id: String,
+        movie_id: Int,
         api_key: String,
         language: String,
     ) : Single<DetailMovie>

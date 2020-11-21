@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.detail.DetailActivity">
+    tools:context=".ui.detail.movie.DetailMovieActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -32,6 +32,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/include_info" />
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_detail_movie"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="16dp"
+            android:backgroundTint="@color/light_green"
+            android:elevation="6dp"
+            app:fabSize="normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/include_info"
+            app:srcCompat="@drawable/ic_favorite_border"
+            app:tint="@android:color/black" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

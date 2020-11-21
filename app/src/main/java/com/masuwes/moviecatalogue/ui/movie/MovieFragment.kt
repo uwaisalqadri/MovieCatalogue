@@ -10,7 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.masuwes.moviecatalogue.R
 import com.masuwes.moviecatalogue.domain.model.Movie
-import com.masuwes.moviecatalogue.ui.detail.DetailActivity
+import com.masuwes.moviecatalogue.ui.detail.movie.DetailMovieActivity
 import com.masuwes.moviecatalogue.utils.Constants
 import com.masuwes.moviecatalogue.utils.room.PaginationScrollListener
 import com.masuwes.moviecatalogue.utils.ui.LoadMoreItemView
@@ -20,10 +20,8 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.ViewHolder
 import kotlinx.android.synthetic.main.fragment_movie.*
 import kotlinx.android.synthetic.main.fragment_movie.progress_circular
-import kotlinx.android.synthetic.main.fragment_tv_show.*
 import org.koin.android.ext.android.inject
 import timber.log.Timber
-import java.util.*
 
 class MovieFragment : Fragment() {
 
@@ -101,8 +99,9 @@ class MovieFragment : Fragment() {
                 movieState.movie.map {
                     adapterMovie.add(MovieListItem(it, object : MovieListItem.OnItemClick {
                         override fun onClick(item: Movie) {
-                            startActivity(Intent(context, DetailActivity::class.java)
-                                .putExtra(DetailActivity.MOVIE_ID, item.id.toString()))
+                            startActivity(
+                                Intent(context, DetailMovieActivity::class.java)
+                                .putExtra(DetailMovieActivity.MOVIE_ID, item.id))
                         }
 
                     }))

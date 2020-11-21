@@ -2,7 +2,6 @@ package com.masuwes.moviecatalogue.di
 
 import androidx.room.Room
 import com.google.gson.GsonBuilder
-import com.masuwes.moviecatalogue.data.local.database.AppDatabase
 import com.masuwes.moviecatalogue.data.mapper.DetailMovieMapper
 import com.masuwes.moviecatalogue.data.mapper.DetailTvShowMapper
 import com.masuwes.moviecatalogue.data.mapper.MovieMapper
@@ -20,7 +19,7 @@ import com.masuwes.moviecatalogue.domain.usecase.detail.DetailUseCase
 import com.masuwes.moviecatalogue.domain.usecase.movie.*
 import com.masuwes.moviecatalogue.domain.usecase.tvshow.TvShowInteractor
 import com.masuwes.moviecatalogue.domain.usecase.tvshow.TvShowUseCase
-import com.masuwes.moviecatalogue.ui.detail.DetailViewModel
+import com.masuwes.moviecatalogue.ui.detail.movie.DetailMovieVM
 import com.masuwes.moviecatalogue.ui.movie.MovieViewModel
 import com.masuwes.moviecatalogue.ui.tvshow.TvShowViewModel
 import com.masuwes.moviecatalogue.utils.Constants
@@ -43,7 +42,13 @@ val appModule = module {
     single { createOkHttpClient(get()) }
     single { createWebService<ApiService>(get(), Constants.BASE_URL) }
 
-    // TODO = "Adding single room"
+//    single {
+//        Room.databaseBuilder(
+//            androidApplication(),
+//            AppDatabase::class.java,
+//            Constants.DATABASE_NAME
+//        ).build()
+//    }
 }
 
 val repositoryModule = module {
@@ -94,7 +99,10 @@ val utilsModule = module {
 val viewModelModule = module {
     viewModel { MovieViewModel(get()) }
     viewModel { TvShowViewModel(get()) }
-    viewModel { DetailViewModel(get()) }
+    viewModel {
+        DetailMovieVM(
+        get())
+    }
 }
 
 fun createOkHttpClient(interceptor: BaseInterceptor): OkHttpClient {

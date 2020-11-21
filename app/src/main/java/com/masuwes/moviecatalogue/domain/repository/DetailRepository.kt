@@ -7,7 +7,7 @@ import io.reactivex.Single
 interface DetailRepository {
 
     fun getDetailMovie(
-        movie_id: String,
+        movie_id: Int,
         api_key: String,
         language: String,
     ) : Single<DetailMovie>

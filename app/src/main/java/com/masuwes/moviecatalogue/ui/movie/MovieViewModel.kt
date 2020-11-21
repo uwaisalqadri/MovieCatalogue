@@ -41,7 +41,7 @@ class MovieViewModel(private val movieUseCase: MovieUseCase) : BaseViewModel() {
     }
 
     override fun onError(error: Throwable) {
-        messageData.value = error.message
+        messageData.value = error.message.toString()
     }
 
 }

@@ -30,7 +30,7 @@ interface ApiService {
     // detail
     @GET("movie/{movie_id}")
     fun getMovieDetail(
-        @Path("movie_id") movie_id: String,
+        @Path("movie_id") movie_id: Int,
         @Query("api_key") api_key: String,
         @Query("language") language: String
     ) : Single<DetailMovieItem>
