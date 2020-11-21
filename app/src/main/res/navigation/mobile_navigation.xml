@@ -16,4 +16,9 @@
         android:name="com.masuwes.moviecatalogue.ui.tvshow.TvShowFragment"
         android:label="@string/tvShow_catalogue"
         tools:layout="@layout/fragment_tv_show" />
+    <fragment
+        android:id="@+id/navigation_favorite"
+        android:name="com.masuwes.moviecatalogue.ui.favorite.FavoriteFragment"
+        android:label="@string/favorite"
+        tools:layout="@layout/fragment_favorite" />
 </navigation>

@@ -21,6 +21,7 @@ class MyApplication : Application() {
                     repositoryModule,
                     mapperModule,
                     useCaseModule,
+                    utilsModule,
                     viewModelModule
                 )
             )

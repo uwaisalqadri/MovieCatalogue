@@ -1,6 +1,8 @@
 package com.masuwes.moviecatalogue.di
 
+import androidx.room.Room
 import com.google.gson.GsonBuilder
+import com.masuwes.moviecatalogue.data.local.database.AppDatabase
 import com.masuwes.moviecatalogue.data.mapper.DetailMovieMapper
 import com.masuwes.moviecatalogue.data.mapper.DetailTvShowMapper
 import com.masuwes.moviecatalogue.data.mapper.MovieMapper
@@ -9,7 +11,7 @@ import com.masuwes.moviecatalogue.data.repository.DetailRepositoryImpl
 import com.masuwes.moviecatalogue.data.repository.MovieRepositoryImpl
 import com.masuwes.moviecatalogue.data.repository.TvShowRepositoryImpl
 import com.masuwes.moviecatalogue.data.remote.ApiService
-import com.masuwes.moviecatalogue.data.remote.LoggingInterceptor
+import com.masuwes.moviecatalogue.data.remote.BaseInterceptor
 import com.masuwes.moviecatalogue.domain.repository.DetailRepository
 import com.masuwes.moviecatalogue.domain.repository.MovieRepository
 import com.masuwes.moviecatalogue.domain.repository.TvShowRepository
@@ -20,20 +22,32 @@ import com.masuwes.moviecatalogue.ui.detail.DetailViewModel
 import com.masuwes.moviecatalogue.ui.movie.MovieViewModel
 import com.masuwes.moviecatalogue.ui.tvshow.TvShowViewModel
 import com.masuwes.moviecatalogue.utils.Constants
+import com.masuwes.moviecatalogue.utils.room.AppExecutors
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
+import org.koin.android.ext.koin.androidApplication
 import org.koin.android.viewmodel.dsl.viewModel
 import org.koin.dsl.module
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import java.util.concurrent.Executor
+import java.util.concurrent.Executors
 import java.util.concurrent.TimeUnit
 
 val appModule = module {
 
-    single { LoggingInterceptor() }
+    single { BaseInterceptor() }
     single { createOkHttpClient(get()) }
     single { createWebService<ApiService>(get(), Constants.BASE_URL) }
+
+    single {
+        Room.databaseBuilder(
+            androidApplication(),
+            AppDatabase::class.java,
+            Constants.DATABASE_NAME
+        ).build()
+    }
 }
 
 val repositoryModule = module {
@@ -75,13 +89,19 @@ val useCaseModule = module {
     factory<DetailUseCase> { DetailInteractor(get()) }
 }
 
+val utilsModule = module {
+    //Utils
+    single { getExecutor() }
+    single { AppExecutors() }
+}
+
 val viewModelModule = module {
     viewModel { MovieViewModel(get()) }
     viewModel { TvShowViewModel(get()) }
     viewModel { DetailViewModel(get()) }
 }
 
-fun createOkHttpClient(interceptor: LoggingInterceptor): OkHttpClient {
+fun createOkHttpClient(interceptor: BaseInterceptor): OkHttpClient {
     val httpLoggingInterceptor = HttpLoggingInterceptor()
     httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
@@ -105,6 +125,10 @@ inline fun <reified T> createWebService(okHttpClient: OkHttpClient, url: String)
         .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
         .build()
     return retrofit.create(T::class.java)
+}
+
+fun getExecutor(): Executor {
+    return Executors.newFixedThreadPool(2)
 }
 
 
