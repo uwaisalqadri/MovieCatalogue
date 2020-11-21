@@ -24,7 +24,7 @@ class DetailRepositoryImpl(
     }
 
     override fun getDetailTvShow(
-        tv_id: String,
+        tv_id: Int,
         api_key: String,
         language: String
     ): Single<DetailTvShow> {

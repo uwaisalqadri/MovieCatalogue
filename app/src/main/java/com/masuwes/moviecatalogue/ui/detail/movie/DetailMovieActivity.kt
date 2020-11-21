@@ -15,6 +15,7 @@ import com.masuwes.moviecatalogue.utils.ui.isRefresh
 import com.masuwes.moviecatalogue.utils.ui.loadImage
 import com.masuwes.moviecatalogue.utils.ui.showToast
 import kotlinx.android.synthetic.main.activity_detail_movie.*
+import kotlinx.android.synthetic.main.activity_detail_tv_show.*
 import kotlinx.android.synthetic.main.fragment_movie.*
 import kotlinx.android.synthetic.main.include_info.*
 import kotlinx.android.synthetic.main.include_overview.*
@@ -40,6 +41,10 @@ class DetailMovieActivity : AppCompatActivity() {
         idMovie = extras?.getInt(MOVIE_ID)
         viewModel.detailMovieState.observe(this, detailObserver)
         idMovie?.let { viewModel.getDetailMovie(it) }
+
+        fab_detail_movie.setOnClickListener {
+            fab_detail_movie.setImageResource(R.drawable.ic_baseline_favorite)
+        }
 
         with(viewModel) {
             messageData.observe(this@DetailMovieActivity, Observer { messageInfo ->

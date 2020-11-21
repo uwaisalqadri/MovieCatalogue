@@ -1,5 +1,6 @@
 package com.masuwes.moviecatalogue.ui.tvshow
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.masuwes.moviecatalogue.R
 import com.masuwes.moviecatalogue.domain.model.TvShow
+import com.masuwes.moviecatalogue.ui.detail.tvshow.DetailTvShowActivity
 import com.masuwes.moviecatalogue.utils.Constants
 import com.masuwes.moviecatalogue.utils.room.PaginationScrollListener
 import com.masuwes.moviecatalogue.utils.ui.LoadMoreItemView
@@ -98,9 +100,10 @@ class TvShowFragment : Fragment() {
                 tvShowState.tvShow.map {
                     adapterShow.add(TvShowListItem(it, object : TvShowListItem.OnItemClick {
                         override fun onClick(item: TvShow) {
-//                            startActivity(
-//                                Intent(context, DetailActivity::class.java)
-//                                    .putExtra(DetailActivity.SHOW_ID, item.id.toString()))
+                            startActivity(
+                                Intent(context, DetailTvShowActivity::class.java)
+                                    .putExtra(DetailTvShowActivity.SHOW_ID, item.id)
+                            )
                         }
                     }))
                 }

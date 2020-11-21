@@ -10,7 +10,7 @@ class DetailInteractor(private val detailRepository: DetailRepository) : DetailU
     ) = detailRepository.getDetailMovie(movie_id, api_key, language)
 
     override fun getDetailTvShow(
-        tv_id: String,
+        tv_id: Int,
         api_key: String,
         language: String
     ) = detailRepository.getDetailTvShow(tv_id, api_key, language)
