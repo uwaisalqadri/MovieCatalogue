@@ -23,6 +23,7 @@ class DetailTvShowActivity : AppCompatActivity() {
     }
 
     private val viewModel: DetailTvShowVM by inject()
+    private var isFavorite: Boolean? = null
     var dataTvShow: DetailTvShow? = null
     var idShow: Int? = null
 
@@ -38,7 +39,11 @@ class DetailTvShowActivity : AppCompatActivity() {
         idShow?.let { viewModel.checkFavTVShow(it) }
 
         fab_detail_tvshow.setOnClickListener {
-            dataTvShow?.let { viewModel.saveFavTVShow(it) }
+            when(isFavorite) {
+                true -> dataTvShow?.id?.let { viewModel.removeFavTVShow(it) }
+                false -> dataTvShow?.let { viewModel.saveFavTVShow(it) }
+                else -> dataTvShow?.let { viewModel.saveFavTVShow(it) }
+            }
         }
 
         with(viewModel) {
@@ -73,11 +78,13 @@ class DetailTvShowActivity : AppCompatActivity() {
             is FavTVShowSave -> {
                 fab_detail_tvshow.setImageResource(R.drawable.ic_baseline_favorite)
                 showToast("Berhasil ditambahkan")
+                isFavorite = true
             }
 
             is RemoveTVShowFav -> {
                 fab_detail_tvshow.setImageResource(R.drawable.ic_favorite_border)
-                showToast("Berhasil ditambahkan")
+                showToast("Berhasil dihapus")
+                isFavorite = false
             }
 
             is DataNotFoundState -> showToast("${R.string.success}")
@@ -86,6 +93,7 @@ class DetailTvShowActivity : AppCompatActivity() {
                 detailTvShow.detailTvShow.map {
                     if (it.id == idShow) {
                         fab_detail_tvshow.setImageResource(R.drawable.ic_baseline_favorite)
+                        isFavorite = true
                     }
                 }
             }

@@ -12,7 +12,7 @@ import com.masuwes.moviecatalogue.R
 import com.masuwes.moviecatalogue.domain.model.TvShow
 import com.masuwes.moviecatalogue.ui.detail.tvshow.DetailTvShowActivity
 import com.masuwes.moviecatalogue.utils.Constants
-import com.masuwes.moviecatalogue.utils.room.PaginationScrollListener
+import com.masuwes.moviecatalogue.utils.ui.PaginationScrollListener
 import com.masuwes.moviecatalogue.utils.ui.LoadMoreItemView
 import com.masuwes.moviecatalogue.utils.ui.isRefresh
 import com.masuwes.moviecatalogue.utils.ui.showToast

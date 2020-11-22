@@ -1,6 +1,7 @@
 package com.masuwes.moviecatalogue
 
 import android.app.Application
+import com.facebook.stetho.Stetho
 import com.masuwes.moviecatalogue.di.*
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -11,7 +12,7 @@ class MyApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
+        Stetho.initializeWithDefaults(this)
         startKoin {
             androidLogger(Level.ERROR)
             androidContext(this@MyApplication)

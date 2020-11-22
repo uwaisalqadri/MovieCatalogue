@@ -29,6 +29,7 @@ class DetailMovieActivity : AppCompatActivity() {
     }
 
     private val viewModel: DetailMovieVM by inject()
+    private var isFavorite: Boolean? = null
     var dataMovie: DetailMovie? = null
     var idMovie: Int? = null
 
@@ -44,7 +45,11 @@ class DetailMovieActivity : AppCompatActivity() {
         idMovie?.let { viewModel.checkFavMovie(it) }
 
         fab_detail_movie.setOnClickListener {
-            dataMovie?.let { viewModel.saveFavMovie(it) }
+           when(isFavorite) {
+               true -> dataMovie?.id?.let { viewModel.removeFavMovie(it) }
+               false -> dataMovie?.let { viewModel.saveFavMovie(it) }
+               else -> dataMovie?.let { viewModel.saveFavMovie(it) }
+           }
         }
 
         with(viewModel) {
@@ -79,11 +84,13 @@ class DetailMovieActivity : AppCompatActivity() {
             is FavMovieSave -> {
                 fab_detail_movie.setImageResource(R.drawable.ic_baseline_favorite)
                 showToast("Berhasil ditambahkan")
+                isFavorite = true
             }
 
             is RemoveMovieFav -> {
                 fab_detail_movie.setImageResource(R.drawable.ic_favorite_border)
                 showToast("Berhasil dihapus")
+                isFavorite = false
             }
 
             is DataNotFoundState -> showToast("DataNotFoundState")
@@ -92,6 +99,7 @@ class DetailMovieActivity : AppCompatActivity() {
                 detailMovie.detailMovie.map {
                     if (it.id == idMovie) {
                         fab_detail_movie.setImageResource(R.drawable.ic_baseline_favorite)
+                        isFavorite = true
                     }
                 }
             }

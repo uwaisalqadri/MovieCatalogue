@@ -1,10 +1,10 @@
-package com.masuwes.moviecatalogue.utils.room
+package com.masuwes.moviecatalogue.utils.ui
 
-import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import timber.log.Timber
 
 abstract class PaginationScrollListener constructor() :
     RecyclerView.OnScrollListener() {
@@ -54,7 +54,7 @@ abstract class PaginationScrollListener constructor() :
             if (visibleItemCount + firstVisibleItemPosition >= totalItemCount
                 && firstVisibleItemPosition >= 0
             ) {
-                Log.i(TAG, "Loading more items")
+                Timber.i("Loading more items")
                 loadMoreItems()
             }
         }
