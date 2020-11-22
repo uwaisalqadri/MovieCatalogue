@@ -43,7 +43,7 @@ class DetailMovieActivity : AppCompatActivity() {
         idMovie?.let { viewModel.getDetailMovie(it) }
 
         fab_detail_movie.setOnClickListener {
-            fab_detail_movie.setImageResource(R.drawable.ic_baseline_favorite)
+            dataMovie?.let { viewModel.saveFavMovie(it) }
         }
 
         with(viewModel) {
@@ -75,6 +75,25 @@ class DetailMovieActivity : AppCompatActivity() {
                 supportActionBar?.title = dataMovie.original_title
             }
 
+            is FavMovieSave -> {
+                fab_detail_movie.setImageResource(R.drawable.ic_baseline_favorite)
+                showToast("Berhasil ditambahkan")
+            }
+
+            is RemoveMovieFav -> {
+                fab_detail_movie.setImageResource(R.drawable.ic_favorite_border)
+                showToast("Berhasil ditambahkan")
+            }
+
+            is DataNotFoundState -> showToast("${R.string.success}")
+
+            is FavMovieDataFound -> {
+                detailMovie.detailMovie.map {
+                    if (it.id == idMovie) {
+                        fab_detail_movie.setImageResource(R.drawable.ic_baseline_favorite)
+                    }
+                }
+            }
         }
     }
 

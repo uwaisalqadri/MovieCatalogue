@@ -8,10 +8,8 @@ class DetailTvShowMapper : BaseMapper<DetailTvShowItem, DetailTvShow> {
         return DetailTvShow(
             model.backdrop_path,
             model.first_air_date,
-            model.genre_ids,
             model.id,
             model.name,
-            model.origin_country,
             model.original_language,
             model.original_name,
             model.overview,
@@ -26,10 +24,8 @@ class DetailTvShowMapper : BaseMapper<DetailTvShowItem, DetailTvShow> {
         return DetailTvShowItem(
             domain.backdrop_path,
             domain.first_air_date,
-            domain.genre_ids,
             domain.id,
             domain.name,
-            domain.origin_country,
             domain.original_language,
             domain.original_name,
             domain.overview,

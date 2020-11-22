@@ -23,33 +23,35 @@ object RemoveMovieFav : DetailMovieState()
 
 class DetailMovieVM(
     private val detailUseCase: DetailUseCase,
+    private val moviesDao: MoviesDao,
+    private val executor: Executor
 ) : BaseViewModel() {
 
     val detailMovieState = MutableLiveData<DetailMovieState>()
     val showProgressBar = MutableLiveData<Boolean>()
     val messageData = MutableLiveData<String>()
 
-//    fun saveFavMovie(movie: DetailMovie) {
-//        executor.execute { moviesDao.insertFavoriteMovie(movie) }
-//        detailMovieState.value = FavMovieSave
-//    }
-//
-//    fun removeFavMovie(idMovie: Int) {
-//        executor.execute { moviesDao.deleteFavoriteMovie(idMovie) }
-//        detailMovieState.value = RemoveMovieFav
-//    }
-//
-//    fun checkFavMovie(id: Int) {
-//        compositeDisposable.add(
-//            moviesDao.getFavoriteMovieById(id)
-//                .compose(RxUtils.applySingleAsync())
-//                .subscribe({ result ->
-//                    if (result.isNotEmpty()) {
-//                        detailMovieState.value = FavMovieDataFound(result)
-//                    }
-//                }, this::onError)
-//        )
-//    }
+    fun saveFavMovie(movie: DetailMovie) {
+        executor.execute { moviesDao.insertFavoriteMovie(movie) }
+        detailMovieState.value = FavMovieSave
+    }
+
+    fun removeFavMovie(idMovie: Int) {
+        executor.execute { moviesDao.deleteFavoriteMovie(idMovie) }
+        detailMovieState.value = RemoveMovieFav
+    }
+
+    fun checkFavMovie(id: Int) {
+        compositeDisposable.add(
+            moviesDao.getFavoriteMovieById(id)
+                .compose(RxUtils.applySingleAsync())
+                .subscribe({ result ->
+                    if (result.isNotEmpty()) {
+                        detailMovieState.value = FavMovieDataFound(result)
+                    }
+                }, this::onError)
+        )
+    }
 
     fun getDetailMovie(idMovie: Int) {
         EspressoIdlingResource.increment()

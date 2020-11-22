@@ -7,32 +7,30 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "tb_detail_movie")
 data class DetailMovie(
     @ColumnInfo(name = "adult")
-    val adult: Boolean,
+    val adult: Boolean?,
     @ColumnInfo(name = "backdrop_path")
-    val backdrop_path: String,
-    @ColumnInfo(name = "genre_ids")
-    val genre_ids: List<Int>,
+    val backdrop_path: String?,
     @PrimaryKey
     @ColumnInfo(name = "id")
-    val id: Int,
+    val id: Int?,
     @ColumnInfo(name = "original_language")
-    val original_language: String,
+    val original_language: String?,
     @ColumnInfo(name = "original_title")
-    val original_title: String,
+    val original_title: String?,
     @ColumnInfo(name = "overview")
-    val overview: String,
+    val overview: String?,
     @ColumnInfo(name = "popularity")
-    val popularity: Double,
+    val popularity: Double?,
     @ColumnInfo(name = "poster_path")
-    val poster_path: String,
+    val poster_path: String?,
     @ColumnInfo(name = "release_date")
-    val release_date: String,
+    val release_date: String?,
     @ColumnInfo(name = "title")
-    val title: String,
+    val title: String?,
     @ColumnInfo(name = "video")
-    val video: Boolean,
+    val video: Boolean?,
     @ColumnInfo(name = "vote_average")
-    val vote_average: Double,
+    val vote_average: Double?,
     @ColumnInfo(name = "vote_count")
-    val vote_count: Int
+    val vote_count: Int?
 )

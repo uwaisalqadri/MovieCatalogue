@@ -10,15 +10,11 @@ data class DetailTvShow(
     val backdrop_path: String?,
     @ColumnInfo(name = "first_air_date")
     val first_air_date: String?,
-    @ColumnInfo(name = "genre_ids")
-    val genre_ids: List<Int>?,
     @PrimaryKey
     @ColumnInfo(name = "id")
     val id: Int?,
     @ColumnInfo(name = "name")
     val name: String?,
-    @ColumnInfo(name = "origin_country")
-    val origin_country: List<String>?,
     @ColumnInfo(name = "original_language")
     val original_language: String?,
     @ColumnInfo(name = "original_name")
