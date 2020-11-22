@@ -113,6 +113,8 @@ val viewModelModule = module {
         get())
     }
     viewModel { DetailTvShowVM(
+        get(),
+        get(),
         get())
     }
 }

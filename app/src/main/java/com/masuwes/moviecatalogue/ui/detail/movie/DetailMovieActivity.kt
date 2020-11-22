@@ -41,6 +41,7 @@ class DetailMovieActivity : AppCompatActivity() {
         idMovie = extras?.getInt(MOVIE_ID)
         viewModel.detailMovieState.observe(this, detailObserver)
         idMovie?.let { viewModel.getDetailMovie(it) }
+        idMovie?.let { viewModel.checkFavMovie(it) }
 
         fab_detail_movie.setOnClickListener {
             dataMovie?.let { viewModel.saveFavMovie(it) }
@@ -82,10 +83,10 @@ class DetailMovieActivity : AppCompatActivity() {
 
             is RemoveMovieFav -> {
                 fab_detail_movie.setImageResource(R.drawable.ic_favorite_border)
-                showToast("Berhasil ditambahkan")
+                showToast("Berhasil dihapus")
             }
 
-            is DataNotFoundState -> showToast("${R.string.success}")
+            is DataNotFoundState -> showToast("DataNotFoundState")
 
             is FavMovieDataFound -> {
                 detailMovie.detailMovie.map {
