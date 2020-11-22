@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'kotlin-android'
     id 'kotlin-android-extensions'
+    id 'kotlin-kapt'
 }
 
 android {
@@ -17,8 +18,6 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
-
-        buildConfigField("String", "API_KEY", "\"9351b653885866a95fcef04c4f0c7426\"")
 
     }
     testOptions {
@@ -71,6 +70,9 @@ dependencies {
     androidTestImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
 
+    // simple date format
+    implementation 'com.github.sidhuparas:SimpleDate:2.1.0'
+
     //architecture component
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion"
 
@@ -106,8 +108,9 @@ dependencies {
 
     //local database
     // Room components
-    implementation "androidx.room:room-runtime:2.2.5"
-    implementation "androidx.room:room-rxjava2:2.2.5"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
+    implementation "androidx.room:room-rxjava2:$roomVersion"
 
 
     //live database

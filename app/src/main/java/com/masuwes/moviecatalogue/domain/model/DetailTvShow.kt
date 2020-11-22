@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 
-@Entity(tableName = "tb_detail_movie")
+@Entity(tableName = "tb_detail_tvshow")
 data class DetailTvShow(
     @ColumnInfo(name = "backdrop_path")
     val backdrop_path: String?,

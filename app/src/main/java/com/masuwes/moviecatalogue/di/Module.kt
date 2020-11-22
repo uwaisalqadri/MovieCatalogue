@@ -2,6 +2,7 @@ package com.masuwes.moviecatalogue.di
 
 import androidx.room.Room
 import com.google.gson.GsonBuilder
+import com.masuwes.moviecatalogue.data.local.database.AppDatabase
 import com.masuwes.moviecatalogue.data.mapper.DetailMovieMapper
 import com.masuwes.moviecatalogue.data.mapper.DetailTvShowMapper
 import com.masuwes.moviecatalogue.data.mapper.MovieMapper
@@ -43,13 +44,13 @@ val appModule = module {
     single { createOkHttpClient(get()) }
     single { createWebService<ApiService>(get(), Constants.BASE_URL) }
 
-//    single {
-//        Room.databaseBuilder(
-//            androidApplication(),
-//            AppDatabase::class.java,
-//            Constants.DATABASE_NAME
-//        ).build()
-//    }
+    single {
+        Room.databaseBuilder(
+            androidApplication(),
+            AppDatabase::class.java,
+            Constants.DATABASE_NAME
+        ).build()
+    }
 }
 
 val repositoryModule = module {
@@ -95,6 +96,10 @@ val utilsModule = module {
     //Utils
     single { getExecutor() }
     single { AppExecutors() }
+
+    // db dao
+    single { get<AppDatabase>().moviesDao() }
+    single { get<AppDatabase>().tvShowsDao() }
 }
 
 val viewModelModule = module {

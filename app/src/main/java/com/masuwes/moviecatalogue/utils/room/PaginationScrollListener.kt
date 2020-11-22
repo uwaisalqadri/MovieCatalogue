@@ -1,6 +1,5 @@
 package com.masuwes.moviecatalogue.utils.room
 
-import android.content.ContentValues.TAG
 import android.util.Log
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
