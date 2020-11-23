@@ -69,6 +69,7 @@ dependencies {
     testImplementation "junit:junit:$junitVersion"
     androidTestImplementation "junit:junit:$junitVersion"
     androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
 
     // simple date format
     implementation 'com.github.sidhuparas:SimpleDate:2.1.0'
