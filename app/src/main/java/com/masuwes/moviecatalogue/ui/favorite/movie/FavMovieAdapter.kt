@@ -32,7 +32,7 @@ class FavMovieAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder =
             ViewHolder(
-                    LayoutInflater.from(parent.context).inflate(R.layout.item_rv, parent, false)
+                    LayoutInflater.from(context).inflate(R.layout.item_rv, parent, false)
             )
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

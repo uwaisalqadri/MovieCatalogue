@@ -14,6 +14,7 @@ import com.masuwes.moviecatalogue.domain.model.DetailMovie
 import com.masuwes.moviecatalogue.ui.detail.movie.DetailMovieActivity
 import com.masuwes.moviecatalogue.utils.Constants
 import com.masuwes.moviecatalogue.utils.room.Status
+import com.masuwes.moviecatalogue.utils.ui.isRefresh
 import com.masuwes.moviecatalogue.utils.ui.showToast
 import kotlinx.android.synthetic.main.fragment_fav_movie.*
 import org.koin.android.ext.android.inject
@@ -50,17 +51,17 @@ class FavMovieFragment : Fragment() {
             if (response != null) {
                 when(response.status) {
                     Status.LOADING -> {
-                        progress_circular_favmovie.visibility = View.VISIBLE
+                        progress_circular_favmovie.isRefresh(true)
                     }
 
                     Status.SUCCESS -> {
-                        progress_circular_favmovie.visibility = View.GONE
+                        progress_circular_favmovie.isRefresh(false)
                         movieAdapter?.submitList(response.data)
                         movieAdapter?.notifyDataSetChanged()
                     }
 
                     Status.ERROR -> {
-                        progress_circular_favmovie.visibility = View.GONE
+                        progress_circular_favmovie.isRefresh(true)
                         context?.showToast(getString(R.string.error))
                     }
                 }
@@ -73,6 +74,7 @@ class FavMovieFragment : Fragment() {
             setEmptyView(imageView, tvEmpty)
         }
     }
+
 
     override fun onResume() {
         super.onResume()
