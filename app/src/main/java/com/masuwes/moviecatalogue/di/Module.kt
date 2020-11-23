@@ -22,6 +22,7 @@ import com.masuwes.moviecatalogue.domain.usecase.tvshow.TvShowInteractor
 import com.masuwes.moviecatalogue.domain.usecase.tvshow.TvShowUseCase
 import com.masuwes.moviecatalogue.ui.detail.movie.DetailMovieVM
 import com.masuwes.moviecatalogue.ui.detail.tvshow.DetailTvShowVM
+import com.masuwes.moviecatalogue.ui.favorite.movie.FavMovieViewModel
 import com.masuwes.moviecatalogue.ui.movie.MovieViewModel
 import com.masuwes.moviecatalogue.ui.tvshow.TvShowViewModel
 import com.masuwes.moviecatalogue.utils.Constants
@@ -58,6 +59,8 @@ val repositoryModule = module {
     single {
         MovieRepositoryImpl(
             get(),
+            get(),
+            get(),
             get()
         ) as MovieRepository
     }
@@ -76,6 +79,9 @@ val repositoryModule = module {
             get()
         ) as DetailRepository
     }
+
+    /** favorite **/
+    single { MovieRepositoryImpl(get(), get(), get(), get()) }
 
 }
 
@@ -105,6 +111,7 @@ val utilsModule = module {
 val viewModelModule = module {
     viewModel { MovieViewModel(get()) }
     viewModel { TvShowViewModel(get()) }
+    viewModel { FavMovieViewModel(get()) }
 
     viewModel {
         DetailMovieVM(

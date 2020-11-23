@@ -9,6 +9,6 @@ import com.masuwes.moviecatalogue.utils.room.Resource
 
 class FavMovieViewModel(repositoryImpl: MovieRepositoryImpl) : ViewModel() {
 
-    val getTvShowPage: LiveData<Resource<PagedList<DetailMovie>>> =
+    val getMoviePage: LiveData<Resource<PagedList<DetailMovie>>> =
             repositoryImpl.getMoviePage()
 }
