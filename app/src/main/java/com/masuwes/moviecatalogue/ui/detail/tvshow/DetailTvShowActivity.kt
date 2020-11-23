@@ -10,6 +10,7 @@ import com.masuwes.moviecatalogue.utils.Constants
 import com.masuwes.moviecatalogue.utils.ui.isRefresh
 import com.masuwes.moviecatalogue.utils.ui.loadImage
 import com.masuwes.moviecatalogue.utils.ui.showToast
+import com.masuwes.moviecatalogue.utils.ui.snackBar
 import kotlinx.android.synthetic.main.activity_detail_tv_show.*
 import kotlinx.android.synthetic.main.include_info.*
 import kotlinx.android.synthetic.main.include_overview.*
@@ -77,13 +78,13 @@ class DetailTvShowActivity : AppCompatActivity() {
 
             is FavTVShowSave -> {
                 fab_detail_tvshow.setImageResource(R.drawable.ic_baseline_favorite)
-                showToast("Berhasil ditambahkan")
+                fab_detail_tvshow.snackBar(getString(R.string.success))
                 isFavorite = true
             }
 
             is RemoveTVShowFav -> {
                 fab_detail_tvshow.setImageResource(R.drawable.ic_favorite_border)
-                showToast("Berhasil dihapus")
+                fab_detail_tvshow.snackBar(getString(R.string.success_remove))
                 isFavorite = false
             }
 

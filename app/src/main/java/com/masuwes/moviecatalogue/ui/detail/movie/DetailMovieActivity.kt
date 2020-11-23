@@ -14,6 +14,7 @@ import com.masuwes.moviecatalogue.utils.Constants
 import com.masuwes.moviecatalogue.utils.ui.isRefresh
 import com.masuwes.moviecatalogue.utils.ui.loadImage
 import com.masuwes.moviecatalogue.utils.ui.showToast
+import com.masuwes.moviecatalogue.utils.ui.snackBar
 import kotlinx.android.synthetic.main.activity_detail_movie.*
 import kotlinx.android.synthetic.main.activity_detail_tv_show.*
 import kotlinx.android.synthetic.main.fragment_movie.*
@@ -83,17 +84,17 @@ class DetailMovieActivity : AppCompatActivity() {
 
             is FavMovieSave -> {
                 fab_detail_movie.setImageResource(R.drawable.ic_baseline_favorite)
-                showToast("Berhasil ditambahkan")
+                fab_detail_movie.snackBar(getString(R.string.success))
                 isFavorite = true
             }
 
             is RemoveMovieFav -> {
                 fab_detail_movie.setImageResource(R.drawable.ic_favorite_border)
-                showToast("Berhasil dihapus")
+                fab_detail_movie.snackBar(getString(R.string.success_remove))
                 isFavorite = false
             }
 
-            is DataNotFoundState -> showToast("DataNotFoundState")
+            is DataNotFoundState -> showToast(getString(R.string.error))
 
             is FavMovieDataFound -> {
                 detailMovie.detailMovie.map {

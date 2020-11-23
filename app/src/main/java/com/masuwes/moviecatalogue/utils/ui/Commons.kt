@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.Toast
 import com.bumptech.glide.Glide
+import com.google.android.material.snackbar.Snackbar
 
 fun ImageView.loadImage(url: String) {
 
@@ -20,6 +21,14 @@ fun Context.showToast(msg: String) {
         this,
         msg,
         Toast.LENGTH_SHORT
+    ).show()
+}
+
+fun View.snackBar(msg: String) {
+    Snackbar.make(
+            this,
+            msg,
+            Snackbar.LENGTH_SHORT
     ).show()
 }
 

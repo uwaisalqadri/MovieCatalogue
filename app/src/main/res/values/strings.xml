@@ -13,4 +13,5 @@
     <string name="favorite">Favorite</string>
     <string name="success">Berhasil Ditambahkan</string>
     <string name="empty">Data Kosong</string>
+    <string name="success_remove">Berhasil Dihapus</string>
 </resources>

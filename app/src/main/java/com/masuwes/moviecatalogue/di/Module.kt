@@ -67,7 +67,12 @@ val repositoryModule = module {
     }
 
     single {
-        TvShowRepositoryImpl(get(), get(), get(), get()) as TvShowRepository
+        TvShowRepositoryImpl(
+                get(),
+                get(),
+                get(),
+                get()
+        ) as TvShowRepository
     }
 
     single {
@@ -119,7 +124,8 @@ val viewModelModule = module {
         get(),
         get())
     }
-    viewModel { DetailTvShowVM(
+    viewModel {
+        DetailTvShowVM(
         get(),
         get(),
         get())
