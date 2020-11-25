@@ -65,7 +65,4 @@ abstract class PaginationScrollListener constructor() :
     abstract val isLastPage: Boolean
     abstract val isLoading: Boolean
 
-    companion object {
-        private val TAG = PaginationScrollListener::class.java.simpleName
-    }
 }
