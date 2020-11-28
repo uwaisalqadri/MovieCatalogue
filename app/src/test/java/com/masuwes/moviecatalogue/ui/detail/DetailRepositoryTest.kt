@@ -60,6 +60,7 @@ class DetailRepositoryTest {
 
         repositoryImpl.getDetailMovie(330457, Constants.LANG, Constants.SORT_BY)
                 .test()
+                .assertComplete()
                 .assertNotComplete()
     }
 
@@ -84,6 +85,7 @@ class DetailRepositoryTest {
 
         repositoryImpl.getDetailTvShow(82856, Constants.LANG, Constants.SORT_BY)
                 .test()
+                .assertComplete()
                 .assertNotComplete()
     }
 

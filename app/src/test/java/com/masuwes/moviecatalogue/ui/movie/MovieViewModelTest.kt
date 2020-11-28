@@ -1,6 +1,7 @@
 package com.masuwes.moviecatalogue.ui.movie
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule
+import androidx.lifecycle.Observer
 import com.masuwes.moviecatalogue.domain.model.Movie
 import com.masuwes.moviecatalogue.domain.usecase.movie.MovieUseCase
 import com.masuwes.moviecatalogue.utils.Constants
@@ -25,10 +26,17 @@ class MovieViewModelTest {
     private lateinit var viewModel: MovieViewModel
 
     @Mock
-    private lateinit var response: Movie
+    private lateinit var response: List<Movie>
+
+    @Mock
+    private lateinit var movieState: MovieState
 
     @Mock
     private lateinit var useCase: MovieUseCase
+
+    @Mock
+    private lateinit var observer: Observer<MovieState>
+
 
     @Before
     fun setUp() {
@@ -38,13 +46,19 @@ class MovieViewModelTest {
 
     @Test
     fun getMovies() {
-        val movieResponse = listOf(response)
+        val movieResponse = response
+        movieState = MovieDataLoaded(movieResponse)
         runBlocking {
             Mockito.`when`(
                     useCase.getMovies(Constants.API_KEY, Constants.LANG, Constants.SORT_BY, 1)
             )
         }.thenReturn(Single.just(movieResponse))
         viewModel.getMovies(1)
+
+        viewModel.postMovieData.value = MovieDataLoaded(movieResponse)
+        viewModel.postMovieData.observeForever(observer)
+        Mockito.verify(observer).onChanged(movieState)
+
     }
 
 }
