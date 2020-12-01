@@ -6,6 +6,8 @@ import com.masuwes.moviecatalogue.data.model.detail.DetailMovieItem
 import com.masuwes.moviecatalogue.data.model.detail.DetailTvShowItem
 import com.masuwes.moviecatalogue.data.remote.ApiService
 import com.masuwes.moviecatalogue.data.repository.DetailRepositoryImpl
+import com.masuwes.moviecatalogue.domain.model.DetailMovie
+import com.masuwes.moviecatalogue.domain.model.DetailTvShow
 import com.masuwes.moviecatalogue.utils.Constants
 import io.reactivex.Single
 import org.junit.Before
@@ -15,6 +17,7 @@ import org.mockito.Mock
 import org.mockito.Mockito
 import org.mockito.MockitoAnnotations
 import org.mockito.junit.MockitoJUnitRunner
+import java.util.concurrent.TimeUnit
 
 @RunWith(MockitoJUnitRunner::class)
 class DetailRepositoryTest {
@@ -23,13 +26,10 @@ class DetailRepositoryTest {
     private lateinit var apiService: ApiService
 
     @Mock
-    private lateinit var moviesMapper: DetailMovieMapper
-
-    @Mock
-    private lateinit var tvShowMapper: DetailTvShowMapper
-
-    @Mock
     private lateinit var repositoryImpl: DetailRepositoryImpl
+
+    private var moviesMapper = DetailMovieMapper()
+    private var tvShowMapper = DetailTvShowMapper()
 
     @Before
     fun setUp() {
@@ -61,7 +61,6 @@ class DetailRepositoryTest {
         repositoryImpl.getDetailMovie(330457, Constants.LANG, Constants.SORT_BY)
                 .test()
                 .assertComplete()
-                .assertNotComplete()
     }
 
     @Test
@@ -86,7 +85,6 @@ class DetailRepositoryTest {
         repositoryImpl.getDetailTvShow(82856, Constants.LANG, Constants.SORT_BY)
                 .test()
                 .assertComplete()
-                .assertNotComplete()
     }
 
 
