@@ -1,9 +1,91 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.SearchActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <EditText
+            android:id="@+id/edt_search"
+            android:layout_width="0dp"
+            android:layout_height="60dp"
+            android:textColor="@android:color/primary_text_light"
+            android:textColorHint="@android:color/secondary_text_dark"
+            android:hint="Search Movie or TV Show"
+            android:paddingStart="@dimen/_10ssp"
+            android:paddingEnd="@dimen/_10ssp"
+            android:background="@drawable/bg_search"
+            android:drawableStart="@drawable/ic_baseline_search"
+            android:drawableTint="@color/black"
+            android:drawablePadding="@dimen/_5ssp"
+            android:elevation="10dp"
+            android:layout_margin="@dimen/_15sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/recent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recent"
+            android:layout_margin="@dimen/_15sdp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/edt_search" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSearchHistory"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            android:layout_margin="@dimen/_15sdp"
+            tools:listitem="@layout/item_recent_search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recent" />
+
+        <TextView
+            android:id="@+id/result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/_15sdp"
+            android:text="Movies and TV Shows"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rvSearchHistory" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvSearchResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            tools:listitem="@layout/item_rv"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/result" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.core.widget.NestedScrollView>
+
+
+
+
+
+
+
+
+
+
