@@ -1,4 +1,4 @@
-package com.masuwes.core
+package com.masuwes.core.utils
 
 object Constants {
     const val URL_IMAGE = "https://image.tmdb.org/t/p/original"

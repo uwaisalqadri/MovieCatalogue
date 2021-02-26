@@ -1,11 +1,11 @@
 package com.masuwes.moviecatalogue.ui.detail.tvshow
 
 import androidx.lifecycle.MutableLiveData
-import com.masuwes.core.data.local.dao.TvShowsDao
+import com.masuwes.core.data.source.local.TvShowsDao
 import com.masuwes.core.domain.model.DetailTvShow
 import com.masuwes.core.domain.usecase.detail.DetailUseCase
 import com.masuwes.moviecatalogue.ui.BaseViewModel
-import com.masuwes.core.Constants
+import com.masuwes.core.utils.Constants
 import com.masuwes.moviecatalogue.utils.RxUtils
 import java.util.concurrent.Executor
 

@@ -2,7 +2,7 @@ package com.masuwes.core.data.repository
 
 import com.masuwes.core.data.mapper.DetailMovieMapper
 import com.masuwes.core.data.mapper.DetailTvShowMapper
-import com.masuwes.core.data.remote.ApiService
+import com.masuwes.core.data.source.remote.ApiService
 import com.masuwes.core.domain.model.DetailMovie
 import com.masuwes.core.domain.model.DetailTvShow
 import com.masuwes.core.domain.repository.DetailRepository

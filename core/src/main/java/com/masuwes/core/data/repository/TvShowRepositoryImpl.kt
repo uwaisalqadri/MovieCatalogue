@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.masuwes.core.data.local.dao.TvShowsDao
+import com.masuwes.core.data.source.local.TvShowsDao
 import com.masuwes.core.data.mapper.TvShowMapper
-import com.masuwes.core.data.remote.ApiService
+import com.masuwes.core.data.source.remote.ApiService
 import com.masuwes.core.domain.model.DetailTvShow
 import com.masuwes.core.domain.model.TvShow
 import com.masuwes.core.domain.repository.TvShowRepository

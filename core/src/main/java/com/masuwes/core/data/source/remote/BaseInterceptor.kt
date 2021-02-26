@@ -1,4 +1,4 @@
-package com.masuwes.core.data.remote
+package com.masuwes.core.data.source.remote
 
 import okhttp3.Interceptor
 import okhttp3.Response

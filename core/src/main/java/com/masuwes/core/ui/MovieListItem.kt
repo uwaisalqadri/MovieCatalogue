@@ -1,7 +1,7 @@
 package com.masuwes.core.ui
 
 import android.view.View
-import com.masuwes.core.Constants
+import com.masuwes.core.utils.Constants
 import com.masuwes.core.R
 import com.masuwes.core.databinding.ItemRvBinding
 import com.masuwes.core.domain.model.Movie

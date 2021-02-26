@@ -1,11 +1,11 @@
 package com.masuwes.moviecatalogue.ui.detail.movie
 
 import androidx.lifecycle.MutableLiveData
-import com.masuwes.core.data.local.dao.MoviesDao
+import com.masuwes.core.data.source.local.MoviesDao
 import com.masuwes.core.domain.model.DetailMovie
 import com.masuwes.core.domain.usecase.detail.DetailUseCase
 import com.masuwes.moviecatalogue.ui.BaseViewModel
-import com.masuwes.core.Constants
+import com.masuwes.core.utils.Constants
 import com.masuwes.moviecatalogue.utils.RxUtils
 import java.util.concurrent.Executor
 

@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.paging.DataSource
 import androidx.paging.LivePagedListBuilder
 import androidx.paging.PagedList
-import com.masuwes.core.data.local.dao.MoviesDao
+import com.masuwes.core.data.source.local.MoviesDao
 import com.masuwes.core.data.mapper.MovieMapper
-import com.masuwes.core.data.remote.ApiService
+import com.masuwes.core.data.source.remote.ApiService
 import com.masuwes.core.domain.model.DetailMovie
 import com.masuwes.core.domain.model.Movie
 import com.masuwes.core.domain.repository.MovieRepository

@@ -7,7 +7,7 @@ import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import com.masuwes.moviecatalogue.R
 import com.masuwes.core.domain.model.DetailMovie
-import com.masuwes.core.Constants
+import com.masuwes.core.utils.Constants
 import com.masuwes.moviecatalogue.databinding.ActivityDetailMovieBinding
 import com.masuwes.moviecatalogue.databinding.IncludeInfoBinding
 import com.masuwes.moviecatalogue.databinding.IncludeOverviewBinding

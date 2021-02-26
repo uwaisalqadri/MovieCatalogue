@@ -4,7 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import com.masuwes.core.domain.model.Movie
 import com.masuwes.core.domain.usecase.movie.MovieUseCase
 import com.masuwes.moviecatalogue.ui.BaseViewModel
-import com.masuwes.core.Constants
+import com.masuwes.core.utils.Constants
 import com.masuwes.moviecatalogue.utils.RxUtils
 
 sealed class MovieState

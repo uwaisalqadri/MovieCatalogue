@@ -6,7 +6,7 @@ import android.view.ViewGroup
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import com.masuwes.core.Constants
+import com.masuwes.core.utils.Constants
 import com.masuwes.core.databinding.ItemRvBinding
 import com.masuwes.core.domain.model.DetailTvShow
 import com.masuwes.core.utils.loadImage

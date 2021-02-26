@@ -2,24 +2,25 @@ package com.masuwes.core.di
 
 import androidx.room.Room
 import com.google.gson.GsonBuilder
-import com.masuwes.core.Constants
-import com.masuwes.core.data.local.database.AppDatabase
-import com.masuwes.core.data.mapper.DetailMovieMapper
-import com.masuwes.core.data.mapper.DetailTvShowMapper
-import com.masuwes.core.data.mapper.MovieMapper
-import com.masuwes.core.data.mapper.TvShowMapper
-import com.masuwes.core.data.remote.ApiService
-import com.masuwes.core.data.remote.BaseInterceptor
+import com.masuwes.core.data.mapper.*
+import com.masuwes.core.utils.Constants
+import com.masuwes.core.data.source.local.AppDatabase
+import com.masuwes.core.data.source.remote.ApiService
+import com.masuwes.core.data.source.remote.BaseInterceptor
 import com.masuwes.core.data.repository.DetailRepositoryImpl
 import com.masuwes.core.data.repository.MovieRepositoryImpl
+import com.masuwes.core.data.repository.SearchRepositoryImpl
 import com.masuwes.core.data.repository.TvShowRepositoryImpl
 import com.masuwes.core.domain.repository.DetailRepository
 import com.masuwes.core.domain.repository.MovieRepository
+import com.masuwes.core.domain.repository.SearchRepository
 import com.masuwes.core.domain.repository.TvShowRepository
 import com.masuwes.core.domain.usecase.detail.DetailInteractor
 import com.masuwes.core.domain.usecase.detail.DetailUseCase
 import com.masuwes.core.domain.usecase.movie.MovieInteractor
 import com.masuwes.core.domain.usecase.movie.MovieUseCase
+import com.masuwes.core.domain.usecase.search.SearchInteractor
+import com.masuwes.core.domain.usecase.search.SearchUseCase
 import com.masuwes.core.domain.usecase.tvshow.TvShowInteractor
 import com.masuwes.core.domain.usecase.tvshow.TvShowUseCase
 import com.masuwes.core.utils.AppExecutors
@@ -108,14 +109,18 @@ val repositoryModule = module {
         ) as DetailRepository
     }
 
-    single { MovieRepositoryImpl(get(), get(), get(), get()) }
-    single { TvShowRepositoryImpl(get(), get(), get(), get()) }
-
+    single {
+        SearchRepositoryImpl(
+            get(),
+            get()
+        ) as SearchRepository
+    }
 }
 
 val mapperModule = module {
     single { MovieMapper() }
     single { TvShowMapper() }
+    single { SearchMapper() }
     single { DetailMovieMapper() }
     single { DetailTvShowMapper() }
 }
@@ -123,6 +128,7 @@ val mapperModule = module {
 val useCaseModule = module {
     factory<MovieUseCase> { MovieInteractor(get()) }
     factory<TvShowUseCase> { TvShowInteractor(get()) }
+    factory<SearchUseCase> { SearchInteractor(get()) }
     factory<DetailUseCase> { DetailInteractor(get()) }
 }
 

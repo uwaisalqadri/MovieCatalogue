@@ -6,7 +6,7 @@ import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.masuwes.core.Constants
+import com.masuwes.core.utils.Constants
 import com.masuwes.core.domain.model.DetailMovie
 import com.masuwes.core.ui.FavMovieAdapter
 import com.masuwes.core.utils.Status

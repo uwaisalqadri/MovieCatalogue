@@ -1,4 +1,4 @@
-package com.masuwes.core.data.local.dao
+package com.masuwes.core.data.source.local
 
 import androidx.paging.DataSource
 import androidx.room.Dao

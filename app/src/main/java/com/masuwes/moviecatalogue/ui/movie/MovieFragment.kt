@@ -7,8 +7,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.masuwes.core.Constants
-import com.masuwes.core.databinding.ItemRvBinding
+import com.masuwes.core.utils.Constants
 import com.masuwes.core.domain.model.Movie
 import com.masuwes.core.ui.MovieListItem
 import com.masuwes.moviecatalogue.R

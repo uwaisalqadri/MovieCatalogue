@@ -1,8 +1,9 @@
-package com.masuwes.core.data.remote
+package com.masuwes.core.data.source.remote
 
 import com.masuwes.core.data.model.detail.DetailMovieItem
 import com.masuwes.core.data.model.detail.DetailTvShowItem
 import com.masuwes.core.data.model.movie.ResponseMovie
+import com.masuwes.core.data.model.search.ResponseSearch
 import com.masuwes.core.data.model.tvshow.ResponseTvShow
 import io.reactivex.Single
 import retrofit2.http.GET
@@ -26,6 +27,14 @@ interface ApiService {
         @Query("sort_by") sort_by: String,
         @Query("page") page: Int
     ) : Single<ResponseTvShow>
+
+    @GET("search/multi")
+    fun searchAll(
+        @Query("api_key") api_key: String,
+        @Query("language") language: String,
+        @Query("query") query: String,
+        @Query("page") page: Int
+    ) : Single<ResponseSearch>
 
     // detail
     @GET("movie/{movie_id}")

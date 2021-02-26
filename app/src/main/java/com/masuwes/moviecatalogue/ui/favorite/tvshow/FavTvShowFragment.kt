@@ -7,7 +7,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.masuwes.core.Constants
+import com.masuwes.core.utils.Constants
 import com.masuwes.core.domain.model.DetailTvShow
 import com.masuwes.core.ui.FavTvShowAdapter
 import com.masuwes.core.utils.Status
