@@ -49,6 +49,7 @@ val databaseModule = module {
 
     single { get<AppDatabase>().moviesDao() }
     single { get<AppDatabase>().tvShowsDao() }
+    single { get<AppDatabase>().searchHistoryDao() }
 }
 
 val networkModule = module {

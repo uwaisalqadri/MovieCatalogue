@@ -15,4 +15,5 @@
     <string name="empty">Data Kosong</string>
     <string name="success_remove">Berhasil Dihapus</string>
     <string name="backdrop_image">Backdrop Image</string>
+    <string name="title_search">Search</string>
 </resources>

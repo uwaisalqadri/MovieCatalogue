@@ -2,10 +2,13 @@ package com.masuwes.core.domain.model
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
+import androidx.room.PrimaryKey
 
 @Entity(tableName = "search_history")
 data class Search(
-    @ColumnInfo(name = "id") val id: Int,
+    @PrimaryKey(autoGenerate = false)
+    @ColumnInfo(name = "id")
+    val id: Int,
     @ColumnInfo(name = "media_type") val media_type: String,
     @ColumnInfo(name = "name") val name: String,
     @ColumnInfo(name = "poster_path") val poster_path: String,

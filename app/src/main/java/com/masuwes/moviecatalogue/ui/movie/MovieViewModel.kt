@@ -7,11 +7,6 @@ import com.masuwes.moviecatalogue.ui.BaseViewModel
 import com.masuwes.core.utils.Constants
 import com.masuwes.moviecatalogue.utils.RxUtils
 
-sealed class MovieState
-data class MovieDataLoaded(val movie: List<Movie>) : MovieState()
-object LoadingState : MovieState()
-object LastPageState : MovieState()
-object DataNotFoundState : MovieState()
 class MovieViewModel(private val movieUseCase: MovieUseCase) : BaseViewModel() {
 
     val postMovieData = MutableLiveData<MovieState>()
@@ -40,3 +35,9 @@ class MovieViewModel(private val movieUseCase: MovieUseCase) : BaseViewModel() {
     }
 
 }
+
+sealed class MovieState
+data class MovieDataLoaded(val movie: List<Movie>) : MovieState()
+object LoadingState : MovieState()
+object LastPageState : MovieState()
+object DataNotFoundState : MovieState()
