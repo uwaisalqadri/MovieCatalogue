@@ -2,83 +2,80 @@ package com.masuwes.moviecatalogue.ui.favorite.tvshow
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.masuwes.core.Constants
+import com.masuwes.core.domain.model.DetailTvShow
+import com.masuwes.core.ui.FavTvShowAdapter
+import com.masuwes.core.utils.Status
 import com.masuwes.moviecatalogue.R
-import com.masuwes.moviecatalogue.domain.model.DetailTvShow
+import com.masuwes.moviecatalogue.databinding.FragmentFavTvshowBinding
 import com.masuwes.moviecatalogue.ui.detail.tvshow.DetailTvShowActivity
-import com.masuwes.moviecatalogue.utils.Constants
-import com.masuwes.moviecatalogue.utils.room.Status
-import com.masuwes.moviecatalogue.utils.ui.isRefresh
 import com.masuwes.moviecatalogue.utils.ui.showToast
-import kotlinx.android.synthetic.main.fragment_fav_tvshow.*
 import org.koin.android.ext.android.inject
 
 
-class FavTvShowFragment : Fragment() {
+class FavTvShowFragment : Fragment(R.layout.fragment_fav_tvshow) {
 
     private val viewModel: FavTvShowViewModel by inject()
+    private lateinit var binding: FragmentFavTvshowBinding
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_fav_tvshow, container, false)
-    }
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentFavTvshowBinding.bind(view)
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+        binding.apply {
+            progressCircularFavtvshow.visibility = View.VISIBLE
 
-        progress_circular_favtvshow.visibility = View.VISIBLE
-
-        val tvShowAdapter = context?.let {
-            FavTvShowAdapter(it, object : FavTvShowAdapter.OnItemClick {
-                override fun onClick(item: DetailTvShow) {
-                    startActivity(
+            val tvShowAdapter = context?.let {
+                FavTvShowAdapter(it, object : FavTvShowAdapter.OnItemClick {
+                    override fun onClick(item: DetailTvShow) {
+                        startActivity(
                             Intent(context, DetailTvShowActivity::class.java)
-                                    .putExtra(DetailTvShowActivity.SHOW_ID, item.id)
-                    )
-                }
-
-            })
-        }
-
-        viewModel.getTvShowPage.observe(viewLifecycleOwner, Observer { response ->
-            if (response != null) {
-                when(response.status) {
-                    Status.LOADING -> {
-                        progress_circular_favtvshow.isRefresh(true)
+                                .putExtra(DetailTvShowActivity.SHOW_ID, item.id)
+                        )
                     }
 
-                    Status.SUCCESS -> {
-                        progress_circular_favtvshow.isRefresh(false)
-                        tvShowAdapter?.submitList(response.data)
-                        tvShowAdapter?.notifyDataSetChanged()
-                    }
-
-                    Status.ERROR -> {
-                        progress_circular_favtvshow.isRefresh(false)
-                        context?.showToast(getString(R.string.error))
-                    }
-                }
+                })
             }
-        })
 
-        rv_fav_tvshow.apply {
-            layoutManager = StaggeredGridLayoutManager(Constants.SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL)
-            adapter = tvShowAdapter
-            setEmptyView(imageView, tvEmpty)
+            viewModel.getTvShowPage.observe(viewLifecycleOwner, Observer { response ->
+                if (response != null) {
+                    when(response.status) {
+                        Status.LOADING -> {
+                            progressCircularFavtvshow.isVisible = true
+                        }
+
+                        Status.SUCCESS -> {
+                            progressCircularFavtvshow.isVisible = false
+                            tvShowAdapter?.submitList(response.data)
+                            tvShowAdapter?.notifyDataSetChanged()
+                        }
+
+                        Status.ERROR -> {
+                            progressCircularFavtvshow.isVisible = false
+                            context?.showToast(getString(R.string.error))
+                        }
+                    }
+                }
+            })
+
+            rvFavTvshow.apply {
+                layoutManager = StaggeredGridLayoutManager(Constants.SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL)
+                adapter = tvShowAdapter
+                setEmptyView(imageView, tvEmpty)
+            }
         }
     }
 
     override fun onResume() {
         super.onResume()
-        rv_fav_tvshow.setEmptyView(imageView, tvEmpty)
+        binding.apply {
+            rvFavTvshow.setEmptyView(imageView, tvEmpty)
+        }
     }
 
 }

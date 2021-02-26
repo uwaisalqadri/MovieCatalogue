@@ -2,45 +2,39 @@ package com.masuwes.moviecatalogue.ui.tvshow
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.masuwes.core.Constants
+import com.masuwes.core.domain.model.TvShow
+import com.masuwes.core.ui.TvShowListItem
 import com.masuwes.moviecatalogue.R
-import com.masuwes.moviecatalogue.domain.model.TvShow
+import com.masuwes.moviecatalogue.databinding.FragmentTvShowBinding
 import com.masuwes.moviecatalogue.ui.detail.tvshow.DetailTvShowActivity
-import com.masuwes.moviecatalogue.utils.Constants
-import com.masuwes.moviecatalogue.utils.ui.PaginationScrollListener
 import com.masuwes.moviecatalogue.utils.ui.LoadMoreItemView
-import com.masuwes.moviecatalogue.utils.ui.isRefresh
+import com.masuwes.moviecatalogue.utils.ui.PaginationScrollListener
 import com.masuwes.moviecatalogue.utils.ui.showToast
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.fragment_movie.progress_circular
-import kotlinx.android.synthetic.main.fragment_tv_show.*
+import com.xwray.groupie.GroupieViewHolder
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 
-class TvShowFragment : Fragment() {
+class TvShowFragment : Fragment(R.layout.fragment_tv_show) {
+
+    private lateinit var binding: FragmentTvShowBinding
 
     private val viewModel: TvShowViewModel by inject()
-    private val adapterShow = GroupAdapter<ViewHolder>()
+    private val adapterShow = GroupAdapter<GroupieViewHolder>()
     private var page = 1
     private var isLoadMore = false
     private var isLastPages = false
     private var loadMoreItemView = LoadMoreItemView()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_tv_show, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentTvShowBinding.bind(view)
 
         viewModel.postTvShowData.observe(viewLifecycleOwner, tvShowObserver)
         viewModel.getTvShows(page)
@@ -50,12 +44,12 @@ class TvShowFragment : Fragment() {
 
     private fun populateShows() {
         val staggeredLayout = StaggeredGridLayoutManager(Constants.SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL)
-        rv_show.apply {
+        binding.rvShow.apply {
             layoutManager = staggeredLayout
             adapter = adapterShow
         }
 
-        rv_show.addOnScrollListener(object : PaginationScrollListener(staggeredLayout) {
+        binding.rvShow.addOnScrollListener(object : PaginationScrollListener(staggeredLayout) {
             override fun loadMoreItems() {
                 isLoadMore = true
                 page++
@@ -76,7 +70,7 @@ class TvShowFragment : Fragment() {
             })
 
             showProgressBar.observe(viewLifecycleOwner, Observer {
-                progress_circular.isRefresh(it)
+                binding.progressCircular.isVisible = it
             })
         }
     }

@@ -2,45 +2,40 @@ package com.masuwes.moviecatalogue.ui.movie
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.masuwes.core.Constants
+import com.masuwes.core.databinding.ItemRvBinding
+import com.masuwes.core.domain.model.Movie
+import com.masuwes.core.ui.MovieListItem
 import com.masuwes.moviecatalogue.R
-import com.masuwes.moviecatalogue.domain.model.Movie
+import com.masuwes.moviecatalogue.databinding.FragmentMovieBinding
 import com.masuwes.moviecatalogue.ui.detail.movie.DetailMovieActivity
-import com.masuwes.moviecatalogue.utils.Constants
-import com.masuwes.moviecatalogue.utils.ui.PaginationScrollListener
 import com.masuwes.moviecatalogue.utils.ui.LoadMoreItemView
-import com.masuwes.moviecatalogue.utils.ui.isRefresh
+import com.masuwes.moviecatalogue.utils.ui.PaginationScrollListener
 import com.masuwes.moviecatalogue.utils.ui.showToast
 import com.xwray.groupie.GroupAdapter
-import com.xwray.groupie.ViewHolder
-import kotlinx.android.synthetic.main.fragment_movie.*
-import kotlinx.android.synthetic.main.fragment_movie.progress_circular
+import com.xwray.groupie.GroupieViewHolder
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 
-class MovieFragment : Fragment() {
+class MovieFragment : Fragment(R.layout.fragment_movie) {
+
+    private lateinit var binding: FragmentMovieBinding
 
     private val viewModel: MovieViewModel by inject()
-    private val adapterMovie = GroupAdapter<ViewHolder>()
+    private val adapterMovie = GroupAdapter<GroupieViewHolder>()
     private var page = 1
     private var isLoadMore = false
     private var isLastPages = false
     private var loadMoreItemView = LoadMoreItemView()
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_movie, container, false)
-    }
-
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        binding = FragmentMovieBinding.bind(view)
 
         viewModel.postMovieData.observe(viewLifecycleOwner, movieObserver)
         viewModel.getMovies(page)
@@ -49,12 +44,12 @@ class MovieFragment : Fragment() {
 
     private fun populateMovies() {
         val staggeredLayout = StaggeredGridLayoutManager(Constants.SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL)
-        rv_movie.apply {
+        binding.rvMovie.apply {
             layoutManager = staggeredLayout
             adapter = adapterMovie
         }
 
-        rv_movie.addOnScrollListener(object : PaginationScrollListener(staggeredLayout) {
+        binding.rvMovie.addOnScrollListener(object : PaginationScrollListener(staggeredLayout) {
             override fun loadMoreItems() {
                 isLoadMore = true
                 page++
@@ -75,7 +70,7 @@ class MovieFragment : Fragment() {
             })
 
             showProgressBar.observe(viewLifecycleOwner, Observer {
-                progress_circular.isRefresh(it)
+                binding.progressCircular.isVisible = it
             })
         }
     }

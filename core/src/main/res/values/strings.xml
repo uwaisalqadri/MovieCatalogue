@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MovieCatalogue</string>
+    <string name="movie">Movie</string>
+    <string name="tvShow">TvShow</string>
+    <string name="splash_copyright">Copyright © 2020 by Uwais Alqadri</string>
+    <string name="overview">Overview</string>
+    <string name="title">Title</string>
+    <string name="error">Data Kosong</string>
+    <string name="movie_catalogue">Movie Catalogue</string>
+    <string name="tvShow_catalogue">Tv Show Catalogue</string>
+    <string name="favorite">Favorite</string>
+    <string name="success">Berhasil Ditambahkan</string>
+    <string name="empty">Data Kosong</string>
+    <string name="success_remove">Berhasil Dihapus</string>
+    <string name="backdrop_image">Backdrop Image</string>
+</resources>

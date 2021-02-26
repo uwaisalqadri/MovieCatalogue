@@ -1,17 +1,11 @@
 package com.masuwes.moviecatalogue.ui.detail.tvshow
 
 import androidx.lifecycle.MutableLiveData
-import com.masuwes.moviecatalogue.data.local.dao.TvShowsDao
-import com.masuwes.moviecatalogue.domain.model.DetailMovie
-import com.masuwes.moviecatalogue.domain.model.DetailTvShow
-import com.masuwes.moviecatalogue.domain.usecase.detail.DetailUseCase
+import com.masuwes.core.data.local.dao.TvShowsDao
+import com.masuwes.core.domain.model.DetailTvShow
+import com.masuwes.core.domain.usecase.detail.DetailUseCase
 import com.masuwes.moviecatalogue.ui.BaseViewModel
-import com.masuwes.moviecatalogue.ui.detail.movie.DetailMovieState
-import com.masuwes.moviecatalogue.ui.detail.movie.FavMovieDataFound
-import com.masuwes.moviecatalogue.ui.detail.movie.FavMovieSave
-import com.masuwes.moviecatalogue.ui.detail.movie.RemoveMovieFav
-import com.masuwes.moviecatalogue.utils.Constants
-import com.masuwes.moviecatalogue.utils.EspressoIdlingResource
+import com.masuwes.core.Constants
 import com.masuwes.moviecatalogue.utils.RxUtils
 import java.util.concurrent.Executor
 
@@ -58,7 +52,6 @@ class DetailTvShowVM(
     }
 
     fun getDetailTvShow(idShow: Int) {
-        EspressoIdlingResource.increment()
         detailTvShowState.value = LoadingState
         compositeDisposable.add(
             detailUseCase.getDetailTvShow(idShow, Constants.API_KEY, Constants.LANG)
@@ -67,7 +60,6 @@ class DetailTvShowVM(
                     if (result != null) {
                         detailTvShowState.value = DetailTvShowLoaded(result)
                         showProgressBar.value = false
-                        EspressoIdlingResource.decrement()
                     } else {
                         detailTvShowState.value = DataNotFoundState
                     }

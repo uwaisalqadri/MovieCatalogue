@@ -20,7 +20,7 @@
         android:id="@+id/progress_circular_detail"
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:theme="@style/ProgressBar"
+        android:indeterminateTint="@color/light_green"
         app:layout_constraintBottom_toBottomOf="@+id/backdrop_image_detail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

@@ -28,10 +28,6 @@
         <!-- Customize your theme here. -->
     </style>
 
-    <style name="ProgressBar">
-        <item name="colorAccent">@color/light_green</item> <!-- Whatever color you want-->
-    </style>
-
     <style name="roundedImageView">
         <item name="cornerFamily">rounded</item>
         <item name="cornerSize">14dp</item>

@@ -3,17 +3,17 @@ package com.masuwes.moviecatalogue.ui.detail.tvshow
 import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import com.masuwes.moviecatalogue.R
-import com.masuwes.moviecatalogue.domain.model.DetailTvShow
-import com.masuwes.moviecatalogue.utils.Constants
-import com.masuwes.moviecatalogue.utils.ui.isRefresh
+import com.masuwes.core.domain.model.DetailTvShow
+import com.masuwes.core.Constants
+import com.masuwes.moviecatalogue.databinding.ActivityDetailTvShowBinding
+import com.masuwes.moviecatalogue.databinding.IncludeInfoBinding
+import com.masuwes.moviecatalogue.databinding.IncludeOverviewBinding
 import com.masuwes.moviecatalogue.utils.ui.loadImage
 import com.masuwes.moviecatalogue.utils.ui.showToast
 import com.masuwes.moviecatalogue.utils.ui.snackBar
-import kotlinx.android.synthetic.main.activity_detail_tv_show.*
-import kotlinx.android.synthetic.main.include_info.*
-import kotlinx.android.synthetic.main.include_overview.*
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 
@@ -23,6 +23,10 @@ class DetailTvShowActivity : AppCompatActivity() {
         const val SHOW_ID = "show_id"
     }
 
+    private lateinit var binding: ActivityDetailTvShowBinding
+    private lateinit var infoBinding: IncludeInfoBinding
+    private lateinit var overviewBinding: IncludeOverviewBinding
+
     private val viewModel: DetailTvShowVM by inject()
     private var isFavorite: Boolean? = null
     var dataTvShow: DetailTvShow? = null
@@ -30,7 +34,10 @@ class DetailTvShowActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail_tv_show)
+        binding = ActivityDetailTvShowBinding.inflate(layoutInflater)
+        infoBinding = binding.includeInfo
+        overviewBinding = binding.includeOverview
+        setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val extras = intent.extras
@@ -39,7 +46,7 @@ class DetailTvShowActivity : AppCompatActivity() {
         idShow?.let { viewModel.getDetailTvShow(it) }
         idShow?.let { viewModel.checkFavTVShow(it) }
 
-        fab_detail_tvshow.setOnClickListener {
+        binding.fabDetailTvshow.setOnClickListener {
             when(isFavorite) {
                 true -> dataTvShow?.id?.let { viewModel.removeFavTVShow(it) }
                 false -> dataTvShow?.let { viewModel.saveFavTVShow(it) }
@@ -54,7 +61,7 @@ class DetailTvShowActivity : AppCompatActivity() {
             })
 
             showProgressBar.observe(this@DetailTvShowActivity, Observer {
-                progress_circular_detail.isRefresh(it)
+                infoBinding.progressCircularDetail.isVisible = it
             })
         }
     }
@@ -66,25 +73,32 @@ class DetailTvShowActivity : AppCompatActivity() {
             is DetailTvShowLoaded -> {
                 dataTvShow = detailTvShow.detailTvShow
                 val dataTvShow = detailTvShow.detailTvShow
-                backdrop_image_detail.loadImage(Constants.URL_IMAGE + dataTvShow.backdrop_path)
-                poster_image_detail.loadImage(Constants.URL_IMAGE + dataTvShow.poster_path)
-                title_detail.text = dataTvShow.name
-                date_lang_detail.text = " ${dataTvShow.first_air_date} . ${dataTvShow.original_language}"
-                overview_detail.text = dataTvShow.overview
-                rate_detail.text = dataTvShow.vote_average.toString()
-                popular_detail.text = dataTvShow.popularity.toString()
+                infoBinding.apply {
+                    backdropImageDetail.loadImage(Constants.URL_IMAGE + dataTvShow.backdrop_path)
+                    posterImageDetail.loadImage(Constants.URL_IMAGE + dataTvShow.poster_path)
+                    titleDetail.text = dataTvShow.name
+                    dateLangDetail.text = " ${dataTvShow.first_air_date} . ${dataTvShow.original_language}"
+                    rateDetail.text = dataTvShow.vote_average.toString()
+                    popularDetail.text = dataTvShow.popularity.toString()
+
+                }
+                overviewBinding.overviewDetail.text = dataTvShow.overview
                 supportActionBar?.title = dataTvShow.original_name
             }
 
             is FavTVShowSave -> {
-                fab_detail_tvshow.setImageResource(R.drawable.ic_baseline_favorite)
-                fab_detail_tvshow.snackBar(getString(R.string.success))
+                binding.fabDetailTvshow.apply {
+                    setImageResource(R.drawable.ic_baseline_favorite)
+                    snackBar(getString(R.string.success))
+                }
                 isFavorite = true
             }
 
             is RemoveTVShowFav -> {
-                fab_detail_tvshow.setImageResource(R.drawable.ic_favorite_border)
-                fab_detail_tvshow.snackBar(getString(R.string.success_remove))
+                binding.fabDetailTvshow.apply {
+                    setImageResource(R.drawable.ic_favorite_border)
+                    snackBar(getString(R.string.success_remove))
+                }
                 isFavorite = false
             }
 
@@ -93,11 +107,13 @@ class DetailTvShowActivity : AppCompatActivity() {
             is FavTVShowDataFound -> {
                 detailTvShow.detailTvShow.map {
                     if (it.id == idShow) {
-                        fab_detail_tvshow.setImageResource(R.drawable.ic_baseline_favorite)
+                        binding.fabDetailTvshow.setImageResource(R.drawable.ic_baseline_favorite)
                         isFavorite = true
                     }
                 }
             }
+
+            else -> {}
         }
     }
 

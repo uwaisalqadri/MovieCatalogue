@@ -22,7 +22,7 @@
         android:layout_width="@dimen/_20sdp"
         android:layout_height="@dimen/_20sdp"
         android:layout_marginTop="36dp"
-        android:theme="@style/ProgressBar"
+        android:indeterminateTint="@color/light_green"
         android:visibility="gone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"

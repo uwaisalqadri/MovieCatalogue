@@ -1,9 +1,10 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
-    id 'kotlin-android-extensions'
+    id 'kotlin-parcelize'
     id 'kotlin-kapt'
 }
+apply from: '../shared_dependencies.gradle'
 
 android {
     compileSdkVersion 30
@@ -36,89 +37,15 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-    androidExtensions {
-        experimental = true
+    buildFeatures {
+        viewBinding = true
     }
 }
 
 dependencies {
-
-    //kotlin
+    implementation project(":core")
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "androidx.core:core-ktx:$coreVersion"
-
-    //ui
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation "androidx.appcompat:appcompat:$appCompatVersion"
-    implementation "androidx.constraintlayout:constraintlayout:$constraintLayoutVersion"
-    implementation 'com.intuit.sdp:sdp-android:1.0.6'
-    implementation 'com.intuit.ssp:ssp-android:1.0.6'
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.1'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.3.1'
-    implementation "com.google.android.material:material:$materialVersion"
-    implementation "com.github.bumptech.glide:glide:$glideVersion"
-    implementation 'com.xwray:groupie:2.3.0'
-    implementation 'com.xwray:groupie-kotlin-android-extensions:2.3.0'
-
-    //testing
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
-    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
-    testImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-
-    // simple date format
-    implementation 'com.github.sidhuparas:SimpleDate:2.1.0'
-
-    //architecture component
-    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$archLifecycleVersion"
-
-    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
-    androidTestImplementation "androidx.test:rules:$androidXTestVersion"
-
-    // networking
-    implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
-    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
-    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.20'
-    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.0'
-
-    //dependency injection
-    implementation "org.koin:koin-android:$koin_version"
-    implementation "org.koin:koin-android-scope:$koin_version"
-    implementation "org.koin:koin-android-viewmodel:$koin_version"
-
-    // timber
-    implementation 'com.jakewharton.timber:timber:4.7.1'
-
-    //testing
-    testImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "junit:junit:$junitVersion"
-    androidTestImplementation "androidx.test.espresso:espresso-core:$espressoVersion"
-    testImplementation "org.mockito:mockito-core:$mockitoVersion"
-    testImplementation 'org.mockito:mockito-inline:3.0.0'
-
-    testImplementation "androidx.arch.core:core-testing:$archLifecycleVersion"
-    testImplementation "com.nhaarman.mockitokotlin2:mockito-kotlin:$mockitoKotlinVersion"
-    implementation "androidx.test.espresso:espresso-idling-resource:$idleResourceVersion"
-
-    //local database
-    // Room components
-    implementation "androidx.room:room-runtime:$roomVersion"
-    kapt "androidx.room:room-compiler:$roomVersion"
-    implementation "androidx.room:room-rxjava2:$roomVersion"
-
-
-    //live database
-    implementation 'com.facebook.stetho:stetho:1.5.1'
-
-    //pagging
-    implementation "androidx.paging:paging-runtime-ktx:$pagingVersion"
 }
 
 repositories {

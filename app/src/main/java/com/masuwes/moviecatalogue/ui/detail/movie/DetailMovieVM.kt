@@ -1,13 +1,11 @@
 package com.masuwes.moviecatalogue.ui.detail.movie
 
 import androidx.lifecycle.MutableLiveData
-import com.masuwes.moviecatalogue.data.local.dao.MoviesDao
-import com.masuwes.moviecatalogue.di.getExecutor
-import com.masuwes.moviecatalogue.domain.model.DetailMovie
-import com.masuwes.moviecatalogue.domain.usecase.detail.DetailUseCase
+import com.masuwes.core.data.local.dao.MoviesDao
+import com.masuwes.core.domain.model.DetailMovie
+import com.masuwes.core.domain.usecase.detail.DetailUseCase
 import com.masuwes.moviecatalogue.ui.BaseViewModel
-import com.masuwes.moviecatalogue.utils.Constants
-import com.masuwes.moviecatalogue.utils.EspressoIdlingResource
+import com.masuwes.core.Constants
 import com.masuwes.moviecatalogue.utils.RxUtils
 import java.util.concurrent.Executor
 
@@ -54,7 +52,6 @@ class DetailMovieVM(
     }
 
     fun getDetailMovie(idMovie: Int) {
-        EspressoIdlingResource.increment()
         detailMovieState.value = LoadingState
         compositeDisposable.add(
             detailUseCase.getDetailMovie(idMovie, Constants.API_KEY, Constants.LANG)
@@ -62,7 +59,6 @@ class DetailMovieVM(
                 .subscribe({ result ->
                     if (result != null) {
                         detailMovieState.value = DetailMovieLoaded(result)
-                        EspressoIdlingResource.decrement()
                         showProgressBar.value = false
                     } else {
                         detailMovieState.value = DataNotFoundState

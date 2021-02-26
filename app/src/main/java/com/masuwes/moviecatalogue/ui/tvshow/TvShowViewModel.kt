@@ -1,14 +1,11 @@
 package com.masuwes.moviecatalogue.ui.tvshow
 
 import androidx.lifecycle.MutableLiveData
-import com.masuwes.moviecatalogue.R
-import com.masuwes.moviecatalogue.domain.model.TvShow
-import com.masuwes.moviecatalogue.domain.usecase.tvshow.TvShowUseCase
+import com.masuwes.core.domain.model.TvShow
+import com.masuwes.core.domain.usecase.tvshow.TvShowUseCase
 import com.masuwes.moviecatalogue.ui.BaseViewModel
-import com.masuwes.moviecatalogue.utils.Constants
-import com.masuwes.moviecatalogue.utils.EspressoIdlingResource
+import com.masuwes.core.Constants
 import com.masuwes.moviecatalogue.utils.RxUtils
-import timber.log.Timber
 
 sealed class TvShowState
 data class TvShowLoadedState(val tvShow: List<TvShow>) : TvShowState()
@@ -22,16 +19,14 @@ class TvShowViewModel(private val tvShowUseCase: TvShowUseCase) : BaseViewModel(
     val showProgressBar = MutableLiveData<Boolean>()
 
     fun getTvShows(page: Int) {
-        EspressoIdlingResource.increment()
         postTvShowData.value = LoadingState
         compositeDisposable.add(
-            tvShowUseCase.getTvShows(Constants.API_KEY, Constants.LANG, Constants.SORT_BY, 1)
+            tvShowUseCase.getTvShows(Constants.API_KEY, Constants.LANG, Constants.SORT_BY, page)
                 .compose(RxUtils.applySingleAsync())
                 .subscribe({ result ->
                     if (result.isNotEmpty()) {
                         postTvShowData.value = TvShowLoadedState(result)
                         showProgressBar.value = false
-                        EspressoIdlingResource.decrement()
                     } else {
                         if (page == 1) postTvShowData.value = DataNotFoundState
                         else postTvShowData.value = LastPageState
