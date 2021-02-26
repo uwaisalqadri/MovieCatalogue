@@ -41,7 +41,7 @@ val databaseModule = module {
             androidApplication(),
             AppDatabase::class.java,
             Constants.DATABASE_NAME
-        ).build()
+        ).fallbackToDestructiveMigration().build()
     }
 
     single { getExecutor() }
@@ -116,6 +116,9 @@ val repositoryModule = module {
             get()
         ) as SearchRepository
     }
+
+    single { MovieRepositoryImpl(get(), get(), get(), get()) }
+    single { TvShowRepositoryImpl(get(), get(), get(), get()) }
 }
 
 val mapperModule = module {

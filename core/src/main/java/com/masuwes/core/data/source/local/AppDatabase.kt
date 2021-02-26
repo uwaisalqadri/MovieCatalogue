@@ -14,7 +14,7 @@ import com.masuwes.core.domain.model.Search
         DetailTvShow::class,
         Search::class
     ],
-    version = 1,
+    version = 2,
     exportSchema = false
 )
 abstract class AppDatabase : RoomDatabase() {

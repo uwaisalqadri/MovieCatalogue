@@ -20,4 +20,6 @@ class SearchActivity : AppCompatActivity() {
 
         searchViewModel.searchAll("Fish", 1)
     }
+
+    // TODO = "Add layout"
 }
