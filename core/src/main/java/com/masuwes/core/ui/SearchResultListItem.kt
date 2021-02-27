@@ -16,11 +16,20 @@ class SearchResultListItem(
 
     override fun bind(viewBinding: ItemRvBinding, position: Int) {
         viewBinding.apply {
-            search.poster_path?.let { imageListItem.loadImage(Constants.URL_IMAGE + it) }
-            titleListItem.text = search.title
-            rateListItem.text = search.vote_average.toString()
-            dateListItem.text = search.release_date
-            search.media_type?.let { Log.d("Search", it) }
+            when(search.media_type) {
+                "movie" -> {
+                    search.poster_path?.let { imageListItem.loadImage(Constants.URL_IMAGE + it) }
+                    titleListItem.text = search.title
+                    rateListItem.text = search.vote_average.toString()
+                    dateListItem.text = search.release_date
+                }
+                "tv" -> {
+                    search.poster_path?.let { imageListItem.loadImage(Constants.URL_IMAGE + it) }
+                    titleListItem.text = search.name
+                    rateListItem.text = search.vote_average.toString()
+                    dateListItem.text = search.first_air_date
+                }
+            }
 
             root.setOnClickListener {
                 onItemClick.onClick(search)

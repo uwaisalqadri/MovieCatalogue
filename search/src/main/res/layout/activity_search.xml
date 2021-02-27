@@ -14,40 +14,60 @@
             android:id="@+id/container_edt_search"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            app:cardElevation="8dp"
-            app:cardCornerRadius="20dp"
             android:layout_margin="@dimen/_15sdp"
+            app:cardCornerRadius="20dp"
+            app:cardElevation="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <EditText
-                android:id="@+id/edt_search"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="50dp"
-                android:textColor="?android:attr/textColorPrimary"
-                android:textColorHint="?android:attr/textColorSecondary"
-                android:hint="Search Movie or TV Show"
-                android:paddingStart="@dimen/_10ssp"
-                android:paddingEnd="@dimen/_10ssp"
-                android:background="@android:color/transparent"
-                android:drawableStart="@drawable/ic_baseline_search"
-                android:drawableTint="?android:attr/textColorSecondary"
-                android:drawablePadding="@dimen/_5ssp" />
+                android:layout_height="match_parent">
+
+                <ImageView
+                    android:id="@+id/btnBack"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="?attr/selectableItemBackgroundBorderless"
+                    android:src="@drawable/ic_baseline_search"
+                    android:layout_margin="@dimen/_15sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tint="?android:attr/textColorPrimary" />
+
+                <EditText
+                    android:id="@+id/edt_search"
+                    android:layout_width="0dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="@dimen/_10ssp"
+                    android:layout_toEndOf="@id/btnBack"
+                    android:background="@android:color/transparent"
+                    android:hint="Search Movie or TV Show"
+                    android:textColor="?android:attr/textColorPrimary"
+                    android:textColorHint="?android:attr/textColorSecondary"
+                    android:imeOptions="actionSearch"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/btnBack"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
 
         <ImageView
-            android:id="@+id/cancel_search"
+            android:id="@+id/delete_recent"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:elevation="10dp"
-            android:layout_marginEnd="15dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_baseline_cancel"
-            android:foreground="?attr/selectableItemBackgroundBorderless"
-            app:layout_constraintBottom_toBottomOf="@+id/container_edt_search"
-            app:layout_constraintEnd_toEndOf="@+id/container_edt_search"
-            app:layout_constraintTop_toTopOf="@+id/container_edt_search"
+            android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="@+id/recent"
+            app:layout_constraintEnd_toEndOf="@+id/recent"
+            app:layout_constraintTop_toTopOf="@+id/recent"
             app:tint="?android:attr/textColorSecondary" />
 
         <TextView
@@ -66,7 +86,9 @@
             android:id="@+id/rvSearchHistory"
             android:layout_width="0dp"
             android:layout_height="100dp"
-            android:layout_margin="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
             tools:listitem="@layout/item_recent_search"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

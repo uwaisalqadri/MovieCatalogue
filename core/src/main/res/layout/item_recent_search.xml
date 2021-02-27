@@ -2,13 +2,16 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="60dp"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/_10ssp">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/imgRecentSearch"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:scaleType="centerCrop"
         app:shapeAppearanceOverlay="@style/recentSearchImageView"/>
 
     <TextView
@@ -21,16 +24,6 @@
         android:textSize="15sp"
         android:textStyle="bold"
         android:textColor="?android:attr/textColorPrimary"
-        android:text="The Hill"/>
-
-    <TextView
-        android:id="@+id/mediaTypeRecentSearch"
-        android:layout_below="@id/titleRecentSearch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="12sp"
-        android:textColor="?android:attr/textColorSecondary"
-        android:text="The Hill"/>
+        tools:text="The Hill"/>
 
 </RelativeLayout>

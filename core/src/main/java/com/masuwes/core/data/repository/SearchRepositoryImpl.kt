@@ -1,6 +1,8 @@
 package com.masuwes.core.data.repository
 
+import androidx.lifecycle.LiveData
 import com.masuwes.core.data.mapper.SearchMapper
+import com.masuwes.core.data.source.local.SearchHistoryDao
 import com.masuwes.core.data.source.remote.ApiService
 import com.masuwes.core.domain.model.Search
 import com.masuwes.core.domain.repository.SearchRepository
@@ -8,6 +10,7 @@ import io.reactivex.Single
 
 class SearchRepositoryImpl(
     private val apiService: ApiService,
+    private val searchHistoryDao: SearchHistoryDao,
     private val itemSearchMapper: SearchMapper
 ) : SearchRepository {
 
@@ -18,5 +21,16 @@ class SearchRepositoryImpl(
         page: Int
     ): Single<List<Search>> = apiService.searchAll(api_key, language, query, page).map {
         itemSearchMapper.mapToListDomain(it.results)
+    }
+
+    override fun getSearchHistories(): LiveData<List<Search>> =
+        searchHistoryDao.getSearchHistories()
+
+    override fun insertHistory(search: Search) {
+        searchHistoryDao.insertHistory(search)
+    }
+
+    override fun deleteAllHistories() {
+        searchHistoryDao.deleteAllHistories()
     }
 }

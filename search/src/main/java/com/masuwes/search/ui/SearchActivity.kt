@@ -3,16 +3,20 @@ package com.masuwes.search.ui
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.isVisible
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.masuwes.core.domain.model.Search
+import com.masuwes.core.ui.SearchHistoryAdapter
 import com.masuwes.core.ui.SearchResultListItem
 import com.masuwes.core.utils.Constants
 import com.masuwes.moviecatalogue.utils.ui.LoadMoreItemView
 import com.masuwes.moviecatalogue.utils.ui.openMovieDetailActivity
 import com.masuwes.moviecatalogue.utils.ui.openTvShowDetailActivity
 import com.masuwes.moviecatalogue.utils.ui.showToast
+import com.masuwes.search.R
 import com.masuwes.search.databinding.ActivitySearchBinding
 import com.masuwes.search.di.searchViewModelModule
 import com.xwray.groupie.GroupAdapter
@@ -44,6 +48,12 @@ class SearchActivity : AppCompatActivity() {
         supportActionBar?.hide()
         loadKoinModules(searchViewModelModule)
 
+        showRecentSearch()
+
+        binding.deleteRecent.setOnClickListener {
+            searchViewModel.deleteAllHistories()
+        }
+
         var job: Job? = null
         binding.edtSearch.addTextChangedListener { editable ->
             job?.cancel()
@@ -52,6 +62,19 @@ class SearchActivity : AppCompatActivity() {
                 editable?.let {
                     if (editable.toString().isNotEmpty()) {
                         searchViewModel.searchAll(editable.toString(), 1)
+                        binding.btnBack.apply {
+                            setImageResource(R.drawable.ic_back)
+                            setOnClickListener {
+                                binding.edtSearch.setText("")
+                            }
+                        }
+                    } else {
+                        binding.apply {
+                            btnBack.apply {
+                                setImageResource(R.drawable.ic_back)
+                                setOnClickListener { finish() }
+                            }
+                        }
                     }
                 }
             }
@@ -76,6 +99,21 @@ class SearchActivity : AppCompatActivity() {
         }
     }
 
+    private fun showRecentSearch() {
+        val recentAdapter = SearchHistoryAdapter()
+
+        searchViewModel.getSearchHistories.observe(this, { searchData ->
+            if (searchData != null)
+                recentAdapter.differ.submitList(searchData)
+        })
+
+        with(binding.rvSearchHistory) {
+            layoutManager = LinearLayoutManager(this@SearchActivity, LinearLayoutManager.HORIZONTAL, false)
+            adapter = recentAdapter
+            setHasFixedSize(true)
+        }
+    }
+
     private val searchObserver = Observer<SearchState> { searchState ->
         when(searchState) {
             is LoadingState -> {
@@ -96,8 +134,14 @@ class SearchActivity : AppCompatActivity() {
                     adapterSearch.add(SearchResultListItem(it, object : SearchResultListItem.OnItemClick {
                         override fun onClick(item: Search) {
                             when (item.media_type) {
-                                "tv" -> openTvShowDetailActivity(this@SearchActivity, item.id)
-                                "movie" -> openMovieDetailActivity(this@SearchActivity, item.id)
+                                "tv" -> {
+                                    openTvShowDetailActivity(this@SearchActivity, item.id)
+                                    searchViewModel.insertHistory(item)
+                                }
+                                "movie" -> {
+                                    openMovieDetailActivity(this@SearchActivity, item.id)
+                                    searchViewModel.insertHistory(item)
+                                }
                             }
                         }
 
