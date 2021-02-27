@@ -48,7 +48,7 @@ class SearchActivity : AppCompatActivity() {
         binding.edtSearch.addTextChangedListener { editable ->
             job?.cancel()
             job = MainScope().launch {
-                delay(500L)
+                delay(200L)
                 editable?.let {
                     if (editable.toString().isNotEmpty()) {
                         searchViewModel.searchAll(editable.toString(), 1)

@@ -20,7 +20,7 @@
         android:layout_marginTop="5dp"
         android:textSize="15sp"
         android:textStyle="bold"
-        android:textColor="@android:color/primary_text_light"
+        android:textColor="?android:attr/textColorPrimary"
         android:text="The Hill"/>
 
     <TextView
@@ -30,7 +30,7 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:textSize="12sp"
-        android:textColor="@android:color/secondary_text_light"
+        android:textColor="?android:attr/textColorSecondary"
         android:text="The Hill"/>
 
 </RelativeLayout>
