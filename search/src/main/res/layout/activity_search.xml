@@ -35,7 +35,8 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:tint="?android:attr/textColorPrimary" />
+                    app:tint="?android:attr/textColorPrimary"
+                    android:contentDescription="@string/app_name" />
 
                 <EditText
                     android:id="@+id/edt_search"
@@ -44,14 +45,16 @@
                     android:layout_marginStart="@dimen/_10ssp"
                     android:layout_toEndOf="@id/btnBack"
                     android:background="@android:color/transparent"
-                    android:hint="Search Movie or TV Show"
+                    android:hint="@string/search_movie_or_tv_show"
                     android:textColor="?android:attr/textColorPrimary"
                     android:textColorHint="?android:attr/textColorSecondary"
                     android:imeOptions="actionSearch"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/btnBack"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:inputType="text"
+                    android:maxLines="1"/>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -64,20 +67,22 @@
             android:elevation="10dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_baseline_cancel"
-            android:visibility="visible"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="@+id/recent"
             app:layout_constraintEnd_toEndOf="@+id/recent"
             app:layout_constraintTop_toTopOf="@+id/recent"
-            app:tint="?android:attr/textColorSecondary" />
+            app:tint="?android:attr/textColorSecondary"
+            android:contentDescription="@string/app_name" />
 
         <TextView
             android:id="@+id/recent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Recent"
+            android:text="@string/recent"
             android:layout_margin="@dimen/_15sdp"
             android:textSize="18sp"
             android:textStyle="bold"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/container_edt_search" />
@@ -90,6 +95,7 @@
             android:layout_marginStart="@dimen/_5sdp"
             android:layout_marginEnd="@dimen/_15sdp"
             tools:listitem="@layout/item_recent_search"
+            android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recent" />
@@ -99,7 +105,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="@dimen/_15sdp"
-            android:text="Movies and TV Shows"
+            android:text="@string/movie_and_tvshow"
             android:textSize="18sp"
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
@@ -118,6 +124,17 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/result" />
+
+        <ProgressBar
+            android:id="@+id/pgSearchResult"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginTop="40dp"
+            android:visibility="gone"
+            android:indeterminateTint="@color/light_green"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/rvSearchResult" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

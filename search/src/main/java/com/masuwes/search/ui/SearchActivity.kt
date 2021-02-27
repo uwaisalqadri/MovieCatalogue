@@ -52,6 +52,11 @@ class SearchActivity : AppCompatActivity() {
 
         binding.deleteRecent.setOnClickListener {
             searchViewModel.deleteAllHistories()
+            binding.apply {
+                recent.isVisible = false
+                deleteRecent.isVisible = false
+                rvSearchHistory.isVisible = false
+            }
         }
 
         var job: Job? = null
@@ -61,7 +66,7 @@ class SearchActivity : AppCompatActivity() {
                 delay(200L)
                 editable?.let {
                     if (editable.toString().isNotEmpty()) {
-                        searchViewModel.searchAll(editable.toString(), 1)
+                        searchViewModel.searchAll(editable.toString(), page)
                         binding.btnBack.apply {
                             setImageResource(R.drawable.ic_back)
                             setOnClickListener {
@@ -89,7 +94,7 @@ class SearchActivity : AppCompatActivity() {
             })
 
             showProgressbar.observe(this@SearchActivity, {
-                // TODO = "give some progress indicator"
+                binding.pgSearchResult.isVisible = it
             })
         }
 
@@ -100,11 +105,35 @@ class SearchActivity : AppCompatActivity() {
     }
 
     private fun showRecentSearch() {
-        val recentAdapter = SearchHistoryAdapter()
+        val recentAdapter = SearchHistoryAdapter(object : SearchHistoryAdapter.OnItemClick {
+            override fun onClick(item: Search) {
+                when(item.media_type) {
+                    Constants.TYPE_MOVIE -> {
+                        openMovieDetailActivity(this@SearchActivity, item.id)
+                    }
+                    Constants.TYPE_SHOW -> {
+                        openTvShowDetailActivity(this@SearchActivity, item.id)
+                    }
+                }
+            }
+
+        })
 
         searchViewModel.getSearchHistories.observe(this, { searchData ->
-            if (searchData != null)
+            if (searchData.isNotEmpty()) {
                 recentAdapter.differ.submitList(searchData)
+                binding.apply {
+                    recent.isVisible = true
+                    deleteRecent.isVisible = true
+                    rvSearchHistory.isVisible = true
+                }
+            } else {
+                binding.apply {
+                    recent.isVisible = false
+                    deleteRecent.isVisible = false
+                    rvSearchHistory.isVisible = false
+                }
+            }
         })
 
         with(binding.rvSearchHistory) {
@@ -134,11 +163,11 @@ class SearchActivity : AppCompatActivity() {
                     adapterSearch.add(SearchResultListItem(it, object : SearchResultListItem.OnItemClick {
                         override fun onClick(item: Search) {
                             when (item.media_type) {
-                                "tv" -> {
+                                Constants.TYPE_SHOW -> {
                                     openTvShowDetailActivity(this@SearchActivity, item.id)
                                     searchViewModel.insertHistory(item)
                                 }
-                                "movie" -> {
+                                Constants.TYPE_MOVIE -> {
                                     openMovieDetailActivity(this@SearchActivity, item.id)
                                     searchViewModel.insertHistory(item)
                                 }

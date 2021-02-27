@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="recent" translatable="false">Recent</string>
+    <string name="movie_and_tvshow" translatable="false">Movies and TV Shows</string>
+    <string name="search_movie_or_tv_show">Search Movie or TV Show</string>
+</resources>

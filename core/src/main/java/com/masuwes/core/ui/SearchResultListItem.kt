@@ -17,13 +17,13 @@ class SearchResultListItem(
     override fun bind(viewBinding: ItemRvBinding, position: Int) {
         viewBinding.apply {
             when(search.media_type) {
-                "movie" -> {
+                Constants.TYPE_MOVIE -> {
                     search.poster_path?.let { imageListItem.loadImage(Constants.URL_IMAGE + it) }
                     titleListItem.text = search.title
                     rateListItem.text = search.vote_average.toString()
                     dateListItem.text = search.release_date
                 }
-                "tv" -> {
+                Constants.TYPE_SHOW -> {
                     search.poster_path?.let { imageListItem.loadImage(Constants.URL_IMAGE + it) }
                     titleListItem.text = search.name
                     rateListItem.text = search.vote_average.toString()

@@ -14,4 +14,6 @@
     <string name="empty">Data Kosong</string>
     <string name="success_remove">Berhasil Dihapus</string>
     <string name="backdrop_image">Backdrop Image</string>
+    <string name="recent">Recent</string>
+    <string name="movie_and_tvshow">Movies and TV Shows</string>
 </resources>

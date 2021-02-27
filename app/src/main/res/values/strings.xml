@@ -8,12 +8,12 @@
     <string name="error">Data Kosong</string>
     <string name="movie_catalogue">Movie Catalogue</string>
     <string name="tvShow_catalogue">Tv Show Catalogue</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="favorite">Favorite</string>
+    <string name="favorite">Your Favorites</string>
     <string name="success">Berhasil Ditambahkan</string>
     <string name="empty">Data Kosong</string>
     <string name="success_remove">Berhasil Dihapus</string>
     <string name="backdrop_image">Backdrop Image</string>
     <string name="title_search">Search</string>
+    <string name="recent">Recent</string>
+    <string name="movie_and_tvshow" translatable="false">Movies and TV Shows</string>
 </resources>

@@ -10,4 +10,6 @@ object Constants {
     const val DATABASE_NAME = "db_movie"
     const val DATE_FORMAT = "yyyy-MM-dd"
     const val FORMATTED_DATE = "dd MMM, yyyy"
+    const val TYPE_MOVIE = "movie"
+    const val TYPE_SHOW = "tv"
 }
