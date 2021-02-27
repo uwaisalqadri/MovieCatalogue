@@ -63,12 +63,12 @@ class MovieFragment : Fragment(R.layout.fragment_movie) {
         })
 
         with(viewModel) {
-            messageData.observe(viewLifecycleOwner, Observer { messageInfo ->
+            messageData.observe(viewLifecycleOwner, { messageInfo ->
                 context?.showToast(messageInfo.toString())
                 Timber.i(messageInfo.toString())
             })
 
-            showProgressBar.observe(viewLifecycleOwner, Observer {
+            showProgressBar.observe(viewLifecycleOwner, {
                 binding.progressCircular.isVisible = it
             })
         }
