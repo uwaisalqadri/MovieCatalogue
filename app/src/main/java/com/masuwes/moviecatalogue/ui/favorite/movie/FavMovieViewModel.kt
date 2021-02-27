@@ -5,10 +5,11 @@ import androidx.lifecycle.ViewModel
 import androidx.paging.PagedList
 import com.masuwes.core.data.repository.MovieRepositoryImpl
 import com.masuwes.core.domain.model.DetailMovie
+import com.masuwes.core.domain.usecase.movie.MovieUseCase
 import com.masuwes.core.utils.Resource
 
-class FavMovieViewModel(repositoryImpl: MovieRepositoryImpl) : ViewModel() {
+class FavMovieViewModel(movieUseCase: MovieUseCase) : ViewModel() {
 
     val getMoviePage: LiveData<Resource<PagedList<DetailMovie>>> =
-            repositoryImpl.getMoviePage()
+            movieUseCase.getMoviePage()
 }

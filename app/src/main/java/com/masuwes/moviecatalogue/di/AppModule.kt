@@ -17,14 +17,10 @@ val viewModelModule = module {
 
     viewModel {
         DetailMovieVM(
-        get(),
-        get(),
         get())
     }
     viewModel {
         DetailTvShowVM(
-        get(),
-        get(),
         get())
     }
 }

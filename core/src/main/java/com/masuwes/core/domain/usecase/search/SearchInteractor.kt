@@ -24,4 +24,5 @@ class SearchInteractor(private val searchRepository: SearchRepository) : SearchU
     override fun deleteAllHistories() {
         searchRepository.deleteAllHistories()
     }
+
 }

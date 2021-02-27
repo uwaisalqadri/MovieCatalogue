@@ -3,6 +3,7 @@ package com.masuwes.search.ui
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.masuwes.core.data.repository.SearchRepositoryImpl
+import com.masuwes.core.data.source.local.SearchHistoryDao
 import com.masuwes.core.domain.model.Search
 import com.masuwes.core.domain.usecase.search.SearchUseCase
 import com.masuwes.core.utils.Constants
@@ -11,6 +12,7 @@ import com.masuwes.moviecatalogue.utils.RxUtils
 import io.reactivex.Single
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import java.util.concurrent.Executor
 
 class SearchViewModel(
     private val searchUseCase: SearchUseCase
@@ -38,11 +40,11 @@ class SearchViewModel(
         )
     }
 
-    fun insertHistory(search: Search) = viewModelScope.launch(Dispatchers.IO) {
+    fun insertHistory(search: Search) {
         searchUseCase.insertHistory(search)
     }
 
-    fun deleteAllHistories() = viewModelScope.launch(Dispatchers.IO) {
+    fun deleteAllHistories() {
         searchUseCase.deleteAllHistories()
     }
 

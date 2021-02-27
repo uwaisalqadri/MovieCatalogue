@@ -1,11 +1,11 @@
 package com.masuwes.core.ui
 
-import android.util.Log
 import android.view.View
 import com.masuwes.core.R
 import com.masuwes.core.databinding.ItemRvBinding
 import com.masuwes.core.domain.model.Search
 import com.masuwes.core.utils.Constants
+import com.masuwes.core.utils.formatDate
 import com.masuwes.core.utils.loadImage
 import com.xwray.groupie.viewbinding.BindableItem
 
@@ -21,13 +21,13 @@ class SearchResultListItem(
                     search.poster_path?.let { imageListItem.loadImage(Constants.URL_IMAGE + it) }
                     titleListItem.text = search.title
                     rateListItem.text = search.vote_average.toString()
-                    dateListItem.text = search.release_date
+                    dateListItem.text = search.release_date?.formatDate()
                 }
                 Constants.TYPE_SHOW -> {
                     search.poster_path?.let { imageListItem.loadImage(Constants.URL_IMAGE + it) }
                     titleListItem.text = search.name
                     rateListItem.text = search.vote_average.toString()
-                    dateListItem.text = search.first_air_date
+                    dateListItem.text = search.first_air_date?.formatDate()
                 }
             }
 

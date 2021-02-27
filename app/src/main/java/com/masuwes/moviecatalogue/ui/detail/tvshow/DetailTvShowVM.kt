@@ -9,20 +9,9 @@ import com.masuwes.core.utils.Constants
 import com.masuwes.moviecatalogue.utils.RxUtils
 import java.util.concurrent.Executor
 
-// Detail TvShow
-sealed class DetailTvShowState
-data class DetailTvShowLoaded(val detailTvShow: DetailTvShow) : DetailTvShowState()
-data class FavTVShowDataFound(val detailTvShow: List<DetailTvShow>) : DetailTvShowState()
-object LoadingState : DetailTvShowState()
-object DataNotFoundState : DetailTvShowState()
-object FavTVShowSave : DetailTvShowState()
-object RemoveTVShowFav : DetailTvShowState()
-
 
 class DetailTvShowVM(
-    private val detailUseCase: DetailUseCase,
-    private val tvShowsDao: TvShowsDao,
-    private val executor: Executor
+    private val detailUseCase: DetailUseCase
 ) : BaseViewModel() {
 
     val detailTvShowState = MutableLiveData<DetailTvShowState>()
@@ -30,18 +19,18 @@ class DetailTvShowVM(
     val messageData = MutableLiveData<String>()
 
     fun saveFavTVShow(tvShow: DetailTvShow) {
-        executor.execute { tvShowsDao.insertFavoriteTv(tvShow) }
+        detailUseCase.insertFavoriteTv(tvShow)
         detailTvShowState.value = FavTVShowSave
     }
 
     fun removeFavTVShow(idShow: Int) {
-        executor.execute { tvShowsDao.deleteFavoriteTv(idShow) }
+        detailUseCase.deleteFavoriteTv(idShow)
         detailTvShowState.value = RemoveTVShowFav
     }
 
     fun checkFavTVShow(id: Int) {
         compositeDisposable.add(
-            tvShowsDao.getFavoriteTvById(id)
+            detailUseCase.getFavoriteTvById(id)
                 .compose(RxUtils.applySingleAsync())
                 .subscribe({ result ->
                     if (result.isNotEmpty()) {
@@ -71,6 +60,15 @@ class DetailTvShowVM(
         messageData.value = error.message.toString()
     }
 }
+
+
+sealed class DetailTvShowState
+data class DetailTvShowLoaded(val detailTvShow: DetailTvShow) : DetailTvShowState()
+data class FavTVShowDataFound(val detailTvShow: List<DetailTvShow>) : DetailTvShowState()
+object LoadingState : DetailTvShowState()
+object DataNotFoundState : DetailTvShowState()
+object FavTVShowSave : DetailTvShowState()
+object RemoveTVShowFav : DetailTvShowState()
 
 
 

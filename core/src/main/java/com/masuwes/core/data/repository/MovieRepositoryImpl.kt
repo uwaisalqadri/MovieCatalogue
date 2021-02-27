@@ -34,9 +34,9 @@ class MovieRepositoryImpl(
         }
     }
 
-    fun getMoviesAsPaged(): DataSource.Factory<Int, DetailMovie> = moviesDao.getFavMoviePagination()
+    override fun getMoviesAsPaged(): DataSource.Factory<Int, DetailMovie> = moviesDao.getFavMoviePagination()
 
-    fun getMoviePage(): LiveData<Resource<PagedList<DetailMovie>>> {
+    override fun getMoviePage(): LiveData<Resource<PagedList<DetailMovie>>> {
         return object :
                 NetworkBoundResource<PagedList<DetailMovie>, List<DetailMovie>>(
                         executors

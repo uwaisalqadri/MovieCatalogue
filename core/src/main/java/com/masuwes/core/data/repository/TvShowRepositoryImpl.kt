@@ -34,9 +34,9 @@ class TvShowRepositoryImpl(
         }
     }
 
-    fun getTvShowsAsPaged(): DataSource.Factory<Int, DetailTvShow> = tvShowsDao.getFavTvPagination()
+    override fun getTvShowsAsPaged(): DataSource.Factory<Int, DetailTvShow> = tvShowsDao.getFavTvPagination()
 
-    fun getTvShowPage(): LiveData<Resource<PagedList<DetailTvShow>>> {
+    override fun getTvShowPage(): LiveData<Resource<PagedList<DetailTvShow>>> {
         return object :
                 NetworkBoundResource<PagedList<DetailTvShow>, List<DetailTvShow>>(
                         executors

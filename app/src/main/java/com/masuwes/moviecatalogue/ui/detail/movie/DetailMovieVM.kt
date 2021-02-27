@@ -9,20 +9,9 @@ import com.masuwes.core.utils.Constants
 import com.masuwes.moviecatalogue.utils.RxUtils
 import java.util.concurrent.Executor
 
-// Detail Movie
-sealed class DetailMovieState
-data class DetailMovieLoaded(val detailMovie: DetailMovie) : DetailMovieState()
-data class FavMovieDataFound(val detailMovie: List<DetailMovie>) : DetailMovieState()
-object LoadingState : DetailMovieState()
-object DataNotFoundState : DetailMovieState()
-object FavMovieSave : DetailMovieState()
-object RemoveMovieFav : DetailMovieState()
-
 
 class DetailMovieVM(
-    private val detailUseCase: DetailUseCase,
-    private val moviesDao: MoviesDao,
-    private val executor: Executor
+    private val detailUseCase: DetailUseCase
 ) : BaseViewModel() {
 
     val detailMovieState = MutableLiveData<DetailMovieState>()
@@ -30,18 +19,18 @@ class DetailMovieVM(
     val messageData = MutableLiveData<String>()
 
     fun saveFavMovie(movie: DetailMovie) {
-        executor.execute { moviesDao.insertFavoriteMovie(movie) }
+        detailUseCase.insertFavoriteMovie(movie)
         detailMovieState.value = FavMovieSave
     }
 
     fun removeFavMovie(idMovie: Int) {
-        executor.execute { moviesDao.deleteFavoriteMovie(idMovie) }
+        detailUseCase.deleteFavoriteMovie(idMovie)
         detailMovieState.value = RemoveMovieFav
     }
 
     fun checkFavMovie(id: Int) {
         compositeDisposable.add(
-            moviesDao.getFavoriteMovieById(id)
+            detailUseCase.getFavoriteMovieById(id)
                 .compose(RxUtils.applySingleAsync())
                 .subscribe({ result ->
                     if (result.isNotEmpty()) {
@@ -70,9 +59,15 @@ class DetailMovieVM(
     override fun onError(error: Throwable) {
         messageData.value = error.message.toString()
     }
-
-
 }
+
+sealed class DetailMovieState
+data class DetailMovieLoaded(val detailMovie: DetailMovie) : DetailMovieState()
+data class FavMovieDataFound(val detailMovie: List<DetailMovie>) : DetailMovieState()
+object LoadingState : DetailMovieState()
+object DataNotFoundState : DetailMovieState()
+object FavMovieSave : DetailMovieState()
+object RemoveMovieFav : DetailMovieState()
 
 
 

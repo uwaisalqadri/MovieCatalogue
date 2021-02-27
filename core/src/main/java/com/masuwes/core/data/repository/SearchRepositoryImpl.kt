@@ -7,10 +7,12 @@ import com.masuwes.core.data.source.remote.ApiService
 import com.masuwes.core.domain.model.Search
 import com.masuwes.core.domain.repository.SearchRepository
 import io.reactivex.Single
+import java.util.concurrent.Executor
 
 class SearchRepositoryImpl(
     private val apiService: ApiService,
     private val searchHistoryDao: SearchHistoryDao,
+    private val executor: Executor,
     private val itemSearchMapper: SearchMapper
 ) : SearchRepository {
 
@@ -27,10 +29,10 @@ class SearchRepositoryImpl(
         searchHistoryDao.getSearchHistories()
 
     override fun insertHistory(search: Search) {
-        searchHistoryDao.insertHistory(search)
+        executor.execute { searchHistoryDao.insertHistory(search) }
     }
 
     override fun deleteAllHistories() {
-        searchHistoryDao.deleteAllHistories()
+        executor.execute { searchHistoryDao.deleteAllHistories() }
     }
 }

@@ -18,4 +18,5 @@ interface SearchUseCase {
     fun insertHistory(search: Search)
 
     fun deleteAllHistories()
+
 }
