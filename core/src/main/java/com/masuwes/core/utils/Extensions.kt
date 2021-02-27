@@ -4,6 +4,7 @@ import android.os.Build
 import android.widget.ImageView
 import androidx.annotation.RequiresApi
 import com.bumptech.glide.Glide
+import com.masuwes.core.R
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
@@ -11,6 +12,8 @@ fun ImageView.loadImage(url: String) {
 
     Glide.with(this)
         .load(url)
+        .placeholder(R.drawable.placholder_image)
+        .fallback(R.drawable.placholder_image)
         .into(this)
 
 }

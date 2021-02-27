@@ -7,11 +7,15 @@ import android.widget.ProgressBar
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.google.android.material.snackbar.Snackbar
+import com.masuwes.core.R
+import com.masuwes.core.utils.loadImage
 
 fun ImageView.loadImage(url: String) {
 
     Glide.with(this)
         .load(url)
+        .placeholder(R.drawable.placholder_image)
+        .fallback(R.drawable.placholder_image)
         .into(this)
 
 }
