@@ -1,6 +1,7 @@
 package com.masuwes.search.ui
 
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
@@ -9,6 +10,8 @@ import com.masuwes.core.domain.model.Search
 import com.masuwes.core.ui.SearchResultListItem
 import com.masuwes.core.utils.Constants
 import com.masuwes.moviecatalogue.utils.ui.LoadMoreItemView
+import com.masuwes.moviecatalogue.utils.ui.openMovieDetailActivity
+import com.masuwes.moviecatalogue.utils.ui.openTvShowDetailActivity
 import com.masuwes.moviecatalogue.utils.ui.showToast
 import com.masuwes.search.databinding.ActivitySearchBinding
 import com.masuwes.search.di.searchViewModelModule
@@ -92,7 +95,10 @@ class SearchActivity : AppCompatActivity() {
                 searchState.search.map {
                     adapterSearch.add(SearchResultListItem(it, object : SearchResultListItem.OnItemClick {
                         override fun onClick(item: Search) {
-                            showToast(item.media_type + item.media_type)
+                            when (item.media_type) {
+                                "tv" -> openTvShowDetailActivity(this@SearchActivity, item.id)
+                                "movie" -> openMovieDetailActivity(this@SearchActivity, item.id)
+                            }
                         }
 
                     }))

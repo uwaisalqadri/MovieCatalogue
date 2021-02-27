@@ -1,13 +1,16 @@
 package com.masuwes.moviecatalogue.ui.detail.movie
 
 import android.annotation.SuppressLint
+import android.os.Build
 import android.os.Bundle
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import com.masuwes.moviecatalogue.R
 import com.masuwes.core.domain.model.DetailMovie
 import com.masuwes.core.utils.Constants
+import com.masuwes.core.utils.formatDate
 import com.masuwes.moviecatalogue.databinding.ActivityDetailMovieBinding
 import com.masuwes.moviecatalogue.databinding.IncludeInfoBinding
 import com.masuwes.moviecatalogue.databinding.IncludeOverviewBinding
@@ -77,7 +80,7 @@ class DetailMovieActivity : AppCompatActivity() {
                     backdropImageDetail.loadImage(Constants.URL_IMAGE + dataMovie.backdrop_path)
                     posterImageDetail.loadImage(Constants.URL_IMAGE + dataMovie.poster_path)
                     titleDetail.text = dataMovie.title
-                    dateLangDetail.text = " ${dataMovie.release_date} . ${dataMovie.original_language}"
+                    dateLangDetail.text = " ${dataMovie.release_date?.formatDate()} . ${dataMovie.original_language}"
                     rateDetail.text = dataMovie.vote_average.toString()
                     popularDetail.text = dataMovie.popularity.toString()
                 }

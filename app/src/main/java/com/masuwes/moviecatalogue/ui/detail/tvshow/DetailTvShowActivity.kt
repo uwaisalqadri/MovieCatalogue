@@ -8,6 +8,7 @@ import androidx.lifecycle.Observer
 import com.masuwes.moviecatalogue.R
 import com.masuwes.core.domain.model.DetailTvShow
 import com.masuwes.core.utils.Constants
+import com.masuwes.core.utils.formatDate
 import com.masuwes.moviecatalogue.databinding.ActivityDetailTvShowBinding
 import com.masuwes.moviecatalogue.databinding.IncludeInfoBinding
 import com.masuwes.moviecatalogue.databinding.IncludeOverviewBinding
@@ -77,7 +78,7 @@ class DetailTvShowActivity : AppCompatActivity() {
                     backdropImageDetail.loadImage(Constants.URL_IMAGE + dataTvShow.backdrop_path)
                     posterImageDetail.loadImage(Constants.URL_IMAGE + dataTvShow.poster_path)
                     titleDetail.text = dataTvShow.name
-                    dateLangDetail.text = " ${dataTvShow.first_air_date} . ${dataTvShow.original_language}"
+                    dateLangDetail.text = " ${dataTvShow.first_air_date?.formatDate()} . ${dataTvShow.original_language}"
                     rateDetail.text = dataTvShow.vote_average.toString()
                     popularDetail.text = dataTvShow.popularity.toString()
 

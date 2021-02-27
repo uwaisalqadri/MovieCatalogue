@@ -1,7 +1,11 @@
 package com.masuwes.core.utils
 
+import android.os.Build
 import android.widget.ImageView
+import androidx.annotation.RequiresApi
 import com.bumptech.glide.Glide
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 fun ImageView.loadImage(url: String) {
 
@@ -9,4 +13,14 @@ fun ImageView.loadImage(url: String) {
         .load(url)
         .into(this)
 
+}
+
+fun String.formatDate() : String {
+    lateinit var formattedDate: String
+    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.O) {
+        val formatter = DateTimeFormatter.ofPattern(Constants.DATE_FORMAT)
+        val currentDate = LocalDate.parse(this, formatter)
+        formattedDate = currentDate.format(DateTimeFormatter.ofPattern(Constants.FORMATTED_DATE))
+    }
+    return formattedDate
 }

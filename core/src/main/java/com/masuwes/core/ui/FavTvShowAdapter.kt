@@ -1,14 +1,17 @@
 package com.masuwes.core.ui
 
 import android.content.Context
+import android.os.Build
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.annotation.RequiresApi
 import androidx.paging.PagedListAdapter
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.masuwes.core.utils.Constants
 import com.masuwes.core.databinding.ItemRvBinding
 import com.masuwes.core.domain.model.DetailTvShow
+import com.masuwes.core.utils.formatDate
 import com.masuwes.core.utils.loadImage
 
 class FavTvShowAdapter(
@@ -43,7 +46,7 @@ class FavTvShowAdapter(
             holder.poster.loadImage(Constants.URL_IMAGE + tvShow.poster_path)
             holder.title.text = tvShow.name
             holder.rate.text = tvShow.vote_average.toString()
-            holder.date.text = tvShow.first_air_date
+            holder.date.text = tvShow.first_air_date?.formatDate()
             holder.itemView.setOnClickListener {
                 onItemClick.onClick(tvShow)
             }
