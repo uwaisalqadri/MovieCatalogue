@@ -24,7 +24,7 @@ class SearchViewModel(
     val getSearchHistories = searchUseCase.getSearchHistories()
 
     fun searchAll(query: String, page: Int) {
-        postsData.value = LoadingState
+        showProgressbar.value = true
         compositeDisposable.add(
             searchUseCase.searchAll(Constants.API_KEY, Constants.LANG, query, page)
                 .compose(RxUtils.applySingleAsync())
@@ -34,7 +34,6 @@ class SearchViewModel(
                         showProgressbar.value = false
                     } else {
                         if (page == 1) postsData.value = DataNotFoundState
-                        else postsData.value = LastPageState
                     }
                 }, this::onError)
         )
@@ -56,8 +55,6 @@ class SearchViewModel(
 
 sealed class SearchState
 data class SearchDataLoaded(val search: List<Search>) : SearchState()
-object LoadingState : SearchState()
-object LastPageState : SearchState()
 object DataNotFoundState : SearchState()
 
 

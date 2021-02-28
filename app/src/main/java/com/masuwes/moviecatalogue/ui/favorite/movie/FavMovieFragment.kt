@@ -16,7 +16,6 @@ import com.masuwes.moviecatalogue.ui.detail.movie.DetailMovieActivity
 import com.masuwes.moviecatalogue.utils.ui.showToast
 import org.koin.android.ext.android.inject
 
-
 class FavMovieFragment : Fragment(R.layout.fragment_fav_movie) {
 
     private val viewModel: FavMovieViewModel by inject()

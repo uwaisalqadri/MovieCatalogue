@@ -7,11 +7,6 @@ import com.masuwes.moviecatalogue.ui.BaseViewModel
 import com.masuwes.core.utils.Constants
 import com.masuwes.moviecatalogue.utils.RxUtils
 
-sealed class TvShowState
-data class TvShowLoadedState(val tvShow: List<TvShow>) : TvShowState()
-object LoadingState : TvShowState()
-object LastPageState : TvShowState()
-object DataNotFoundState : TvShowState()
 class TvShowViewModel(private val tvShowUseCase: TvShowUseCase) : BaseViewModel() {
 
     val postTvShowData = MutableLiveData<TvShowState>()
@@ -38,5 +33,10 @@ class TvShowViewModel(private val tvShowUseCase: TvShowUseCase) : BaseViewModel(
     override fun onError(error: Throwable) {
         messageData.value = error.message.toString()
     }
-
 }
+
+sealed class TvShowState
+data class TvShowLoadedState(val tvShow: List<TvShow>) : TvShowState()
+object LoadingState : TvShowState()
+object LastPageState : TvShowState()
+object DataNotFoundState : TvShowState()

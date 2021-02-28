@@ -12,10 +12,7 @@ import com.masuwes.core.domain.model.Search
 import com.masuwes.core.ui.SearchHistoryAdapter
 import com.masuwes.core.ui.SearchResultListItem
 import com.masuwes.core.utils.Constants
-import com.masuwes.moviecatalogue.utils.ui.LoadMoreItemView
-import com.masuwes.moviecatalogue.utils.ui.openMovieDetailActivity
-import com.masuwes.moviecatalogue.utils.ui.openTvShowDetailActivity
-import com.masuwes.moviecatalogue.utils.ui.showToast
+import com.masuwes.moviecatalogue.utils.ui.*
 import com.masuwes.search.R
 import com.masuwes.search.databinding.ActivitySearchBinding
 import com.masuwes.search.di.searchViewModelModule
@@ -37,7 +34,6 @@ class SearchActivity : AppCompatActivity() {
     private val adapterSearch = GroupAdapter<GroupieViewHolder>()
     private var page = 1
     private var isLoadMore = false
-    private var isLastPages = false
     private var loadMoreItemView = LoadMoreItemView()
 
 
@@ -145,11 +141,6 @@ class SearchActivity : AppCompatActivity() {
 
     private val searchObserver = Observer<SearchState> { searchState ->
         when(searchState) {
-            is LoadingState -> {
-                if (isLoadMore) {
-                    adapterSearch.add(loadMoreItemView)
-                }
-            }
 
             is SearchDataLoaded -> {
                 if (isLoadMore) {
@@ -180,17 +171,6 @@ class SearchActivity : AppCompatActivity() {
 
             is DataNotFoundState -> {
                 adapterSearch.clear()
-            }
-
-            is LastPageState -> {
-                if (isLoadMore) {
-                    adapterSearch.remove(loadMoreItemView)
-                    isLoadMore = false
-                    if (!isLastPages) {
-                        showToast("Last Page")
-                        isLastPages = true
-                    }
-                }
             }
         }
     }

@@ -58,12 +58,12 @@ class DetailMovieActivity : AppCompatActivity() {
         }
 
         with(viewModel) {
-            messageData.observe(this@DetailMovieActivity, Observer { messageInfo ->
+            messageData.observe(this@DetailMovieActivity, { messageInfo ->
                 showToast(messageInfo.toString())
                 Timber.i(messageInfo.toString())
             })
 
-            showProgressBar.observe(this@DetailMovieActivity, Observer {
+            showProgressBar.observe(this@DetailMovieActivity, {
                 infoBinding.progressCircularDetail.isVisible = it
             })
         }

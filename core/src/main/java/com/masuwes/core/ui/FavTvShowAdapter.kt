@@ -28,7 +28,6 @@ class FavTvShowAdapter(
             override fun areContentsTheSame(oldItem: DetailTvShow, newItem: DetailTvShow): Boolean {
                 return oldItem == newItem
             }
-
         }
     }
 

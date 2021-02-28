@@ -17,7 +17,6 @@ import com.masuwes.moviecatalogue.ui.detail.tvshow.DetailTvShowActivity
 import com.masuwes.moviecatalogue.utils.ui.showToast
 import org.koin.android.ext.android.inject
 
-
 class FavTvShowFragment : Fragment(R.layout.fragment_fav_tvshow) {
 
     private val viewModel: FavTvShowViewModel by inject()
@@ -42,7 +41,7 @@ class FavTvShowFragment : Fragment(R.layout.fragment_fav_tvshow) {
                 })
             }
 
-            viewModel.getTvShowPage.observe(viewLifecycleOwner, Observer { response ->
+            viewModel.getTvShowPage.observe(viewLifecycleOwner, { response ->
                 if (response != null) {
                     when(response.status) {
                         Status.LOADING -> {

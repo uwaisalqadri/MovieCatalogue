@@ -121,10 +121,6 @@ val repositoryModule = module {
             get()
         ) as SearchRepository
     }
-
-    single { MovieRepositoryImpl(get(), get(), get(), get()) }
-    single { TvShowRepositoryImpl(get(), get(), get(), get()) }
-//    single { DetailRepositoryImpl(get(), get(), get(), get(), get(), get()) }
 }
 
 val mapperModule = module {

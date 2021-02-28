@@ -21,17 +21,21 @@ fun ImageView.loadImage(url: String) {
 }
 
 fun Context.showToast(msg: String) {
+
     Toast.makeText(
         this,
         msg,
         Toast.LENGTH_SHORT
     ).show()
+
 }
 
 fun View.snackBar(msg: String) {
+
     Snackbar.make(
             this,
             msg,
             Snackbar.LENGTH_SHORT
     ).show()
+
 }

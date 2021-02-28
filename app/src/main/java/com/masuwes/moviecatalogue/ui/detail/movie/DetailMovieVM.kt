@@ -9,7 +9,6 @@ import com.masuwes.core.utils.Constants
 import com.masuwes.moviecatalogue.utils.RxUtils
 import java.util.concurrent.Executor
 
-
 class DetailMovieVM(
     private val detailUseCase: DetailUseCase
 ) : BaseViewModel() {
@@ -41,7 +40,7 @@ class DetailMovieVM(
     }
 
     fun getDetailMovie(idMovie: Int) {
-        detailMovieState.value = LoadingState
+        showProgressBar.value = true
         compositeDisposable.add(
             detailUseCase.getDetailMovie(idMovie, Constants.API_KEY, Constants.LANG)
                 .compose(RxUtils.applySingleAsync())
@@ -64,7 +63,6 @@ class DetailMovieVM(
 sealed class DetailMovieState
 data class DetailMovieLoaded(val detailMovie: DetailMovie) : DetailMovieState()
 data class FavMovieDataFound(val detailMovie: List<DetailMovie>) : DetailMovieState()
-object LoadingState : DetailMovieState()
 object DataNotFoundState : DetailMovieState()
 object FavMovieSave : DetailMovieState()
 object RemoveMovieFav : DetailMovieState()

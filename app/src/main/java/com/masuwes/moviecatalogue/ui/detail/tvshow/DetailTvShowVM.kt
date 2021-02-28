@@ -9,7 +9,6 @@ import com.masuwes.core.utils.Constants
 import com.masuwes.moviecatalogue.utils.RxUtils
 import java.util.concurrent.Executor
 
-
 class DetailTvShowVM(
     private val detailUseCase: DetailUseCase
 ) : BaseViewModel() {
@@ -41,7 +40,7 @@ class DetailTvShowVM(
     }
 
     fun getDetailTvShow(idShow: Int) {
-        detailTvShowState.value = LoadingState
+        showProgressBar.value = true
         compositeDisposable.add(
             detailUseCase.getDetailTvShow(idShow, Constants.API_KEY, Constants.LANG)
                 .compose(RxUtils.applySingleAsync())
@@ -65,7 +64,6 @@ class DetailTvShowVM(
 sealed class DetailTvShowState
 data class DetailTvShowLoaded(val detailTvShow: DetailTvShow) : DetailTvShowState()
 data class FavTVShowDataFound(val detailTvShow: List<DetailTvShow>) : DetailTvShowState()
-object LoadingState : DetailTvShowState()
 object DataNotFoundState : DetailTvShowState()
 object FavTVShowSave : DetailTvShowState()
 object RemoveTVShowFav : DetailTvShowState()

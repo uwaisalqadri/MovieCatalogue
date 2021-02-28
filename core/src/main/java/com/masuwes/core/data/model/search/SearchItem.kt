@@ -1,8 +1,5 @@
 package com.masuwes.core.data.model.search
 
-import androidx.room.ColumnInfo
-import androidx.room.PrimaryKey
-
 data class SearchItem(
         val id: Int,
         val media_type: String?,
