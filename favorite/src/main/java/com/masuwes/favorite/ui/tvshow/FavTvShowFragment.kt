@@ -1,30 +1,31 @@
-package com.masuwes.moviecatalogue.ui.favorite.tvshow
+package com.masuwes.favorite.ui.tvshow
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import com.masuwes.core.utils.Constants
 import com.masuwes.core.domain.model.DetailTvShow
 import com.masuwes.core.ui.FavTvShowAdapter
+import com.masuwes.core.utils.Constants
 import com.masuwes.core.utils.Status
+import com.masuwes.favorite.databinding.FragmentFavMovieBinding
+import com.masuwes.favorite.databinding.FragmentFavTvshowBinding
 import com.masuwes.moviecatalogue.R
-import com.masuwes.moviecatalogue.databinding.FragmentFavTvshowBinding
 import com.masuwes.moviecatalogue.ui.detail.tvshow.DetailTvShowActivity
 import com.masuwes.moviecatalogue.utils.ui.showToast
 import org.koin.android.ext.android.inject
 
-class FavTvShowFragment : Fragment(R.layout.fragment_fav_tvshow) {
+class FavTvShowFragment : Fragment() {
 
     private val viewModel: FavTvShowViewModel by inject()
     private lateinit var binding: FragmentFavTvshowBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentFavTvshowBinding.bind(view)
 
         binding.apply {
             progressCircularFavtvshow.visibility = View.VISIBLE
@@ -68,6 +69,15 @@ class FavTvShowFragment : Fragment(R.layout.fragment_fav_tvshow) {
                 setEmptyView(imageView, tvEmpty)
             }
         }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        binding = FragmentFavTvshowBinding.inflate(inflater)
+        return binding.root
     }
 
     override fun onResume() {

@@ -10,6 +10,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.masuwes.moviecatalogue.R
 import com.masuwes.moviecatalogue.databinding.ActivityMainBinding
+import com.masuwes.moviecatalogue.utils.ui.openFavoriteActivity
 import com.masuwes.moviecatalogue.utils.ui.openSearchActivity
 
 class MainActivity : AppCompatActivity() {
@@ -25,7 +26,7 @@ class MainActivity : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment)
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_movie, R.id.navigation_tvshow, R.id.navigation_favorite
+                R.id.navigation_movie, R.id.navigation_tvshow
             )
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -41,6 +42,10 @@ class MainActivity : AppCompatActivity() {
         when(item.itemId) {
             R.id.search -> {
                 openSearchActivity(this)
+                return true
+            }
+            R.id.favorite -> {
+                openFavoriteActivity(this)
                 return true
             }
         }

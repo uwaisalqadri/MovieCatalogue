@@ -19,6 +19,17 @@ fun openSearchActivity(context: Context) {
     }
 }
 
+fun openFavoriteActivity(context: Context) {
+    try {
+        context.startActivity(Intent(
+            context,
+            Class.forName("com.masuwes.favorite.ui.FavoriteActivity")
+        ))
+    } catch (e: Exception) {
+        Timber.e("Activity Not Found")
+    }
+}
+
 fun openMovieDetailActivity(context: Context, idSearch: Int) {
     try {
         context.startActivity(Intent(

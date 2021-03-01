@@ -16,4 +16,5 @@
     <string name="title_search">Search</string>
     <string name="recent">Recent</string>
     <string name="movie_and_tvshow" translatable="false">Movies and TV Shows</string>
+    <string name="title_favorite">Favorite</string>
 </resources>
