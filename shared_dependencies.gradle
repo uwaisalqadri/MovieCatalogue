@@ -14,6 +14,9 @@ dependencies {
     androidTestImplementation "androidx.test.espresso:espresso-contrib:$espressoVersion"
     androidTestImplementation "androidx.test:rules:$androidXTestVersion"
 
+    // leak canary
+    debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.4'
+
     //dependency injection
     implementation "org.koin:koin-android:$koin_version"
     implementation "org.koin:koin-android-scope:$koin_version"
