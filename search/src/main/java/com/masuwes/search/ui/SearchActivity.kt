@@ -8,6 +8,7 @@ import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.masuwes.core.domain.model.Search
 import com.masuwes.core.ui.SearchHistoryAdapter
 import com.masuwes.core.ui.SearchResultListItem
@@ -26,9 +27,9 @@ import org.koin.android.ext.android.inject
 import org.koin.core.context.loadKoinModules
 import timber.log.Timber
 
-class SearchActivity : AppCompatActivity() {
+class SearchActivity : AppCompatActivity(R.layout.activity_search) {
 
-    private lateinit var binding: ActivitySearchBinding
+    private val binding: ActivitySearchBinding by viewBinding()
 
     private val searchViewModel by inject<SearchViewModel>()
     private val adapterSearch = GroupAdapter<GroupieViewHolder>()
@@ -39,11 +40,8 @@ class SearchActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivitySearchBinding.inflate(layoutInflater)
-        setContentView(binding.root)
         supportActionBar?.hide()
         loadKoinModules(searchViewModelModule)
-
         showRecentSearch()
 
         binding.deleteRecent.setOnClickListener {

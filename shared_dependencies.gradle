@@ -34,6 +34,9 @@ dependencies {
     implementation "com.xwray:groupie:$groupieVersion"
     implementation "com.xwray:groupie-viewbinding:$groupieVersion"
 
+    // view binding delegate
+    implementation 'com.github.kirich1409:viewbindingpropertydelegate:1.4.3'
+
     //architecture component
     implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycleVersion"

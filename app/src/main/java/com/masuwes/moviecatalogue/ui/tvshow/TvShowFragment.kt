@@ -9,6 +9,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.masuwes.core.utils.Constants
 import com.masuwes.core.domain.model.TvShow
 import com.masuwes.core.ui.TvShowListItem
@@ -26,11 +27,10 @@ import timber.log.Timber
 
 class TvShowFragment : Fragment(R.layout.fragment_tv_show) {
 
-    private var _binding: FragmentTvShowBinding? = null
-    private val binding get() = _binding!!
+    private val binding: FragmentTvShowBinding by viewBinding()
 
     private val viewModel: TvShowViewModel by inject()
-    private lateinit var adapterShow: GroupAdapter<GroupieViewHolder>
+    private val adapterShow = GroupAdapter<GroupieViewHolder>()
     private var page = 1
     private var isLoadMore = false
     private var isLastPages = false
@@ -38,7 +38,6 @@ class TvShowFragment : Fragment(R.layout.fragment_tv_show) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapterShow = GroupAdapter<GroupieViewHolder>()
 
         viewModel.postTvShowData.observe(viewLifecycleOwner, tvShowObserver)
         viewModel.getTvShows(page)
@@ -124,18 +123,9 @@ class TvShowFragment : Fragment(R.layout.fragment_tv_show) {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        _binding = FragmentTvShowBinding.inflate(inflater, container, false)
-        return binding.root
-    }
-
     override fun onDestroyView() {
         super.onDestroyView()
-        _binding = null
+        binding.rvShow.adapter = null
     }
 
 }

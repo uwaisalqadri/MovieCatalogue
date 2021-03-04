@@ -5,6 +5,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.masuwes.moviecatalogue.R
 import com.masuwes.core.domain.model.DetailTvShow
 import com.masuwes.core.utils.Constants
@@ -18,13 +19,13 @@ import com.masuwes.moviecatalogue.utils.ui.snackBar
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 
-class DetailTvShowActivity : AppCompatActivity() {
+class DetailTvShowActivity : AppCompatActivity(R.layout.activity_detail_tv_show) {
 
     companion object {
         const val SHOW_ID = "show_id"
     }
 
-    private lateinit var binding: ActivityDetailTvShowBinding
+    private val binding: ActivityDetailTvShowBinding by viewBinding()
     private lateinit var infoBinding: IncludeInfoBinding
     private lateinit var overviewBinding: IncludeOverviewBinding
 
@@ -35,10 +36,9 @@ class DetailTvShowActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDetailTvShowBinding.inflate(layoutInflater)
         infoBinding = binding.includeInfo
         overviewBinding = binding.includeOverview
-        setContentView(binding.root)
+//        setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val extras = intent.extras

@@ -7,6 +7,7 @@ import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.masuwes.moviecatalogue.R
 import com.masuwes.core.domain.model.DetailMovie
 import com.masuwes.core.utils.Constants
@@ -20,13 +21,13 @@ import com.masuwes.moviecatalogue.utils.ui.snackBar
 import org.koin.android.ext.android.inject
 import timber.log.Timber
 
-class DetailMovieActivity : AppCompatActivity() {
+class DetailMovieActivity : AppCompatActivity(R.layout.activity_detail_movie) {
 
     companion object {
         const val MOVIE_ID = "movie"
     }
 
-    private lateinit var binding: ActivityDetailMovieBinding
+    private val binding: ActivityDetailMovieBinding by viewBinding()
     private lateinit var infoBinding: IncludeInfoBinding
     private lateinit var overviewBinding: IncludeOverviewBinding
 
@@ -37,10 +38,9 @@ class DetailMovieActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityDetailMovieBinding.inflate(layoutInflater)
         infoBinding = binding.includeInfo
         overviewBinding = binding.includeOverview
-        setContentView(binding.root)
+//        setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val extras = intent.extras
