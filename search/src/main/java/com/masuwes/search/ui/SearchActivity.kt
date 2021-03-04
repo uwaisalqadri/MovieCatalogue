@@ -166,11 +166,21 @@ class SearchActivity : AppCompatActivity() {
                         }
 
                     }))
+
+                    binding.apply {
+                        emptySearch.isVisible = false
+                        tvEmpty.isVisible = false
+                    }
                 }
             }
 
             is DataNotFoundState -> {
                 adapterSearch.clear()
+                binding.apply {
+                    pgSearchResult.isVisible = false
+                    emptySearch.isVisible = true
+                    tvEmpty.isVisible = true
+                }
             }
         }
     }

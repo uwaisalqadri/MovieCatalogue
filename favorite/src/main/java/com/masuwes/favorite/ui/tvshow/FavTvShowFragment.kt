@@ -28,8 +28,6 @@ class FavTvShowFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            progressCircularFavtvshow.visibility = View.VISIBLE
-
             val tvShowAdapter = context?.let {
                 FavTvShowAdapter(it, object : FavTvShowAdapter.OnItemClick {
                     override fun onClick(item: DetailTvShow) {

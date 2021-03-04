@@ -26,19 +26,17 @@ class EmptyRecyclerView : RecyclerView {
         }
     }
 
-    constructor(context: Context) : super(context) {}
+    constructor(context: Context) : super(context)
     constructor(
         context: Context,
         attrs: AttributeSet?
-    ) : super(context, attrs) {
-    }
+    ) : super(context, attrs)
 
     constructor(
         context: Context,
         attrs: AttributeSet?,
         defStyleAttr: Int
-    ) : super(context, attrs, defStyleAttr) {
-    }
+    ) : super(context, attrs, defStyleAttr)
 
     override fun setAdapter(adapter: Adapter<*>?) {
         super.setAdapter(adapter)

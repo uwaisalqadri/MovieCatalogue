@@ -3,4 +3,5 @@
     <string name="recent" translatable="false">Recent</string>
     <string name="movie_and_tvshow" translatable="false">Movies and TV Shows</string>
     <string name="search_movie_or_tv_show">Search Movie or TV Show</string>
+    <string name="no_search_result">Pencarian tidak ditemukan :(</string>
 </resources>

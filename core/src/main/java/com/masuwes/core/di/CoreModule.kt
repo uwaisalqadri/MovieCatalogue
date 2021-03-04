@@ -84,25 +84,25 @@ val networkModule = module {
 
 val repositoryModule = module {
 
-    single {
+    single<MovieRepository> {
         MovieRepositoryImpl(
             get(),
             get(),
             get(),
             get()
-        ) as MovieRepository
+        )
     }
 
-    single {
+    single<TvShowRepository> {
         TvShowRepositoryImpl(
             get(),
             get(),
             get(),
             get()
-        ) as TvShowRepository
+        )
     }
 
-    single {
+    single<DetailRepository> {
         DetailRepositoryImpl(
             get(),
             get(),
@@ -110,16 +110,16 @@ val repositoryModule = module {
             get(),
             get(),
             get()
-        ) as DetailRepository
+        )
     }
 
-    single {
+    single<SearchRepository> {
         SearchRepositoryImpl(
             get(),
             get(),
             get(),
             get()
-        ) as SearchRepository
+        )
     }
 }
 

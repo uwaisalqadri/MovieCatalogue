@@ -27,8 +27,6 @@ class FavMovieFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.apply {
-            progressCircularFavmovie.visibility = View.VISIBLE
-
             val movieAdapter = context?.let {
                 FavMovieAdapter(it, object : FavMovieAdapter.OnItemClick {
                     override fun onClick(item: DetailMovie) {
