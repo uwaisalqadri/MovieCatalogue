@@ -14,13 +14,22 @@ class FavoriteActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityFavoriteBinding.inflate(layoutInflater)
+        loadKoinModules(favoriteViewModelModule) // koin
         setContentView(binding.root)
-        supportActionBar?.title = getString(R.string.favorite)
-        loadKoinModules(favoriteViewModelModule)
+
+        supportActionBar?.apply {
+            title = getString(R.string.favorite)
+            setDisplayHomeAsUpEnabled(true)
+        }
 
         binding.apply {
             viewPagerFavorite.adapter = FavoritePagerAdapter(this@FavoriteActivity, supportFragmentManager)
             tabLayout.setupWithViewPager(viewPagerFavorite)
         }
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        onBackPressed()
+        return super.onSupportNavigateUp()
     }
 }

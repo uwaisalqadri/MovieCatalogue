@@ -2,7 +2,9 @@ package com.masuwes.moviecatalogue.ui.tvshow
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -11,6 +13,7 @@ import com.masuwes.core.utils.Constants
 import com.masuwes.core.domain.model.TvShow
 import com.masuwes.core.ui.TvShowListItem
 import com.masuwes.moviecatalogue.R
+import com.masuwes.moviecatalogue.databinding.FragmentMovieBinding
 import com.masuwes.moviecatalogue.databinding.FragmentTvShowBinding
 import com.masuwes.moviecatalogue.ui.detail.tvshow.DetailTvShowActivity
 import com.masuwes.moviecatalogue.utils.ui.LoadMoreItemView
@@ -23,10 +26,11 @@ import timber.log.Timber
 
 class TvShowFragment : Fragment(R.layout.fragment_tv_show) {
 
-    private lateinit var binding: FragmentTvShowBinding
+    private var _binding: FragmentTvShowBinding? = null
+    private val binding get() = _binding!!
 
     private val viewModel: TvShowViewModel by inject()
-    private val adapterShow = GroupAdapter<GroupieViewHolder>()
+    private lateinit var adapterShow: GroupAdapter<GroupieViewHolder>
     private var page = 1
     private var isLoadMore = false
     private var isLastPages = false
@@ -34,7 +38,7 @@ class TvShowFragment : Fragment(R.layout.fragment_tv_show) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentTvShowBinding.bind(view)
+        adapterShow = GroupAdapter<GroupieViewHolder>()
 
         viewModel.postTvShowData.observe(viewLifecycleOwner, tvShowObserver)
         viewModel.getTvShows(page)
@@ -118,6 +122,20 @@ class TvShowFragment : Fragment(R.layout.fragment_tv_show) {
                 }
             }
         }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
+        _binding = FragmentTvShowBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 
 }
