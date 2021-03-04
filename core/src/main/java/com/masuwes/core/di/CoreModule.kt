@@ -24,6 +24,9 @@ import com.masuwes.core.domain.usecase.search.SearchUseCase
 import com.masuwes.core.domain.usecase.tvshow.TvShowInteractor
 import com.masuwes.core.domain.usecase.tvshow.TvShowUseCase
 import com.masuwes.core.utils.AppExecutors
+import net.sqlcipher.database.SQLiteDatabase
+import net.sqlcipher.database.SupportFactory
+import okhttp3.CertificatePinner
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import org.koin.android.ext.koin.androidApplication
@@ -37,11 +40,15 @@ import java.util.concurrent.TimeUnit
 
 val databaseModule = module {
     single {
+        val passphrase: ByteArray = SQLiteDatabase.getBytes("uwais".toCharArray())
+        val factory = SupportFactory(passphrase)
         Room.databaseBuilder(
             androidApplication(),
             AppDatabase::class.java,
             Constants.DATABASE_NAME
-        ).fallbackToDestructiveMigration().build()
+        ).fallbackToDestructiveMigration()
+            .openHelperFactory(factory)
+            .build()
     }
 
     single { getExecutor() }
@@ -54,16 +61,25 @@ val databaseModule = module {
 
 val networkModule = module {
     single {
+        val hostname = "api.themoviedb.org"
+        val certificatePinner = CertificatePinner.Builder()
+            .add(hostname, "sha256/+vqZVAzTqUP8BGkfl88yU7SQ3C8J2uNEa55B7RZjEg0=")
+            .add(hostname, "sha256/JSMzqOOrtyOT1kmau6zKhgT676hGgczD5VMdRMyJZFA=")
+            .add(hostname, "sha256/++MBgDH5WGvL9Bcn5Be30cRcL0f5O+NyoXuWtQdX1aI=")
+            .build()
+
         val httpLoggingInterceptor = HttpLoggingInterceptor()
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
         val timeout = 60L
         val interceptor = BaseInterceptor()
+
         OkHttpClient.Builder()
             .connectTimeout(timeout, TimeUnit.SECONDS)
             .readTimeout(timeout, TimeUnit.SECONDS)
             .addInterceptor(httpLoggingInterceptor)
             .addInterceptor(interceptor)
+            .certificatePinner(certificatePinner)
             .build()
     }
 

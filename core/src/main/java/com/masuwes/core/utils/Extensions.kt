@@ -11,8 +11,8 @@ fun ImageView.loadImage(url: String) {
 
     Glide.with(this)
         .load(url)
-        .placeholder(R.drawable.placholder_image)
-        .fallback(R.drawable.placholder_image)
+        .placeholder(R.drawable.placeholder_image)
+        .fallback(R.drawable.placeholder_image)
         .into(this)
 
 }
