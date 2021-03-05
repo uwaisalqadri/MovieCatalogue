@@ -1,4 +1,4 @@
-package com.masuwes.moviecatalogue.utils.ui
+package com.masuwes.favorite.ui
 
 import android.content.Context
 import android.util.AttributeSet
