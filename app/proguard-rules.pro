@@ -19,3 +19,25 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+##---------------Begin: proguard configuration for ViewBindingLibrary ----------
+-keepclassmembers class ** implements androidx.viewbinding.ViewBinding {
+    public static ** bind(android.view.View);
+
+    public static ** inflate(android.view.LayoutInflater, android.view.ViewGroup, boolean);
+
+    public static ** inflate(android.view.LayoutInflater, android.view.ViewGroup);
+}
+
+##---------------Begin: proguard configuration for Glide ----------
+#-keep public class * implements com.bumptech.glide.module.GlideModule
+#-keep class * extends com.bumptech.glide.module.AppGlideModule {
+#<init>(...);
+#}
+#-keep public enum com.bumptech.glide.load.ImageHeaderParser$** {
+#**[] $VALUES;
+#public *;
+#}
+#-keep class com.bumptech.glide.load.data.ParcelFileDescriptorRewinder$InternalRewinder {
+#*** rewind();
+#}
