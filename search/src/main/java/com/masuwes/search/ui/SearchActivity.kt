@@ -37,7 +37,6 @@ class SearchActivity : AppCompatActivity(R.layout.activity_search) {
     private var isLoadMore = false
     private var loadMoreItemView = LoadMoreItemView()
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         supportActionBar?.hide()
