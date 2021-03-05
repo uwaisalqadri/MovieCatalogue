@@ -21,13 +21,13 @@
 #-renamesourcefileattribute SourceFile
 
 ##---------------Begin: proguard configuration for ViewBindingLibrary ----------
--keepclassmembers class ** implements androidx.viewbinding.ViewBinding {
-    public static ** bind(android.view.View);
-
-    public static ** inflate(android.view.LayoutInflater, android.view.ViewGroup, boolean);
-
-    public static ** inflate(android.view.LayoutInflater, android.view.ViewGroup);
-}
+#-keepclassmembers class ** implements androidx.viewbinding.ViewBinding {
+#    public static ** bind(android.view.View);
+#
+#    public static ** inflate(android.view.LayoutInflater, android.view.ViewGroup, boolean);
+#
+#    public static ** inflate(android.view.LayoutInflater, android.view.ViewGroup);
+#}
 
 ##---------------Begin: proguard configuration for Glide ----------
 #-keep public class * implements com.bumptech.glide.module.GlideModule
