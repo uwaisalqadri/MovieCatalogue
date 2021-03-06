@@ -2,8 +2,6 @@ package com.masuwes.core.data.source.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.masuwes.core.data.source.local.MoviesDao
-import com.masuwes.core.data.source.local.TvShowsDao
 import com.masuwes.core.domain.model.DetailMovie
 import com.masuwes.core.domain.model.DetailTvShow
 import com.masuwes.core.domain.model.Search

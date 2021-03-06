@@ -5,9 +5,9 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.masuwes.moviecatalogue.R
 import com.masuwes.favorite.ui.movie.FavMovieFragment
 import com.masuwes.favorite.ui.tvshow.FavTvShowFragment
+import com.masuwes.moviecatalogue.R
 
 class FavoritePagerAdapter(private val context: Context, fragmentManager: FragmentManager) :
     FragmentPagerAdapter(fragmentManager, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
@@ -29,7 +29,7 @@ class FavoritePagerAdapter(private val context: Context, fragmentManager: Fragme
 
     override fun getCount(): Int = 2
 
-    override fun getPageTitle(position: Int): CharSequence? {
+    override fun getPageTitle(position: Int): CharSequence {
         return context.resources.getString(tabTitle[position])
     }
 

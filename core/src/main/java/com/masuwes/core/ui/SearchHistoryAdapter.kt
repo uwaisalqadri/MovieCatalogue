@@ -6,7 +6,6 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.masuwes.core.databinding.ItemRecentSearchBinding
-import com.masuwes.core.domain.model.Movie
 import com.masuwes.core.domain.model.Search
 import com.masuwes.core.utils.Constants
 import com.masuwes.core.utils.loadImage

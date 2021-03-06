@@ -8,16 +8,12 @@ import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
-import by.kirich1409.viewbindingdelegate.CreateMethod
-import by.kirich1409.viewbindingdelegate.viewBinding
 import com.masuwes.core.domain.model.DetailTvShow
 import com.masuwes.core.ui.FavTvShowAdapter
 import com.masuwes.core.utils.Constants
 import com.masuwes.core.utils.Status
-import com.masuwes.favorite.databinding.FragmentFavMovieBinding
 import com.masuwes.favorite.databinding.FragmentFavTvshowBinding
 import com.masuwes.moviecatalogue.R
-import com.masuwes.moviecatalogue.databinding.FragmentMovieBinding
 import com.masuwes.moviecatalogue.ui.detail.tvshow.DetailTvShowActivity
 import com.masuwes.moviecatalogue.utils.ui.showToast
 import org.koin.android.ext.android.inject

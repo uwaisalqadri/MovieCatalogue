@@ -1,11 +1,8 @@
 package com.masuwes.core.domain.repository
 
 import androidx.lifecycle.LiveData
-import androidx.room.Insert
-import androidx.room.OnConflictStrategy
 import com.masuwes.core.domain.model.Search
 import io.reactivex.Single
-import retrofit2.http.Query
 
 interface SearchRepository {
 

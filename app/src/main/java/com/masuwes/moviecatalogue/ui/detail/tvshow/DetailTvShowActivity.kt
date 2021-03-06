@@ -6,10 +6,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.masuwes.moviecatalogue.R
 import com.masuwes.core.domain.model.DetailTvShow
 import com.masuwes.core.utils.Constants
 import com.masuwes.core.utils.formatDate
+import com.masuwes.moviecatalogue.R
 import com.masuwes.moviecatalogue.databinding.ActivityDetailTvShowBinding
 import com.masuwes.moviecatalogue.databinding.IncludeInfoBinding
 import com.masuwes.moviecatalogue.databinding.IncludeOverviewBinding
@@ -31,8 +31,8 @@ class DetailTvShowActivity : AppCompatActivity(R.layout.activity_detail_tv_show)
 
     private val viewModel: DetailTvShowVM by inject()
     private var isFavorite: Boolean? = null
-    var dataTvShow: DetailTvShow? = null
-    var idShow: Int? = null
+    private var dataTvShow: DetailTvShow? = null
+    private var idShow: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,12 +56,12 @@ class DetailTvShowActivity : AppCompatActivity(R.layout.activity_detail_tv_show)
         }
 
         with(viewModel) {
-            messageData.observe(this@DetailTvShowActivity, Observer { messageInfo ->
+            messageData.observe(this@DetailTvShowActivity, { messageInfo ->
                 showToast(messageInfo.toString())
                 Timber.i(messageInfo.toString())
             })
 
-            showProgressBar.observe(this@DetailTvShowActivity, Observer {
+            showProgressBar.observe(this@DetailTvShowActivity, {
                 infoBinding.progressCircularDetail.isVisible = it
             })
         }

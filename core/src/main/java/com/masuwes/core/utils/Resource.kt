@@ -1,6 +1,6 @@
 package com.masuwes.core.utils
 
-class Resource<T>(val status: Status, val data: T?, val message: String?) {
+class Resource<T>(val status: Status, val data: T?, private val message: String?) {
 
     override fun equals(other: Any?): Boolean {
         if (this === other) {

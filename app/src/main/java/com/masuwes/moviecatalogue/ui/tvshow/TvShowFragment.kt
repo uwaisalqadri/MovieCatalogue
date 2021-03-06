@@ -2,19 +2,16 @@ package com.masuwes.moviecatalogue.ui.tvshow
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.masuwes.core.utils.Constants
 import com.masuwes.core.domain.model.TvShow
 import com.masuwes.core.ui.TvShowListItem
+import com.masuwes.core.utils.Constants
 import com.masuwes.moviecatalogue.R
-import com.masuwes.moviecatalogue.databinding.FragmentMovieBinding
 import com.masuwes.moviecatalogue.databinding.FragmentTvShowBinding
 import com.masuwes.moviecatalogue.ui.detail.tvshow.DetailTvShowActivity
 import com.masuwes.moviecatalogue.utils.ui.LoadMoreItemView
@@ -67,12 +64,12 @@ class TvShowFragment : Fragment(R.layout.fragment_tv_show) {
         })
 
         with(viewModel) {
-            messageData.observe(viewLifecycleOwner, Observer { messageInfo ->
+            messageData.observe(viewLifecycleOwner, { messageInfo ->
                 context?.showToast(messageInfo.toString())
                 Timber.i(messageInfo.toString())
             })
 
-            showProgressBar.observe(viewLifecycleOwner, Observer {
+            showProgressBar.observe(viewLifecycleOwner, {
                 binding.progressCircular.isVisible = it
             })
         }

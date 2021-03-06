@@ -6,7 +6,6 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.masuwes.core.domain.model.Search
-import io.reactivex.Single
 
 @Dao
 interface SearchHistoryDao {

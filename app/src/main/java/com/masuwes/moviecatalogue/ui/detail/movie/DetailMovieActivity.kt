@@ -1,17 +1,15 @@
 package com.masuwes.moviecatalogue.ui.detail.movie
 
 import android.annotation.SuppressLint
-import android.os.Build
 import android.os.Bundle
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.isVisible
 import androidx.lifecycle.Observer
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.masuwes.moviecatalogue.R
 import com.masuwes.core.domain.model.DetailMovie
 import com.masuwes.core.utils.Constants
 import com.masuwes.core.utils.formatDate
+import com.masuwes.moviecatalogue.R
 import com.masuwes.moviecatalogue.databinding.ActivityDetailMovieBinding
 import com.masuwes.moviecatalogue.databinding.IncludeInfoBinding
 import com.masuwes.moviecatalogue.databinding.IncludeOverviewBinding
@@ -33,8 +31,8 @@ class DetailMovieActivity : AppCompatActivity(R.layout.activity_detail_movie) {
 
     private val viewModel: DetailMovieVM by inject()
     private var isFavorite: Boolean? = null
-    var dataMovie: DetailMovie? = null
-    var idMovie: Int? = null
+    private var dataMovie: DetailMovie? = null
+    private var idMovie: Int? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
