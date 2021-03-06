@@ -2,11 +2,9 @@ package com.masuwes.moviecatalogue.utils.ui
 
 import android.content.Context
 import android.content.Intent
-import com.masuwes.core.domain.model.Search
 import com.masuwes.moviecatalogue.ui.detail.movie.DetailMovieActivity
 import com.masuwes.moviecatalogue.ui.detail.tvshow.DetailTvShowActivity
 import timber.log.Timber
-import java.lang.Exception
 
 fun openSearchActivity(context: Context) {
     try {

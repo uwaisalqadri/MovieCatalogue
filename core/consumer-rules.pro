@@ -1,10 +1,21 @@
-##-------Keep Models---------
+##---------------Keep Models---------
 -keep class com.masuwes.core.data.model.** { *; }
 -keep class com.masuwes.core.domain.model.** { *; }
 
 ##---------------Begin: proguard configuration for SQLCipher  ----------
 -keep,includedescriptorclasses class net.sqlcipher.** { *; }
 -keep,includedescriptorclasses interface net.sqlcipher.** { *; }
+
+##----------------Begin: proguard configuration for leakCanary -----------
+-dontwarn com.squareup.haha.guava.**
+-dontwarn com.squareup.haha.perflib.**
+-dontwarn com.squareup.haha.trove.**
+-dontwarn com.squareup.leakcanary.**
+-keep class com.squareup.haha.** { *; }
+-keep class com.squareup.leakcanary.** { *; }
+
+# Marshmallow removed Notification.setLatestEventInfo()
+-dontwarn android.app.Notification
 
 
 ##---------------Begin: proguard configuration for Gson ----------
