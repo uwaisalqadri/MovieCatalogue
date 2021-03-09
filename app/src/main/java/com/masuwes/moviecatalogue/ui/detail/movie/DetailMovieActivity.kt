@@ -38,21 +38,20 @@ class DetailMovieActivity : AppCompatActivity(R.layout.activity_detail_movie) {
         super.onCreate(savedInstanceState)
         infoBinding = binding.includeInfo
         overviewBinding = binding.includeOverview
-//        setContentView(binding.root)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         val extras = intent.extras
         idMovie = extras?.getInt(MOVIE_ID)
         viewModel.detailMovieState.observe(this, detailObserver)
         idMovie?.let { viewModel.getDetailMovie(it) }
-//        idMovie?.let { viewModel.checkFavMovie(it) }
+        idMovie?.let { viewModel.checkFavMovie(it) }
 
         binding.fabDetailMovie.setOnClickListener {
-//           when(isFavorite) {
-//               true -> dataMovie?.id?.let { viewModel.removeFavMovie(it) }
-//               false -> dataMovie?.let { viewModel.saveFavMovie(it) }
-//               else -> dataMovie?.let { viewModel.saveFavMovie(it) }
-//           }
+           when(isFavorite) {
+               true -> dataMovie?.id?.let { viewModel.removeFavMovie(it) }
+               false -> dataMovie?.let { viewModel.saveFavMovie(it) }
+               else -> dataMovie?.let { viewModel.saveFavMovie(it) }
+           }
         }
 
         with(viewModel) {

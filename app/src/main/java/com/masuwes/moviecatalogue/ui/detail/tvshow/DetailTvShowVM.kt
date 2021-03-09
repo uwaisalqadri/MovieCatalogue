@@ -1,11 +1,13 @@
 package com.masuwes.moviecatalogue.ui.detail.tvshow
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.masuwes.core.domain.model.DetailTvShow
 import com.masuwes.core.domain.usecase.detail.DetailUseCase
 import com.masuwes.core.utils.Constants
 import com.masuwes.moviecatalogue.ui.BaseViewModel
 import com.masuwes.moviecatalogue.utils.RxUtils
+import kotlinx.coroutines.launch
 
 class DetailTvShowVM(
     private val detailUseCase: DetailUseCase
@@ -15,27 +17,27 @@ class DetailTvShowVM(
     val showProgressBar = MutableLiveData<Boolean>()
     val messageData = MutableLiveData<String>()
 
-//    fun saveFavTVShow(tvShow: DetailTvShow) {
-//        detailUseCase.insertFavoriteTv(tvShow)
-//        detailTvShowState.value = FavTVShowSave
-//    }
-//
-//    fun removeFavTVShow(idShow: Int) {
-//        detailUseCase.deleteFavoriteTv(idShow)
-//        detailTvShowState.value = RemoveTVShowFav
-//    }
-//
-//    fun checkFavTVShow(id: Int) {
-//        compositeDisposable.add(
-//            detailUseCase.getFavoriteTvById(id)
-//                .compose(RxUtils.applySingleAsync())
-//                .subscribe({ result ->
-//                    if (result.isNotEmpty()) {
-//                        detailTvShowState.value = FavTVShowDataFound(result)
-//                    }
-//                }, this::onError)
-//        )
-//    }
+    fun saveFavTVShow(tvShow: DetailTvShow) = viewModelScope.launch {
+        detailUseCase.insertFavoriteTv(tvShow)
+        detailTvShowState.value = FavTVShowSave
+    }
+
+    fun removeFavTVShow(idShow: Int) {
+        detailUseCase.deleteFavoriteTv(idShow)
+        detailTvShowState.value = RemoveTVShowFav
+    }
+
+    fun checkFavTVShow(id: Int) {
+        compositeDisposable.add(
+            detailUseCase.getFavoriteTvById(id)
+                .compose(RxUtils.applySingleAsync())
+                .subscribe({ result ->
+                    if (result.isNotEmpty()) {
+                        detailTvShowState.value = FavTVShowDataFound(result)
+                    }
+                }, this::onError)
+        )
+    }
 
     fun getDetailTvShow(idShow: Int) {
         showProgressBar.value = true

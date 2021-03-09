@@ -4,7 +4,6 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.Transformations
 import com.masuwes.core.data.mapper.entity.SearchEntityMapper
 import com.masuwes.core.data.mapper.response.SearchMapper
-import com.masuwes.core.data.model.entity.search.SearchEntity
 import com.masuwes.core.data.source.local.SearchHistoryDao
 import com.masuwes.core.data.source.remote.ApiService
 import com.masuwes.core.domain.model.Search
@@ -41,9 +40,5 @@ class SearchRepositoryImpl(
 
     override fun deleteAllHistories() {
         executor.execute { searchHistoryDao.deleteAllHistories() }
-    }
-
-    override fun mappingToObject(result: List<SearchEntity>): List<Search> {
-        return itemSearchEntityMapper.mapToListDomain(result)
     }
 }

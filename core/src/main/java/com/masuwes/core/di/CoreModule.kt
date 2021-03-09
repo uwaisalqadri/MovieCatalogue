@@ -108,12 +108,14 @@ val repositoryModule = module {
             get(),
             get(),
             get(),
+            get(),
             get()
         )
     }
 
     single<TvShowRepository> {
         TvShowRepositoryImpl(
+            get(),
             get(),
             get(),
             get(),

@@ -5,13 +5,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.masuwes.core.domain.model.DetailTvShow
 import com.masuwes.core.ui.FavTvShowAdapter
 import com.masuwes.core.utils.Constants
+import com.masuwes.core.utils.Status
+import com.masuwes.favorite.R
 import com.masuwes.favorite.databinding.FragmentFavTvshowBinding
 import com.masuwes.moviecatalogue.ui.detail.tvshow.DetailTvShowActivity
+import com.masuwes.moviecatalogue.utils.ui.showToast
 import org.koin.android.ext.android.inject
 
 class FavTvShowFragment : Fragment() {
@@ -35,26 +39,26 @@ class FavTvShowFragment : Fragment() {
                 })
             }
 
-//            viewModel.getTvShowPage.observe(viewLifecycleOwner, { response ->
-//                if (response != null) {
-//                    when(response.status) {
-//                        Status.LOADING -> {
-//                            progressCircularFavtvshow.isVisible = true
-//                        }
-//
-//                        Status.SUCCESS -> {
-//                            progressCircularFavtvshow.isVisible = false
-//                            tvShowAdapter?.submitList(response.data)
-//                            tvShowAdapter?.notifyDataSetChanged()
-//                        }
-//
-//                        Status.ERROR -> {
-//                            progressCircularFavtvshow.isVisible = false
-//                            context?.showToast(getString(R.string.error))
-//                        }
-//                    }
-//                }
-//            })
+            viewModel.getTvShowPage.observe(viewLifecycleOwner, { response ->
+                if (response != null) {
+                    when(response.status) {
+                        Status.LOADING -> {
+                            progressCircularFavtvshow.isVisible = true
+                        }
+
+                        Status.SUCCESS -> {
+                            progressCircularFavtvshow.isVisible = false
+                            tvShowAdapter?.submitList(response.data)
+                            tvShowAdapter?.notifyDataSetChanged()
+                        }
+
+                        Status.ERROR -> {
+                            progressCircularFavtvshow.isVisible = false
+                            context?.showToast(getString(R.string.error))
+                        }
+                    }
+                }
+            })
 
             rvFavTvshow.apply {
                 layoutManager = StaggeredGridLayoutManager(Constants.SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL)

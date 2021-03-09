@@ -44,14 +44,14 @@ class DetailTvShowActivity : AppCompatActivity(R.layout.activity_detail_tv_show)
         idShow = extras?.getInt(SHOW_ID)
         viewModel.detailTvShowState.observe(this, detailObserver)
         idShow?.let { viewModel.getDetailTvShow(it) }
-//        idShow?.let { viewModel.checkFavTVShow(it) }
+        idShow?.let { viewModel.checkFavTVShow(it) }
 
         binding.fabDetailTvshow.setOnClickListener {
-//            when(isFavorite) {
-//                true -> dataTvShow?.id?.let { viewModel.removeFavTVShow(it) }
-//                false -> dataTvShow?.let { viewModel.saveFavTVShow(it) }
-//                else -> dataTvShow?.let { viewModel.saveFavTVShow(it) }
-//            }
+            when(isFavorite) {
+                true -> dataTvShow?.id?.let { viewModel.removeFavTVShow(it) }
+                false -> dataTvShow?.let { viewModel.saveFavTVShow(it) }
+                else -> dataTvShow?.let { viewModel.saveFavTVShow(it) }
+            }
         }
 
         with(viewModel) {

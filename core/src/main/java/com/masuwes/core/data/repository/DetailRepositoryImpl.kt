@@ -33,21 +33,20 @@ class DetailRepositoryImpl(
         }
     }
 
-//    override fun getFavoriteMovieById(idMovie: Int): Single<List<DetailMovieEntity>> =
-//        moviesDao.getFavoriteMovieById(idMovie)
-//
-//    override fun insertFavoriteMovie(movies: DetailMovie) {
-//        val entity = itemDetailMovieEntityMapper.mapToModel(movies)
-//        executor.execute { moviesDao.insertFavoriteMovie(entity) }
-//    }
-//
-//    override fun deleteFavoriteMovie(idMovie: Int) {
-//        executor.execute { moviesDao.deleteFavoriteMovie(idMovie) }
-//    }
-//
-//    override fun mappingMovieToObject(result: List<DetailMovieEntity>): List<DetailMovie> {
-//        return itemDetailMovieEntityMapper.mapToListDomain(result)
-//    }
+    override fun getFavoriteMovieById(idMovie: Int): Single<List<DetailMovie>> =
+        moviesDao.getFavoriteMovieById(idMovie).map {
+            itemDetailMovieEntityMapper.mapToListDomain(it)
+        }
+
+    override fun insertFavoriteMovie(movies: DetailMovie) {
+        val entity = itemDetailMovieEntityMapper.mapToModel(movies)
+        executor.execute { moviesDao.insertFavoriteMovie(entity) }
+    }
+
+    override fun deleteFavoriteMovie(idMovie: Int) {
+        executor.execute { moviesDao.deleteFavoriteMovie(idMovie) }
+    }
+
 
     override fun getDetailTvShow(
         tv_id: Int,
@@ -59,20 +58,18 @@ class DetailRepositoryImpl(
         }
     }
 
-//    override fun getFavoriteTvById(idTv: Int): Single<List<DetailTvShowEntity>> =
-//        tvShowsDao.getFavoriteTvById(idTv)
-//
-//    override fun insertFavoriteTv(tvShow: DetailTvShow) {
-//        val entity = itemDetailTvShowEntityMapper.mapToModel(tvShow)
-//        executor.execute { tvShowsDao.insertFavoriteTv(entity) }
-//    }
-//
-//    override fun deleteFavoriteTv(idTv: Int) {
-//        executor.execute { tvShowsDao.deleteFavoriteTv(idTv) }
-//    }
-//
-//    override fun mappingTvShowToObject(result: List<DetailTvShowEntity>): List<DetailTvShow> {
-//        return itemDetailTvShowEntityMapper.mapToListDomain(result)
-//    }
+    override fun getFavoriteTvById(idTv: Int): Single<List<DetailTvShow>> =
+        tvShowsDao.getFavoriteTvById(idTv).map {
+            itemDetailTvShowEntityMapper.mapToListDomain(it)
+        }
+
+    override fun insertFavoriteTv(tvShow: DetailTvShow) {
+        val entity = itemDetailTvShowEntityMapper.mapToModel(tvShow)
+        executor.execute { tvShowsDao.insertFavoriteTv(entity) }
+    }
+
+    override fun deleteFavoriteTv(idTv: Int) {
+        executor.execute { tvShowsDao.deleteFavoriteTv(idTv) }
+    }
 
 }

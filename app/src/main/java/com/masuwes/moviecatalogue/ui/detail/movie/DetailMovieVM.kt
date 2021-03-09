@@ -1,11 +1,13 @@
 package com.masuwes.moviecatalogue.ui.detail.movie
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.masuwes.core.domain.model.DetailMovie
 import com.masuwes.core.domain.usecase.detail.DetailUseCase
 import com.masuwes.core.utils.Constants
 import com.masuwes.moviecatalogue.ui.BaseViewModel
 import com.masuwes.moviecatalogue.utils.RxUtils
+import kotlinx.coroutines.launch
 
 class DetailMovieVM(
     private val detailUseCase: DetailUseCase
@@ -15,27 +17,27 @@ class DetailMovieVM(
     val showProgressBar = MutableLiveData<Boolean>()
     val messageData = MutableLiveData<String>()
 
-//    fun saveFavMovie(movie: DetailMovie) {
-//        detailUseCase.insertFavoriteMovie(movie)
-//        detailMovieState.value = FavMovieSave
-//    }
-//
-//    fun removeFavMovie(idMovie: Int) {
-//        detailUseCase.deleteFavoriteMovie(idMovie)
-//        detailMovieState.value = RemoveMovieFav
-//    }
-//
-//    fun checkFavMovie(id: Int) {
-//        compositeDisposable.add(
-//            detailUseCase.getFavoriteMovieById(id)
-//                .compose(RxUtils.applySingleAsync())
-//                .subscribe({ result ->
-//                    if (result.isNotEmpty()) {
-//                        detailMovieState.value = FavMovieDataFound(result)
-//                    }
-//                }, this::onError)
-//        )
-//    }
+    fun saveFavMovie(movie: DetailMovie) = viewModelScope.launch {
+        detailUseCase.insertFavoriteMovie(movie)
+        detailMovieState.value = FavMovieSave
+    }
+
+    fun removeFavMovie(idMovie: Int) {
+        detailUseCase.deleteFavoriteMovie(idMovie)
+        detailMovieState.value = RemoveMovieFav
+    }
+
+    fun checkFavMovie(id: Int) {
+        compositeDisposable.add(
+            detailUseCase.getFavoriteMovieById(id)
+                .compose(RxUtils.applySingleAsync())
+                .subscribe({ result ->
+                    if (result.isNotEmpty()) {
+                        detailMovieState.value = FavMovieDataFound(result)
+                    }
+                }, this::onError)
+        )
+    }
 
     fun getDetailMovie(idMovie: Int) {
         showProgressBar.value = true
