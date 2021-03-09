@@ -15,27 +15,27 @@ class DetailTvShowVM(
     val showProgressBar = MutableLiveData<Boolean>()
     val messageData = MutableLiveData<String>()
 
-    fun saveFavTVShow(tvShow: DetailTvShow) {
-        detailUseCase.insertFavoriteTv(tvShow)
-        detailTvShowState.value = FavTVShowSave
-    }
-
-    fun removeFavTVShow(idShow: Int) {
-        detailUseCase.deleteFavoriteTv(idShow)
-        detailTvShowState.value = RemoveTVShowFav
-    }
-
-    fun checkFavTVShow(id: Int) {
-        compositeDisposable.add(
-            detailUseCase.getFavoriteTvById(id)
-                .compose(RxUtils.applySingleAsync())
-                .subscribe({ result ->
-                    if (result.isNotEmpty()) {
-                        detailTvShowState.value = FavTVShowDataFound(result)
-                    }
-                }, this::onError)
-        )
-    }
+//    fun saveFavTVShow(tvShow: DetailTvShow) {
+//        detailUseCase.insertFavoriteTv(tvShow)
+//        detailTvShowState.value = FavTVShowSave
+//    }
+//
+//    fun removeFavTVShow(idShow: Int) {
+//        detailUseCase.deleteFavoriteTv(idShow)
+//        detailTvShowState.value = RemoveTVShowFav
+//    }
+//
+//    fun checkFavTVShow(id: Int) {
+//        compositeDisposable.add(
+//            detailUseCase.getFavoriteTvById(id)
+//                .compose(RxUtils.applySingleAsync())
+//                .subscribe({ result ->
+//                    if (result.isNotEmpty()) {
+//                        detailTvShowState.value = FavTVShowDataFound(result)
+//                    }
+//                }, this::onError)
+//        )
+//    }
 
     fun getDetailTvShow(idShow: Int) {
         showProgressBar.value = true

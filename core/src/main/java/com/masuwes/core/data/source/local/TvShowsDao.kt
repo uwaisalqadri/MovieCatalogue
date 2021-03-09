@@ -5,23 +5,23 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.masuwes.core.domain.model.DetailTvShow
+import com.masuwes.core.data.model.entity.detail.DetailTvShowEntity
 import io.reactivex.Single
 
 @Dao
 interface TvShowsDao {
     @Query("SELECT * FROM tb_detail_tvshow ORDER BY id ASC")
-    fun getFavoriteTv(): Single<List<DetailTvShow>>
+    fun getFavoriteTv(): Single<List<DetailTvShowEntity>>
 
     @Query("SELECT * FROM tb_detail_tvshow WHERE id=:idTv")
-    fun getFavoriteTvById(idTv: Int): Single<List<DetailTvShow>>
+    fun getFavoriteTvById(idTv: Int): Single<List<DetailTvShowEntity>>
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
-    fun insertFavoriteTv(tvShow: DetailTvShow)
+    fun insertFavoriteTv(tvShow: DetailTvShowEntity)
 
     @Query("DELETE FROM tb_detail_tvshow WHERE id =:idTv ")
     fun deleteFavoriteTv(idTv: Int)
 
     @Query("SELECT * FROM tb_detail_tvshow ORDER BY  id ASC")
-    fun getFavTvPagination(): DataSource.Factory<Int, DetailTvShow>
+    fun getFavTvPagination(): DataSource.Factory<Int, DetailTvShowEntity>
 }

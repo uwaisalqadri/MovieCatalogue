@@ -1,13 +1,15 @@
-package com.masuwes.core.data.mapper
+package com.masuwes.core.data.mapper.response
 
-import com.masuwes.core.data.model.detail.DetailMovieItem
-import com.masuwes.core.domain.model.DetailMovie
+import com.masuwes.core.data.mapper.BaseMapper
+import com.masuwes.core.data.model.response.movie.MovieItem
+import com.masuwes.core.domain.model.Movie
 
-class DetailMovieMapper : BaseMapper<DetailMovieItem, DetailMovie> {
-    override fun mapToDomain(model: DetailMovieItem): DetailMovie {
-        return DetailMovie(
+class MovieMapper : BaseMapper<MovieItem, Movie> {
+    override fun mapToDomain(model: MovieItem): Movie {
+        return Movie(
             model.adult,
             model.backdrop_path,
+            model.genre_ids,
             model.id,
             model.original_language,
             model.original_title,
@@ -20,12 +22,14 @@ class DetailMovieMapper : BaseMapper<DetailMovieItem, DetailMovie> {
             model.vote_average,
             model.vote_count
         )
+
     }
 
-    override fun mapToModel(domain: DetailMovie): DetailMovieItem {
-        return DetailMovieItem(
+    override fun mapToModel(domain: Movie): MovieItem {
+        return MovieItem(
             domain.adult,
             domain.backdrop_path,
+            domain.genre_ids,
             domain.id,
             domain.original_language,
             domain.original_title,
@@ -39,4 +43,5 @@ class DetailMovieMapper : BaseMapper<DetailMovieItem, DetailMovie> {
             domain.vote_count
         )
     }
+
 }

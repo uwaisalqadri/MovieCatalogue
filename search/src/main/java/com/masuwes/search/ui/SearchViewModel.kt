@@ -1,11 +1,13 @@
 package com.masuwes.search.ui
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.viewModelScope
 import com.masuwes.core.domain.model.Search
 import com.masuwes.core.domain.usecase.search.SearchUseCase
 import com.masuwes.core.utils.Constants
 import com.masuwes.moviecatalogue.ui.BaseViewModel
 import com.masuwes.moviecatalogue.utils.RxUtils
+import kotlinx.coroutines.launch
 
 class SearchViewModel(
     private val searchUseCase: SearchUseCase
@@ -32,7 +34,7 @@ class SearchViewModel(
         )
     }
 
-    fun insertHistory(search: Search) {
+    fun insertHistory(search: Search) = viewModelScope.launch {
         searchUseCase.insertHistory(search)
     }
 

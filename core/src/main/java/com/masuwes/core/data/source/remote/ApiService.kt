@@ -1,10 +1,10 @@
 package com.masuwes.core.data.source.remote
 
-import com.masuwes.core.data.model.detail.DetailMovieItem
-import com.masuwes.core.data.model.detail.DetailTvShowItem
-import com.masuwes.core.data.model.movie.ResponseMovie
-import com.masuwes.core.data.model.search.ResponseSearch
-import com.masuwes.core.data.model.tvshow.ResponseTvShow
+import com.masuwes.core.data.model.response.detail.DetailMovieItem
+import com.masuwes.core.data.model.response.detail.DetailTvShowItem
+import com.masuwes.core.data.model.response.movie.ResponseMovie
+import com.masuwes.core.data.model.response.search.ResponseSearch
+import com.masuwes.core.data.model.response.tvshow.ResponseTvShow
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path

@@ -1,7 +1,10 @@
 package com.masuwes.core.data.repository
 
 import androidx.lifecycle.LiveData
-import com.masuwes.core.data.mapper.SearchMapper
+import androidx.lifecycle.Transformations
+import com.masuwes.core.data.mapper.entity.SearchEntityMapper
+import com.masuwes.core.data.mapper.response.SearchMapper
+import com.masuwes.core.data.model.entity.search.SearchEntity
 import com.masuwes.core.data.source.local.SearchHistoryDao
 import com.masuwes.core.data.source.remote.ApiService
 import com.masuwes.core.domain.model.Search
@@ -10,10 +13,11 @@ import io.reactivex.Single
 import java.util.concurrent.Executor
 
 class SearchRepositoryImpl(
-    private val apiService: ApiService,
-    private val searchHistoryDao: SearchHistoryDao,
-    private val executor: Executor,
-    private val itemSearchMapper: SearchMapper
+        private val apiService: ApiService,
+        private val searchHistoryDao: SearchHistoryDao,
+        private val executor: Executor,
+        private val itemSearchMapper: SearchMapper,
+        private val itemSearchEntityMapper: SearchEntityMapper
 ) : SearchRepository {
 
     override fun searchAll(
@@ -26,13 +30,20 @@ class SearchRepositoryImpl(
     }
 
     override fun getSearchHistories(): LiveData<List<Search>> =
-        searchHistoryDao.getSearchHistories()
+        Transformations.map(searchHistoryDao.getSearchHistories()) {
+            itemSearchEntityMapper.mapToListDomain(it)
+        }
 
     override fun insertHistory(search: Search) {
-        executor.execute { searchHistoryDao.insertHistory(search) }
+        val entity = itemSearchEntityMapper.mapToModel(search)
+        executor.execute { searchHistoryDao.insertHistory(entity) }
     }
 
     override fun deleteAllHistories() {
         executor.execute { searchHistoryDao.deleteAllHistories() }
+    }
+
+    override fun mappingToObject(result: List<SearchEntity>): List<Search> {
+        return itemSearchEntityMapper.mapToListDomain(result)
     }
 }

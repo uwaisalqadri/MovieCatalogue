@@ -1,17 +1,16 @@
-package com.masuwes.core.data.mapper
+package com.masuwes.core.data.mapper.response
 
-import com.masuwes.core.data.model.tvshow.TvShowItem
-import com.masuwes.core.domain.model.TvShow
+import com.masuwes.core.data.mapper.BaseMapper
+import com.masuwes.core.data.model.response.detail.DetailTvShowItem
+import com.masuwes.core.domain.model.DetailTvShow
 
-class TvShowMapper : BaseMapper<TvShowItem, TvShow> {
-    override fun mapToDomain(model: TvShowItem): TvShow {
-        return TvShow(
+class DetailTvShowMapper : BaseMapper<DetailTvShowItem, DetailTvShow> {
+    override fun mapToDomain(model: DetailTvShowItem): DetailTvShow {
+        return DetailTvShow(
             model.backdrop_path,
             model.first_air_date,
-            model.genre_ids,
             model.id,
             model.name,
-            model.origin_country,
             model.original_language,
             model.original_name,
             model.overview,
@@ -22,14 +21,12 @@ class TvShowMapper : BaseMapper<TvShowItem, TvShow> {
         )
     }
 
-    override fun mapToModel(domain: TvShow): TvShowItem {
-        return TvShowItem(
+    override fun mapToModel(domain: DetailTvShow): DetailTvShowItem {
+        return DetailTvShowItem(
             domain.backdrop_path,
             domain.first_air_date,
-            domain.genre_ids,
             domain.id,
             domain.name,
-            domain.origin_country,
             domain.original_language,
             domain.original_name,
             domain.overview,
@@ -39,5 +36,4 @@ class TvShowMapper : BaseMapper<TvShowItem, TvShow> {
             domain.vote_count
         )
     }
-
 }

@@ -45,14 +45,14 @@ class DetailMovieActivity : AppCompatActivity(R.layout.activity_detail_movie) {
         idMovie = extras?.getInt(MOVIE_ID)
         viewModel.detailMovieState.observe(this, detailObserver)
         idMovie?.let { viewModel.getDetailMovie(it) }
-        idMovie?.let { viewModel.checkFavMovie(it) }
+//        idMovie?.let { viewModel.checkFavMovie(it) }
 
         binding.fabDetailMovie.setOnClickListener {
-           when(isFavorite) {
-               true -> dataMovie?.id?.let { viewModel.removeFavMovie(it) }
-               false -> dataMovie?.let { viewModel.saveFavMovie(it) }
-               else -> dataMovie?.let { viewModel.saveFavMovie(it) }
-           }
+//           when(isFavorite) {
+//               true -> dataMovie?.id?.let { viewModel.removeFavMovie(it) }
+//               false -> dataMovie?.let { viewModel.saveFavMovie(it) }
+//               else -> dataMovie?.let { viewModel.saveFavMovie(it) }
+//           }
         }
 
         with(viewModel) {

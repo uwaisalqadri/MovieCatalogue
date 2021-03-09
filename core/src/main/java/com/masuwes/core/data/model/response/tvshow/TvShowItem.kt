@@ -1,10 +1,12 @@
-package com.masuwes.core.data.model.detail
+package com.masuwes.core.data.model.response.tvshow
 
-data class DetailTvShowItem(
+data class TvShowItem(
     val backdrop_path: String?,
     val first_air_date: String?,
+    val genre_ids: List<Int>?,
     val id: Int?,
     val name: String?,
+    val origin_country: List<String>?,
     val original_language: String?,
     val original_name: String?,
     val overview: String?,

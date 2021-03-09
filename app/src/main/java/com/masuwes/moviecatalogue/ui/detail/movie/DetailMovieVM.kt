@@ -15,27 +15,27 @@ class DetailMovieVM(
     val showProgressBar = MutableLiveData<Boolean>()
     val messageData = MutableLiveData<String>()
 
-    fun saveFavMovie(movie: DetailMovie) {
-        detailUseCase.insertFavoriteMovie(movie)
-        detailMovieState.value = FavMovieSave
-    }
-
-    fun removeFavMovie(idMovie: Int) {
-        detailUseCase.deleteFavoriteMovie(idMovie)
-        detailMovieState.value = RemoveMovieFav
-    }
-
-    fun checkFavMovie(id: Int) {
-        compositeDisposable.add(
-            detailUseCase.getFavoriteMovieById(id)
-                .compose(RxUtils.applySingleAsync())
-                .subscribe({ result ->
-                    if (result.isNotEmpty()) {
-                        detailMovieState.value = FavMovieDataFound(result)
-                    }
-                }, this::onError)
-        )
-    }
+//    fun saveFavMovie(movie: DetailMovie) {
+//        detailUseCase.insertFavoriteMovie(movie)
+//        detailMovieState.value = FavMovieSave
+//    }
+//
+//    fun removeFavMovie(idMovie: Int) {
+//        detailUseCase.deleteFavoriteMovie(idMovie)
+//        detailMovieState.value = RemoveMovieFav
+//    }
+//
+//    fun checkFavMovie(id: Int) {
+//        compositeDisposable.add(
+//            detailUseCase.getFavoriteMovieById(id)
+//                .compose(RxUtils.applySingleAsync())
+//                .subscribe({ result ->
+//                    if (result.isNotEmpty()) {
+//                        detailMovieState.value = FavMovieDataFound(result)
+//                    }
+//                }, this::onError)
+//        )
+//    }
 
     fun getDetailMovie(idMovie: Int) {
         showProgressBar.value = true

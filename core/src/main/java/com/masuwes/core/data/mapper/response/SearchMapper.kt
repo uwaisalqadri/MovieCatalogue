@@ -1,6 +1,7 @@
-package com.masuwes.core.data.mapper
+package com.masuwes.core.data.mapper.response
 
-import com.masuwes.core.data.model.search.SearchItem
+import com.masuwes.core.data.mapper.BaseMapper
+import com.masuwes.core.data.model.response.search.SearchItem
 import com.masuwes.core.domain.model.Search
 
 class SearchMapper : BaseMapper<SearchItem, Search> {

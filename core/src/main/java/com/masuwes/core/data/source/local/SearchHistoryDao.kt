@@ -5,16 +5,16 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import com.masuwes.core.domain.model.Search
+import com.masuwes.core.data.model.entity.search.SearchEntity
 
 @Dao
 interface SearchHistoryDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun insertHistory(search: Search)
+    fun insertHistory(search: SearchEntity)
 
     @Query("SELECT * FROM search_history ORDER BY id ASC")
-    fun getSearchHistories(): LiveData<List<Search>>
+    fun getSearchHistories(): LiveData<List<SearchEntity>>
 
     @Query("DELETE FROM search_history")
     fun deleteAllHistories()

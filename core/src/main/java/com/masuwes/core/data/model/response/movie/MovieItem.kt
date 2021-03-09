@@ -1,8 +1,9 @@
-package com.masuwes.core.data.model.detail
+package com.masuwes.core.data.model.response.movie
 
-data class DetailMovieItem(
+data class MovieItem(
     val adult: Boolean?,
     val backdrop_path: String?,
+    val genre_ids: List<Int>?,
     val id: Int?,
     val original_language: String?,
     val original_title: String?,

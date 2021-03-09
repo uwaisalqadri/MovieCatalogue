@@ -12,11 +12,11 @@ interface DetailUseCase {
         language: String,
     ) : Single<DetailMovie>
 
-    fun getFavoriteMovieById(idMovie: Int): Single<List<DetailMovie>>
-
-    fun insertFavoriteMovie(movies: DetailMovie)
-
-    fun deleteFavoriteMovie(idMovie: Int)
+//    fun getFavoriteMovieById(idMovie: Int): Single<List<DetailMovie>>
+//
+//    fun insertFavoriteMovie(movies: DetailMovie)
+//
+//    fun deleteFavoriteMovie(idMovie: Int)
 
     fun getDetailTvShow(
         tv_id: Int,
@@ -24,9 +24,9 @@ interface DetailUseCase {
         language: String,
     ) : Single<DetailTvShow>
 
-    fun getFavoriteTvById(idTv: Int): Single<List<DetailTvShow>>
-
-    fun insertFavoriteTv(tvShow: DetailTvShow)
-
-    fun deleteFavoriteTv(idTv: Int)
+//    fun getFavoriteTvById(idTv: Int): Single<List<DetailTvShow>>
+//
+//    fun insertFavoriteTv(tvShow: DetailTvShow)
+//
+//    fun deleteFavoriteTv(idTv: Int)
 }

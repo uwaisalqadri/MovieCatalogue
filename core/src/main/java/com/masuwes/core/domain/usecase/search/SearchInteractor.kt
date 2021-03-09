@@ -1,6 +1,7 @@
 package com.masuwes.core.domain.usecase.search
 
 import androidx.lifecycle.LiveData
+import com.masuwes.core.data.model.entity.search.SearchEntity
 import com.masuwes.core.domain.model.Search
 import com.masuwes.core.domain.repository.SearchRepository
 import io.reactivex.Single
@@ -24,5 +25,8 @@ class SearchInteractor(private val searchRepository: SearchRepository) : SearchU
     override fun deleteAllHistories() {
         searchRepository.deleteAllHistories()
     }
+
+    override fun mappingToObject(result: List<SearchEntity>): List<Search> =
+            searchRepository.mappingToObject(result)
 
 }

@@ -1,4 +1,4 @@
-package com.masuwes.core.data.model.search
+package com.masuwes.core.data.model.response.search
 
 data class SearchItem(
         val id: Int,
@@ -9,5 +9,5 @@ data class SearchItem(
         val original_language: String?,
         val first_air_date: String?,
         val release_date: String?,
-        val vote_average: Double?
+        val vote_average: Double?,
 )

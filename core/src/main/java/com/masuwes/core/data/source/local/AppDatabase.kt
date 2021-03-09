@@ -2,15 +2,15 @@ package com.masuwes.core.data.source.local
 
 import androidx.room.Database
 import androidx.room.RoomDatabase
-import com.masuwes.core.domain.model.DetailMovie
-import com.masuwes.core.domain.model.DetailTvShow
-import com.masuwes.core.domain.model.Search
+import com.masuwes.core.data.model.entity.detail.DetailMovieEntity
+import com.masuwes.core.data.model.entity.detail.DetailTvShowEntity
+import com.masuwes.core.data.model.entity.search.SearchEntity
 
 @Database(
     entities = [
-        DetailMovie::class,
-        DetailTvShow::class,
-        Search::class
+        DetailMovieEntity::class,
+        DetailTvShowEntity::class,
+        SearchEntity::class
     ],
     version = 3,
     exportSchema = false

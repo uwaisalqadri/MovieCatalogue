@@ -2,15 +2,17 @@ package com.masuwes.core.di
 
 import androidx.room.Room
 import com.google.gson.GsonBuilder
-import com.masuwes.core.data.mapper.*
-import com.masuwes.core.utils.Constants
-import com.masuwes.core.data.source.local.AppDatabase
-import com.masuwes.core.data.source.remote.ApiService
-import com.masuwes.core.data.source.remote.BaseInterceptor
+import com.masuwes.core.data.mapper.entity.DetailMovieEntityMapper
+import com.masuwes.core.data.mapper.entity.DetailTvShowEntityMapper
+import com.masuwes.core.data.mapper.entity.SearchEntityMapper
+import com.masuwes.core.data.mapper.response.*
 import com.masuwes.core.data.repository.DetailRepositoryImpl
 import com.masuwes.core.data.repository.MovieRepositoryImpl
 import com.masuwes.core.data.repository.SearchRepositoryImpl
 import com.masuwes.core.data.repository.TvShowRepositoryImpl
+import com.masuwes.core.data.source.local.AppDatabase
+import com.masuwes.core.data.source.remote.ApiService
+import com.masuwes.core.data.source.remote.BaseInterceptor
 import com.masuwes.core.domain.repository.DetailRepository
 import com.masuwes.core.domain.repository.MovieRepository
 import com.masuwes.core.domain.repository.SearchRepository
@@ -24,6 +26,7 @@ import com.masuwes.core.domain.usecase.search.SearchUseCase
 import com.masuwes.core.domain.usecase.tvshow.TvShowInteractor
 import com.masuwes.core.domain.usecase.tvshow.TvShowUseCase
 import com.masuwes.core.utils.AppExecutors
+import com.masuwes.core.utils.Constants
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
 import okhttp3.CertificatePinner
@@ -125,12 +128,15 @@ val repositoryModule = module {
             get(),
             get(),
             get(),
-            get()
+            get(),
+            get(),
+            get(),
         )
     }
 
     single<SearchRepository> {
         SearchRepositoryImpl(
+            get(),
             get(),
             get(),
             get(),
@@ -145,6 +151,10 @@ val mapperModule = module {
     single { SearchMapper() }
     single { DetailMovieMapper() }
     single { DetailTvShowMapper() }
+
+    single { DetailMovieEntityMapper() }
+    single { DetailTvShowEntityMapper() }
+    single { SearchEntityMapper() }
 }
 
 val useCaseModule = module {

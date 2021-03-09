@@ -5,17 +5,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.masuwes.core.domain.model.DetailMovie
 import com.masuwes.core.ui.FavMovieAdapter
 import com.masuwes.core.utils.Constants
-import com.masuwes.core.utils.Status
 import com.masuwes.favorite.databinding.FragmentFavMovieBinding
-import com.masuwes.moviecatalogue.R
 import com.masuwes.moviecatalogue.ui.detail.movie.DetailMovieActivity
-import com.masuwes.moviecatalogue.utils.ui.showToast
 import org.koin.android.ext.android.inject
 
 class FavMovieFragment : Fragment() {
@@ -39,26 +35,26 @@ class FavMovieFragment : Fragment() {
                 })
             }
 
-            viewModel.getMoviePage.observe(viewLifecycleOwner, { response ->
-                if (response != null) {
-                    when(response.status) {
-                        Status.LOADING -> {
-                            progressCircularFavmovie.isVisible = true
-                        }
-
-                        Status.SUCCESS -> {
-                            progressCircularFavmovie.isVisible = false
-                            movieAdapter?.submitList(response.data)
-                            movieAdapter?.notifyDataSetChanged()
-                        }
-
-                        Status.ERROR -> {
-                            progressCircularFavmovie.isVisible = false
-                            context?.showToast(getString(R.string.error))
-                        }
-                    }
-                }
-            })
+//            viewModel.getMoviePage.observe(viewLifecycleOwner, { response ->
+//                if (response != null) {
+//                    when(response.status) {
+//                        Status.LOADING -> {
+//                            progressCircularFavmovie.isVisible = true
+//                        }
+//
+//                        Status.SUCCESS -> {
+//                            progressCircularFavmovie.isVisible = false
+//                            movieAdapter?.submitList(response.data)
+//                            movieAdapter?.notifyDataSetChanged()
+//                        }
+//
+//                        Status.ERROR -> {
+//                            progressCircularFavmovie.isVisible = false
+//                            context?.showToast(getString(R.string.error))
+//                        }
+//                    }
+//                }
+//            })
 
             rvFavMovie.apply {
                 layoutManager = StaggeredGridLayoutManager(Constants.SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL)

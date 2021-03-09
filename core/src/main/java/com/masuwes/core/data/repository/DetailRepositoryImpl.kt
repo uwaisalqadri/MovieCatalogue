@@ -1,7 +1,9 @@
 package com.masuwes.core.data.repository
 
-import com.masuwes.core.data.mapper.DetailMovieMapper
-import com.masuwes.core.data.mapper.DetailTvShowMapper
+import com.masuwes.core.data.mapper.entity.DetailMovieEntityMapper
+import com.masuwes.core.data.mapper.entity.DetailTvShowEntityMapper
+import com.masuwes.core.data.mapper.response.DetailMovieMapper
+import com.masuwes.core.data.mapper.response.DetailTvShowMapper
 import com.masuwes.core.data.source.local.MoviesDao
 import com.masuwes.core.data.source.local.TvShowsDao
 import com.masuwes.core.data.source.remote.ApiService
@@ -12,12 +14,14 @@ import io.reactivex.Single
 import java.util.concurrent.Executor
 
 class DetailRepositoryImpl(
-    private val apiService: ApiService,
-    private val moviesDao: MoviesDao,
-    private val tvShowsDao: TvShowsDao,
-    private val executor: Executor,
-    private val itemDetailMovieMapper: DetailMovieMapper,
-    private val itemDetailTvShowMapper: DetailTvShowMapper
+        private val apiService: ApiService,
+        private val moviesDao: MoviesDao,
+        private val tvShowsDao: TvShowsDao,
+        private val executor: Executor,
+        private val itemDetailMovieMapper: DetailMovieMapper,
+        private val itemDetailTvShowMapper: DetailTvShowMapper,
+        private val itemDetailMovieEntityMapper: DetailMovieEntityMapper,
+        private val itemDetailTvShowEntityMapper: DetailTvShowEntityMapper
 ) : DetailRepository {
     override fun getDetailMovie(
         movie_id: Int,
@@ -29,16 +33,21 @@ class DetailRepositoryImpl(
         }
     }
 
-    override fun getFavoriteMovieById(idMovie: Int): Single<List<DetailMovie>> =
-        moviesDao.getFavoriteMovieById(idMovie)
-
-    override fun insertFavoriteMovie(movies: DetailMovie) {
-        executor.execute { moviesDao.insertFavoriteMovie(movies) }
-    }
-
-    override fun deleteFavoriteMovie(idMovie: Int) {
-        executor.execute { moviesDao.deleteFavoriteMovie(idMovie) }
-    }
+//    override fun getFavoriteMovieById(idMovie: Int): Single<List<DetailMovieEntity>> =
+//        moviesDao.getFavoriteMovieById(idMovie)
+//
+//    override fun insertFavoriteMovie(movies: DetailMovie) {
+//        val entity = itemDetailMovieEntityMapper.mapToModel(movies)
+//        executor.execute { moviesDao.insertFavoriteMovie(entity) }
+//    }
+//
+//    override fun deleteFavoriteMovie(idMovie: Int) {
+//        executor.execute { moviesDao.deleteFavoriteMovie(idMovie) }
+//    }
+//
+//    override fun mappingMovieToObject(result: List<DetailMovieEntity>): List<DetailMovie> {
+//        return itemDetailMovieEntityMapper.mapToListDomain(result)
+//    }
 
     override fun getDetailTvShow(
         tv_id: Int,
@@ -50,15 +59,20 @@ class DetailRepositoryImpl(
         }
     }
 
-    override fun getFavoriteTvById(idTv: Int): Single<List<DetailTvShow>> =
-        tvShowsDao.getFavoriteTvById(idTv)
-
-    override fun insertFavoriteTv(tvShow: DetailTvShow) {
-        executor.execute { tvShowsDao.insertFavoriteTv(tvShow) }
-    }
-
-    override fun deleteFavoriteTv(idTv: Int) {
-        executor.execute { tvShowsDao.deleteFavoriteTv(idTv) }
-    }
+//    override fun getFavoriteTvById(idTv: Int): Single<List<DetailTvShowEntity>> =
+//        tvShowsDao.getFavoriteTvById(idTv)
+//
+//    override fun insertFavoriteTv(tvShow: DetailTvShow) {
+//        val entity = itemDetailTvShowEntityMapper.mapToModel(tvShow)
+//        executor.execute { tvShowsDao.insertFavoriteTv(entity) }
+//    }
+//
+//    override fun deleteFavoriteTv(idTv: Int) {
+//        executor.execute { tvShowsDao.deleteFavoriteTv(idTv) }
+//    }
+//
+//    override fun mappingTvShowToObject(result: List<DetailTvShowEntity>): List<DetailTvShow> {
+//        return itemDetailTvShowEntityMapper.mapToListDomain(result)
+//    }
 
 }
