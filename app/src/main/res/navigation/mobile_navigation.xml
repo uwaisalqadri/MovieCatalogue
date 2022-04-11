@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_movie"
-        android:name="com.masuwes.moviecatalogue.ui.movie.MovieFragment"
+        android:name="com.masuwes.moviecatalogue.presentation.movie.MovieFragment"
         android:label="@string/movie_catalogue"
         tools:layout="@layout/fragment_movie" />
 
     <fragment
         android:id="@+id/navigation_tvshow"
-        android:name="com.masuwes.moviecatalogue.ui.tvshow.TvShowFragment"
+        android:name="com.masuwes.moviecatalogue.presentation.tvshow.TvShowFragment"
         android:label="@string/tvShow_catalogue"
         tools:layout="@layout/fragment_tv_show" />
 

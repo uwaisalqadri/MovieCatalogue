@@ -1,43 +1,77 @@
 package com.masuwes.core.data.mapper.response
 
-import com.masuwes.core.data.mapper.BaseMapper
+import com.masuwes.core.data.model.entity.detail.DetailMovieEntity
 import com.masuwes.core.data.model.response.detail.DetailMovieItem
 import com.masuwes.core.domain.model.DetailMovie
 
-class DetailMovieMapper : BaseMapper<DetailMovieItem, DetailMovie> {
-    override fun mapToDomain(model: DetailMovieItem): DetailMovie {
-        return DetailMovie(
-            model.adult,
-            model.backdrop_path,
-            model.id,
-            model.original_language,
-            model.original_title,
-            model.overview,
-            model.popularity,
-            model.poster_path,
-            model.release_date,
-            model.title,
-            model.video,
-            model.vote_average,
-            model.vote_count
-        )
-    }
+fun DetailMovieItem.map(): DetailMovie {
+    return DetailMovie(
+        adult = adult ?: false,
+        backdropPath = backdrop_path.orEmpty(),
+        id = id ?: 0,
+        originalLanguage = original_language.orEmpty(),
+        originalTitle = original_title.orEmpty(),
+        overview = overview.orEmpty(),
+        popularity = popularity ?: 0.0,
+        posterPath = poster_path.orEmpty(),
+        releaseDate = release_date.orEmpty(),
+        title = title.orEmpty(),
+        hasVideo = video ?: false,
+        voteAverage = vote_average ?: 0.0,
+        voteCount = vote_count ?: 0
+    )
+}
 
-    override fun mapToModel(domain: DetailMovie): DetailMovieItem {
-        return DetailMovieItem(
-            domain.adult,
-            domain.backdrop_path,
-            domain.id,
-            domain.original_language,
-            domain.original_title,
-            domain.overview,
-            domain.popularity,
-            domain.poster_path,
-            domain.release_date,
-            domain.title,
-            domain.video,
-            domain.vote_average,
-            domain.vote_count
-        )
-    }
+fun DetailMovie.map(): DetailMovieItem {
+    return DetailMovieItem(
+        adult = adult,
+        backdrop_path = backdropPath,
+        id = id,
+        original_language = originalLanguage,
+        original_title = originalTitle,
+        overview = overview,
+        popularity = popularity,
+        poster_path = posterPath,
+        release_date = releaseDate,
+        title = title,
+        video = hasVideo,
+        vote_average = voteAverage,
+        vote_count = voteCount
+    )
+}
+
+fun DetailMovieEntity.map(): DetailMovie {
+    return DetailMovie(
+        adult = adult ?: false,
+        backdropPath = backdrop_path.orEmpty(),
+        id = id ?: 0,
+        originalLanguage = original_language.orEmpty(),
+        originalTitle = original_title.orEmpty(),
+        overview = overview.orEmpty(),
+        popularity = popularity ?: 0.0,
+        posterPath = poster_path.orEmpty(),
+        releaseDate = release_date.orEmpty(),
+        title = title.orEmpty(),
+        hasVideo = video ?: false,
+        voteAverage = vote_average ?: 0.0,
+        voteCount = vote_count ?: 0
+    )
+}
+
+fun DetailMovie.mapEntity(): DetailMovieEntity {
+    return DetailMovieEntity(
+        adult = adult,
+        backdrop_path = backdropPath,
+        id = id,
+        original_language = originalLanguage,
+        original_title = originalTitle,
+        overview = overview,
+        popularity = popularity,
+        poster_path = posterPath,
+        release_date = releaseDate,
+        title = title,
+        video = hasVideo,
+        vote_average = voteAverage,
+        vote_count = voteCount
+    )
 }

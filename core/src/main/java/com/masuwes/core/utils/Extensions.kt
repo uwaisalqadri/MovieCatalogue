@@ -8,13 +8,11 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
 fun ImageView.loadImage(url: String) {
-
     Glide.with(this)
         .load(url)
         .placeholder(R.drawable.placeholder_image)
         .fallback(R.drawable.placeholder_image)
         .into(this)
-
 }
 
 fun String.formatDate() : String {

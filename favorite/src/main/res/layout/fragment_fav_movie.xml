@@ -7,9 +7,9 @@
     android:paddingStart="16dp"
     android:paddingEnd="16dp"
     android:paddingTop="16dp"
-    tools:context=".ui.tvshow.FavTvShowFragment">
+    tools:context=".presentation.tvshow.FavTvShowFragment">
 
-    <com.masuwes.favorite.ui.EmptyRecyclerView
+    <com.masuwes.favorite.presentation.EmptyRecyclerView
         android:id="@+id/rv_fav_movie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

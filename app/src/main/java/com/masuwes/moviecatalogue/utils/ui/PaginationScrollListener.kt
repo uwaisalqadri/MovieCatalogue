@@ -23,7 +23,6 @@ abstract class PaginationScrollListener constructor() :
         this.mLayoutManager = layoutManager
     }
 
-
     /*
      Method gets callback when user scroll the search list
      */

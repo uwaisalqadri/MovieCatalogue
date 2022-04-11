@@ -1,32 +1,22 @@
 package com.masuwes.core.domain.repository
 
-import com.masuwes.core.domain.model.DetailMovie
-import com.masuwes.core.domain.model.DetailTvShow
-import io.reactivex.Single
+import com.masuwes.core.data.model.response.detail.DetailMovieItem
+import com.masuwes.core.data.model.response.detail.DetailTvShowItem
 
 interface DetailRepository {
+    fun getDetailMovie(movieId: Int): DetailMovieItem
 
-    fun getDetailMovie(
-        movie_id: Int,
-        api_key: String,
-        language: String,
-    ) : Single<DetailMovie>
+    fun getFavoriteMovieById(idMovie: Int): List<DetailMovieItem>
 
-    fun getFavoriteMovieById(idMovie: Int): Single<List<DetailMovie>>
-
-    fun insertFavoriteMovie(movies: DetailMovie)
+    fun insertFavoriteMovie(movies: DetailMovieItem)
 
     fun deleteFavoriteMovie(idMovie: Int)
 
-    fun getDetailTvShow(
-        tv_id: Int,
-        api_key: String,
-        language: String,
-    ) : Single<DetailTvShow>
+    fun getDetailTvShow(tvId: Int): DetailTvShowItem
 
-    fun getFavoriteTvById(idTv: Int): Single<List<DetailTvShow>>
+    fun getFavoriteTvById(idTv: Int): List<DetailTvShowItem>
 
-    fun insertFavoriteTv(tvShow: DetailTvShow)
+    fun insertFavoriteTv(tvShow: DetailTvShowItem)
 
     fun deleteFavoriteTv(idTv: Int)
 

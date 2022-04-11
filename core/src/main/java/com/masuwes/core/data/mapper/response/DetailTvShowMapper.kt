@@ -1,39 +1,69 @@
 package com.masuwes.core.data.mapper.response
 
-import com.masuwes.core.data.mapper.BaseMapper
+import com.masuwes.core.data.model.entity.detail.DetailTvShowEntity
 import com.masuwes.core.data.model.response.detail.DetailTvShowItem
 import com.masuwes.core.domain.model.DetailTvShow
 
-class DetailTvShowMapper : BaseMapper<DetailTvShowItem, DetailTvShow> {
-    override fun mapToDomain(model: DetailTvShowItem): DetailTvShow {
-        return DetailTvShow(
-            model.backdrop_path,
-            model.first_air_date,
-            model.id,
-            model.name,
-            model.original_language,
-            model.original_name,
-            model.overview,
-            model.popularity,
-            model.poster_path,
-            model.vote_average,
-            model.vote_count
-        )
-    }
+fun DetailTvShowItem.map(): DetailTvShow {
+    return DetailTvShow(
+        backdrop_path = backdrop_path.orEmpty(),
+        firstAirDate = first_air_date.orEmpty(),
+        id = id ?: 0,
+        name = name.orEmpty(),
+        originalLanguage = original_language.orEmpty(),
+        originalName = original_name.orEmpty(),
+        overview = overview.orEmpty(),
+        popularity = popularity ?: 0.0,
+        posterPath = poster_path.orEmpty(),
+        voteAverage = vote_average ?: 0.0,
+        voteCount = vote_count ?: 0
+    )
+}
 
-    override fun mapToModel(domain: DetailTvShow): DetailTvShowItem {
-        return DetailTvShowItem(
-            domain.backdrop_path,
-            domain.first_air_date,
-            domain.id,
-            domain.name,
-            domain.original_language,
-            domain.original_name,
-            domain.overview,
-            domain.popularity,
-            domain.poster_path,
-            domain.vote_average,
-            domain.vote_count
-        )
-    }
+fun DetailTvShow.map(): DetailTvShowItem {
+    return DetailTvShowItem(
+        backdrop_path = backdrop_path,
+        first_air_date = firstAirDate,
+        id = id,
+        name = name,
+        original_language = originalLanguage,
+        original_name = originalName,
+        overview = overview,
+        popularity = popularity,
+        poster_path = posterPath,
+        vote_average = voteAverage,
+        vote_count = voteCount
+    )
+}
+
+fun DetailTvShowEntity.map(): DetailTvShow {
+    return DetailTvShow(
+        backdrop_path = backdrop_path.orEmpty(),
+        firstAirDate = first_air_date.orEmpty(),
+        id = id ?: 0,
+        name = name.orEmpty(),
+        originalLanguage = original_language.orEmpty(),
+        originalName = original_name.orEmpty(),
+        overview = overview.orEmpty(),
+        popularity = popularity ?: 0.0,
+        posterPath = poster_path.orEmpty(),
+        voteAverage = vote_average ?: 0.0,
+        voteCount = vote_count ?: 0
+    )
+}
+
+fun DetailTvShow.mapEntity(): DetailTvShowEntity {
+    return DetailTvShowEntity(
+        backdrop_path = backdrop_path,
+        first_air_date = firstAirDate,
+        id = id,
+        name = name,
+        original_language = originalLanguage,
+        original_name = originalName,
+        overview = overview,
+        popularity = popularity,
+        poster_path = posterPath,
+        vote_average = voteAverage,
+        vote_count = voteCount
+    )
 }

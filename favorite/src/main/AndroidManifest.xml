@@ -14,7 +14,9 @@
     </dist:module>
 
     <application>
-        <activity android:name=".ui.FavoriteActivity" />
+        <activity
+            android:name=".presentation.FavoriteActivity"
+            android:exported="true" />
     </application>
 
 </manifest>

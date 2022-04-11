@@ -2,30 +2,9 @@ package com.masuwes.core.di
 
 import androidx.room.Room
 import com.google.gson.GsonBuilder
-import com.masuwes.core.data.mapper.entity.DetailMovieEntityMapper
-import com.masuwes.core.data.mapper.entity.DetailTvShowEntityMapper
-import com.masuwes.core.data.mapper.entity.SearchEntityMapper
-import com.masuwes.core.data.mapper.response.*
-import com.masuwes.core.data.repository.DetailRepositoryImpl
-import com.masuwes.core.data.repository.MovieRepositoryImpl
-import com.masuwes.core.data.repository.SearchRepositoryImpl
-import com.masuwes.core.data.repository.TvShowRepositoryImpl
 import com.masuwes.core.data.source.local.AppDatabase
 import com.masuwes.core.data.source.remote.ApiService
-import com.masuwes.core.data.source.remote.BaseInterceptor
-import com.masuwes.core.domain.repository.DetailRepository
-import com.masuwes.core.domain.repository.MovieRepository
-import com.masuwes.core.domain.repository.SearchRepository
-import com.masuwes.core.domain.repository.TvShowRepository
-import com.masuwes.core.domain.usecase.detail.DetailInteractor
-import com.masuwes.core.domain.usecase.detail.DetailUseCase
-import com.masuwes.core.domain.usecase.movie.MovieInteractor
-import com.masuwes.core.domain.usecase.movie.MovieUseCase
-import com.masuwes.core.domain.usecase.search.SearchInteractor
-import com.masuwes.core.domain.usecase.search.SearchUseCase
-import com.masuwes.core.domain.usecase.tvshow.TvShowInteractor
-import com.masuwes.core.domain.usecase.tvshow.TvShowUseCase
-import com.masuwes.core.utils.AppExecutors
+import com.masuwes.core.data.source.remote.MovieInterceptor
 import com.masuwes.core.utils.Constants
 import net.sqlcipher.database.SQLiteDatabase
 import net.sqlcipher.database.SupportFactory
@@ -49,13 +28,13 @@ val databaseModule = module {
             androidApplication(),
             AppDatabase::class.java,
             Constants.DATABASE_NAME
-        ).fallbackToDestructiveMigration()
-            .openHelperFactory(factory)
-            .build()
+        )
+        .fallbackToDestructiveMigration()
+        .openHelperFactory(factory)
+        .build()
     }
 
     single { getExecutor() }
-    single { AppExecutors() }
 
     single { get<AppDatabase>().moviesDao() }
     single { get<AppDatabase>().tvShowsDao() }
@@ -75,7 +54,7 @@ val networkModule = module {
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
         val timeout = 60L
-        val interceptor = BaseInterceptor()
+        val interceptor = MovieInterceptor()
 
         OkHttpClient.Builder()
             .connectTimeout(timeout, TimeUnit.SECONDS)
@@ -98,72 +77,6 @@ val networkModule = module {
             .build()
         retrofit.create(ApiService::class.java)
     }
-}
-
-
-val repositoryModule = module {
-
-    single<MovieRepository> {
-        MovieRepositoryImpl(
-            get(),
-            get(),
-            get(),
-            get(),
-            get()
-        )
-    }
-
-    single<TvShowRepository> {
-        TvShowRepositoryImpl(
-            get(),
-            get(),
-            get(),
-            get(),
-            get()
-        )
-    }
-
-    single<DetailRepository> {
-        DetailRepositoryImpl(
-            get(),
-            get(),
-            get(),
-            get(),
-            get(),
-            get(),
-            get(),
-            get(),
-        )
-    }
-
-    single<SearchRepository> {
-        SearchRepositoryImpl(
-            get(),
-            get(),
-            get(),
-            get(),
-            get()
-        )
-    }
-}
-
-val mapperModule = module {
-    single { MovieMapper() }
-    single { TvShowMapper() }
-    single { SearchMapper() }
-    single { DetailMovieMapper() }
-    single { DetailTvShowMapper() }
-
-    single { DetailMovieEntityMapper() }
-    single { DetailTvShowEntityMapper() }
-    single { SearchEntityMapper() }
-}
-
-val useCaseModule = module {
-    factory<MovieUseCase> { MovieInteractor(get()) }
-    factory<TvShowUseCase> { TvShowInteractor(get()) }
-    factory<SearchUseCase> { SearchInteractor(get()) }
-    factory<DetailUseCase> { DetailInteractor(get()) }
 }
 
 fun getExecutor(): Executor {

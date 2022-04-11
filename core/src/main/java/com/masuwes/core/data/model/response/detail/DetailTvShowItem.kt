@@ -1,9 +1,9 @@
 package com.masuwes.core.data.model.response.detail
 
 data class DetailTvShowItem(
+        val id: Int?,
         val backdrop_path: String?,
         val first_air_date: String?,
-        val id: Int?,
         val name: String?,
         val original_language: String?,
         val original_name: String?,

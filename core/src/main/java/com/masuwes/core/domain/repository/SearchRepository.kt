@@ -1,21 +1,15 @@
 package com.masuwes.core.domain.repository
 
-import androidx.lifecycle.LiveData
-import com.masuwes.core.domain.model.Search
-import io.reactivex.Single
+import com.masuwes.core.data.model.response.search.SearchItem
+import com.masuwes.core.data.model.response.search.SearchResponse
 
 interface SearchRepository {
 
-    fun searchAll(
-        api_key: String,
-        language: String,
-        query: String,
-        page: Int
-    ) : Single<List<Search>>
+    suspend fun getSearch(query: String, page: Int): List<SearchItem>
 
-    fun getSearchHistories(): LiveData<List<Search>>
+    suspend fun getSearchHistories(): List<SearchItem>
 
-    fun insertHistory(search: Search)
+    suspend fun insertHistory(search: SearchItem)
 
-    fun deleteAllHistories()
+    suspend fun deleteAllHistories()
 }

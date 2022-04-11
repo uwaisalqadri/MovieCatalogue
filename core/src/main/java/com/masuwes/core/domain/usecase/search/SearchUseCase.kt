@@ -3,19 +3,15 @@ package com.masuwes.core.domain.usecase.search
 import androidx.lifecycle.LiveData
 import com.masuwes.core.domain.model.Search
 import io.reactivex.Single
+import kotlinx.coroutines.flow.Flow
 
 interface SearchUseCase {
 
-    fun searchAll(
-        api_key: String,
-        language: String,
-        query: String,
-        page: Int
-    ) : Single<List<Search>>
+    fun getSearch(query: String, page: Int): Flow<List<Search>>
 
-    fun getSearchHistories(): LiveData<List<Search>>
-
-    fun insertHistory(search: Search)
-
-    fun deleteAllHistories()
+//    fun getSearchHistories(): LiveData<List<Search>>
+//
+//    fun insertHistory(search: Search)
+//
+//    fun deleteAllHistories()
 }

@@ -1,44 +1,44 @@
 package com.masuwes.core.data.mapper.response
 
-import com.masuwes.core.data.mapper.BaseMapper
 import com.masuwes.core.data.model.response.tvshow.TvShowItem
 import com.masuwes.core.domain.model.TvShow
 
-class TvShowMapper : BaseMapper<TvShowItem, TvShow> {
-    override fun mapToDomain(model: TvShowItem): TvShow {
-        return TvShow(
-            model.backdrop_path,
-            model.first_air_date,
-            model.genre_ids,
-            model.id,
-            model.name,
-            model.origin_country,
-            model.original_language,
-            model.original_name,
-            model.overview,
-            model.popularity,
-            model.poster_path,
-            model.vote_average,
-            model.vote_count
-        )
-    }
+fun List<TvShowItem>.map(): List<TvShow> {
+    return map { it.map() }
+}
 
-    override fun mapToModel(domain: TvShow): TvShowItem {
-        return TvShowItem(
-            domain.backdrop_path,
-            domain.first_air_date,
-            domain.genre_ids,
-            domain.id,
-            domain.name,
-            domain.origin_country,
-            domain.original_language,
-            domain.original_name,
-            domain.overview,
-            domain.popularity,
-            domain.poster_path,
-            domain.vote_average,
-            domain.vote_count
-        )
-    }
+fun TvShowItem.map(): TvShow {
+    return TvShow(
+        id = id ?: 0,
+        backdrop_path = backdrop_path.orEmpty(),
+        firstAirDate = first_air_date.orEmpty(),
+        genreIds = genre_ids.orEmpty(),
+        name = name.orEmpty(),
+        originCountry = origin_country.orEmpty(),
+        originalLanguage = original_language.orEmpty(),
+        originalName = original_name.orEmpty(),
+        overview = overview.orEmpty(),
+        popularity = popularity ?: 0.0,
+        posterPath = poster_path.orEmpty(),
+        voteAverage = vote_average ?: 0.0,
+        voteCount = vote_count ?: 0
+    )
+}
 
+fun TvShow.map(): TvShowItem {
+    return TvShowItem(
+        id = id,
+        backdrop_path = backdrop_path,
+        first_air_date = firstAirDate,
+        genre_ids = genreIds,
+        name = name,
+        origin_country = originCountry,
+        original_language = originalLanguage,
+        original_name = originalName,
+        overview = overview,
+        popularity = popularity,
+        poster_path = posterPath,
+        vote_average = voteAverage,
+        vote_count = voteCount
+    )
 }

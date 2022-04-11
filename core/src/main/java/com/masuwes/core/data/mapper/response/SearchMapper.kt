@@ -1,35 +1,65 @@
 package com.masuwes.core.data.mapper.response
 
-import com.masuwes.core.data.mapper.BaseMapper
+import com.masuwes.core.data.model.entity.search.SearchEntity
 import com.masuwes.core.data.model.response.search.SearchItem
 import com.masuwes.core.domain.model.Search
 
-class SearchMapper : BaseMapper<SearchItem, Search> {
-    override fun mapToDomain(model: SearchItem): Search {
-        return Search(
-            model.id,
-            model.media_type,
-            model.name,
-            model.poster_path,
-            model.title,
-            model.original_language,
-            model.first_air_date,
-            model.release_date,
-            model.vote_average
-        )
-    }
+fun List<SearchItem>.map(): List<Search> {
+    return map { it.map() }
+}
 
-    override fun mapToModel(domain: Search): SearchItem {
-        return SearchItem(
-            domain.id,
-            domain.media_type,
-            domain.name,
-            domain.poster_path,
-            domain.title,
-            domain.original_language,
-            domain.first_air_date,
-            domain.release_date,
-            domain.vote_average
-        )
-    }
+fun SearchItem.map(): Search {
+    return Search(
+        id = id,
+        mediaType = media_type.orEmpty(),
+        name = name.orEmpty(),
+        posterPath = poster_path.orEmpty(),
+        title = title.orEmpty(),
+        originalLanguage = original_language.orEmpty(),
+        firstAirDate = first_air_date.orEmpty(),
+        releaseDate = release_date.orEmpty(),
+        voteAverage = vote_average ?: 0.0
+    )
+}
+
+fun Search.map(): SearchItem {
+    return SearchItem(
+        id = id,
+        media_type = mediaType,
+        name = name,
+        poster_path = posterPath,
+        title = title,
+        original_language = originalLanguage,
+        first_air_date = firstAirDate,
+        release_date = releaseDate,
+        vote_average = voteAverage
+    )
+}
+
+fun SearchEntity.map(): Search {
+    return Search(
+        id = id,
+        mediaType = media_type.orEmpty(),
+        name = name.orEmpty(),
+        posterPath = poster_path.orEmpty(),
+        title = title.orEmpty(),
+        originalLanguage = original_language.orEmpty(),
+        firstAirDate = first_air_date.orEmpty(),
+        releaseDate = release_date.orEmpty(),
+        voteAverage = vote_average ?: 0.0
+    )
+}
+
+fun Search.mapEntity(): SearchEntity {
+    return SearchEntity(
+        id = id,
+        media_type = mediaType,
+        name = name,
+        poster_path = posterPath,
+        title = title,
+        original_language = originalLanguage,
+        first_air_date = firstAirDate,
+        release_date = releaseDate,
+        vote_average = voteAverage
+    )
 }

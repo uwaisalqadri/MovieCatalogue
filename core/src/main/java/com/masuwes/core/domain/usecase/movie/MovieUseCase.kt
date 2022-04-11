@@ -1,23 +1,13 @@
 package com.masuwes.core.domain.usecase.movie
 
-import androidx.lifecycle.LiveData
-import androidx.paging.DataSource
-import androidx.paging.PagedList
-import com.masuwes.core.domain.model.DetailMovie
 import com.masuwes.core.domain.model.Movie
-import com.masuwes.core.utils.Resource
-import io.reactivex.Single
+import kotlinx.coroutines.flow.Flow
 
 interface MovieUseCase {
 
-    fun getMovies(
-        api_key: String,
-        language: String,
-        sort_by: String,
-        page: Int
-    ): Single<List<Movie>>
+    fun getMovies(sortBy: String, page: Int): Flow<List<Movie>>
 
-    fun getMoviesAsPaged(): DataSource.Factory<Int, DetailMovie>
-
-    fun getMoviePage(): LiveData<Resource<PagedList<DetailMovie>>>
+//    fun getMoviesAsPaged(): DataSource.Factory<Int, DetailMovie>
+//
+//    fun getMoviePage(): LiveData<Resource<PagedList<DetailMovie>>>
 }

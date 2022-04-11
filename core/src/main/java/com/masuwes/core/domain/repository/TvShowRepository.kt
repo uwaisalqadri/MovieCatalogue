@@ -1,24 +1,13 @@
 package com.masuwes.core.domain.repository
 
-import androidx.lifecycle.LiveData
-import androidx.paging.DataSource
-import androidx.paging.PagedList
-import com.masuwes.core.domain.model.DetailTvShow
-import com.masuwes.core.domain.model.TvShow
-import com.masuwes.core.utils.Resource
-import io.reactivex.Single
+import com.masuwes.core.data.model.response.tvshow.TvShowItem
 
 interface TvShowRepository {
 
-    fun getTvShows(
-        api_key: String,
-        language: String,
-        sort_by: String,
-        page: Int
-    ) : Single<List<TvShow>>
+    suspend fun getTvShows(sortBy: String, page: Int): List<TvShowItem>
 
-    fun getTvShowsAsPaged(): DataSource.Factory<Int, DetailTvShow>
-
-    fun getTvShowPage(): LiveData<Resource<PagedList<DetailTvShow>>>
+//    fun getTvShowsAsPaged(): DataSource.Factory<Int, DetailTvShowItem>
+//
+//    fun getTvShowPage(): LiveData<Resource<PagedList<DetailTvShowItem>>>
 
 }

@@ -4,17 +4,16 @@ plugins {
     id 'kotlin-parcelize'
     id 'kotlin-kapt'
 }
+
 apply from: '../shared_dependencies.gradle'
 
 android {
-    compileSdkVersion 30
+    compileSdkVersion 31
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         minSdkVersion 23
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        targetSdkVersion 31
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles "consumer-rules.pro"
@@ -55,12 +54,12 @@ dependencies {
     // Room components
     implementation "androidx.room:room-runtime:$roomVersion"
     kapt "androidx.room:room-compiler:$roomVersion"
-    implementation "androidx.room:room-rxjava2:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
 
     api "androidx.lifecycle:lifecycle-livedata-ktx:$lifecycleVersion"
 
     // database encryption
     implementation "net.zetetic:android-database-sqlcipher:4.4.0"
-    implementation "androidx.sqlite:sqlite-ktx:2.1.0"
+    implementation "androidx.sqlite:sqlite-ktx:2.2.0"
 
 }

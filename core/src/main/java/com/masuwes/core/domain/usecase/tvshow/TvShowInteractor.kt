@@ -1,27 +1,16 @@
 package com.masuwes.core.domain.usecase.tvshow
 
-import androidx.lifecycle.LiveData
-import androidx.paging.DataSource
-import androidx.paging.PagedList
-import com.masuwes.core.domain.model.DetailTvShow
+import com.masuwes.core.data.mapper.response.map
+import com.masuwes.core.domain.base.execute
 import com.masuwes.core.domain.model.TvShow
 import com.masuwes.core.domain.repository.TvShowRepository
-import com.masuwes.core.utils.Resource
-import io.reactivex.Single
+import kotlinx.coroutines.flow.Flow
 
-class TvShowInteractor(private val tvShowRepository: TvShowRepository) : TvShowUseCase {
-    override fun getTvShows(
-        api_key: String,
-        language: String,
-        sort_by: String,
-        page: Int
-    ): Single<List<TvShow>> =
-        tvShowRepository.getTvShows(api_key, language, sort_by, page)
+class TvShowInteractor(private val tvShowRepository: TvShowRepository): TvShowUseCase {
 
-    override fun getTvShowsAsPaged(): DataSource.Factory<Int, DetailTvShow> =
-        tvShowRepository.getTvShowsAsPaged()
-
-    override fun getTvShowPage(): LiveData<Resource<PagedList<DetailTvShow>>> =
-        tvShowRepository.getTvShowPage()
-
+    override fun getTvShows(sortBy: String, page: Int): Flow<List<TvShow>> {
+        return execute {
+            tvShowRepository.getTvShows(sortBy, page).map()
+        }
+    }
 }
