@@ -5,11 +5,11 @@ import android.content.Intent
 import androidx.core.view.isVisible
 import com.masuwes.core.domain.model.DetailMovie
 import com.masuwes.core.utils.Constants
-import com.masuwes.core.utils.formatDate
 import com.masuwes.moviecatalogue.databinding.ActivityDetailMovieBinding
 import com.masuwes.moviecatalogue.databinding.IncludeInfoBinding
 import com.masuwes.moviecatalogue.databinding.IncludeOverviewBinding
-import com.masuwes.moviecatalogue.utils.ui.BaseActivity
+import com.masuwes.moviecatalogue.utils.base.BaseActivity
+import com.masuwes.moviecatalogue.utils.ui.formatDate
 import com.masuwes.moviecatalogue.utils.ui.loadImage
 import com.masuwes.moviecatalogue.utils.ui.observeLiveData
 import org.koin.android.ext.android.inject

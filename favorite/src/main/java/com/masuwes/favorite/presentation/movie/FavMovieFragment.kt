@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.masuwes.core.domain.model.DetailMovie
-import com.masuwes.moviecatalogue.utils.ui.FavMovieAdapter
 import com.masuwes.core.utils.Constants
 import com.masuwes.favorite.databinding.FragmentFavMovieBinding
 import com.masuwes.moviecatalogue.presentation.detail.movie.DetailMovieActivity

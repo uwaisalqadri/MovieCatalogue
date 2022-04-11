@@ -1,4 +1,4 @@
-package com.masuwes.moviecatalogue.utils.ui
+package com.masuwes.moviecatalogue.utils.base
 
 import android.os.Bundle
 import android.view.LayoutInflater

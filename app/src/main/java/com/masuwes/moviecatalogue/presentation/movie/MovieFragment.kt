@@ -8,7 +8,7 @@ import com.masuwes.core.domain.model.Movie
 import com.masuwes.core.utils.Constants
 import com.masuwes.moviecatalogue.databinding.FragmentMovieBinding
 import com.masuwes.moviecatalogue.presentation.detail.movie.DetailMovieActivity
-import com.masuwes.moviecatalogue.utils.ui.BaseFragment
+import com.masuwes.moviecatalogue.utils.base.BaseFragment
 import com.masuwes.moviecatalogue.utils.ui.LoadMoreItemView
 import com.masuwes.moviecatalogue.utils.ui.PaginationScrollListener
 import com.masuwes.moviecatalogue.utils.ui.observeLiveData

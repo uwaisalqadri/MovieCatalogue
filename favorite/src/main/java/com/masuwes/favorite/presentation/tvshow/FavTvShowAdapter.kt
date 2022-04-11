@@ -1,4 +1,4 @@
-package com.masuwes.moviecatalogue.utils.ui
+package com.masuwes.favorite.presentation.tvshow
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -9,8 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.masuwes.core.databinding.ItemRvBinding
 import com.masuwes.core.domain.model.DetailTvShow
 import com.masuwes.core.utils.Constants
-import com.masuwes.core.utils.formatDate
-import com.masuwes.core.utils.loadImage
+import com.masuwes.moviecatalogue.utils.ui.formatDate
+import com.masuwes.moviecatalogue.utils.ui.loadImage
 
 class FavTvShowAdapter(
         private val context: Context,

@@ -5,8 +5,8 @@ import com.masuwes.core.R
 import com.masuwes.core.databinding.ItemRvBinding
 import com.masuwes.core.domain.model.TvShow
 import com.masuwes.core.utils.Constants
-import com.masuwes.core.utils.formatDate
-import com.masuwes.core.utils.loadImage
+import com.masuwes.moviecatalogue.utils.ui.formatDate
+import com.masuwes.moviecatalogue.utils.ui.loadImage
 import com.xwray.groupie.viewbinding.BindableItem
 
 class TvShowListItem(

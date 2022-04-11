@@ -5,11 +5,10 @@ import android.content.Intent
 import androidx.core.view.isVisible
 import com.masuwes.core.domain.model.DetailTvShow
 import com.masuwes.core.utils.Constants
-import com.masuwes.core.utils.formatDate
 import com.masuwes.moviecatalogue.databinding.ActivityDetailTvShowBinding
 import com.masuwes.moviecatalogue.databinding.IncludeInfoBinding
 import com.masuwes.moviecatalogue.databinding.IncludeOverviewBinding
-import com.masuwes.moviecatalogue.presentation.detail.movie.DetailMovieActivity
+import com.masuwes.moviecatalogue.utils.base.BaseActivity
 import com.masuwes.moviecatalogue.utils.ui.*
 import org.koin.android.ext.android.inject
 import timber.log.Timber

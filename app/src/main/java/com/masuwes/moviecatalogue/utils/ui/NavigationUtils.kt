@@ -6,7 +6,7 @@ import timber.log.Timber
 
 fun startSearchActivity(context: Context) {
     try {
-        val starter = Intent(context, Class.forName("com.masuwes.search.ui.SearchActivity"))
+        val starter = Intent(context, Class.forName("com.masuwes.search.presentation.SearchActivity"))
         context.startActivity(starter)
     } catch (e: Exception) {
         Timber.e("Activity Not Found")
@@ -15,7 +15,7 @@ fun startSearchActivity(context: Context) {
 
 fun startFavoriteActivity(context: Context) {
     try {
-        val starter = Intent(context, Class.forName("com.masuwes.favorite.ui.FavoriteActivity"))
+        val starter = Intent(context, Class.forName("com.masuwes.favorite.presentation.FavoriteActivity"))
         context.startActivity(starter)
     } catch (e: Exception) {
         Timber.e("Activity Not Found")

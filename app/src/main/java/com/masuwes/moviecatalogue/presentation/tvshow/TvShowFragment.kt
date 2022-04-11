@@ -8,6 +8,7 @@ import com.masuwes.core.domain.model.TvShow
 import com.masuwes.core.utils.Constants
 import com.masuwes.moviecatalogue.databinding.FragmentTvShowBinding
 import com.masuwes.moviecatalogue.presentation.detail.tvshow.DetailTvShowActivity
+import com.masuwes.moviecatalogue.utils.base.BaseFragment
 import com.masuwes.moviecatalogue.utils.ui.*
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder

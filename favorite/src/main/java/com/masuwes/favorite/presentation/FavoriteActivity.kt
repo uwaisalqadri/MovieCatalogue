@@ -3,7 +3,7 @@ package com.masuwes.favorite.presentation
 import com.masuwes.favorite.R
 import com.masuwes.favorite.databinding.ActivityFavoriteBinding
 import com.masuwes.favorite.di.favoriteViewModelModule
-import com.masuwes.moviecatalogue.utils.ui.BaseActivity
+import com.masuwes.moviecatalogue.utils.base.BaseActivity
 import org.koin.core.context.loadKoinModules
 
 class FavoriteActivity: BaseActivity<ActivityFavoriteBinding>() {

@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.masuwes.core.databinding.ItemRecentSearchBinding
 import com.masuwes.core.domain.model.Search
 import com.masuwes.core.utils.Constants
-import com.masuwes.core.utils.loadImage
+import com.masuwes.moviecatalogue.utils.ui.loadImage
 
 class SearchHistoryAdapter(
     private val onItemClick: ((Search) -> Unit)?

@@ -7,7 +7,7 @@ import com.masuwes.core.domain.model.Search
 import com.masuwes.core.utils.Constants
 import com.masuwes.moviecatalogue.presentation.detail.movie.DetailMovieActivity
 import com.masuwes.moviecatalogue.presentation.detail.tvshow.DetailTvShowActivity
-import com.masuwes.moviecatalogue.utils.ui.BaseActivity
+import com.masuwes.moviecatalogue.utils.base.BaseActivity
 import com.masuwes.moviecatalogue.utils.ui.LoadMoreItemView
 import com.masuwes.moviecatalogue.utils.ui.observeLiveData
 import com.masuwes.moviecatalogue.utils.ui.searchListener
