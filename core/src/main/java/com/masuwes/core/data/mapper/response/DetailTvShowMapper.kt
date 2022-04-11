@@ -4,6 +4,10 @@ import com.masuwes.core.data.model.entity.detail.DetailTvShowEntity
 import com.masuwes.core.data.model.response.detail.DetailTvShowItem
 import com.masuwes.core.domain.model.DetailTvShow
 
+fun List<DetailTvShowEntity>.map(): List<DetailTvShow> {
+    return map { it.map() }
+}
+
 fun DetailTvShowItem.map(): DetailTvShow {
     return DetailTvShow(
         backdrop_path = backdrop_path.orEmpty(),

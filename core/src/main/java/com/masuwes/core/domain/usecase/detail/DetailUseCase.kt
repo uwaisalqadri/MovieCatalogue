@@ -9,17 +9,17 @@ interface DetailUseCase {
 
     suspend fun getDetailMovie(movieId: Int) : Flow<DetailMovie>
 
-//    fun getFavoriteMovieById(idMovie: Int): Flow<List<DetailMovie>>
-//
-//    fun insertFavoriteMovie(movies: DetailMovie)
-//
-//    fun deleteFavoriteMovie(idMovie: Int)
+    fun getFavoriteMovieById(movieId: Int): Flow<List<DetailMovie>>
+
+    suspend fun insertFavoriteMovie(movie: DetailMovie)
+
+    suspend fun deleteFavoriteMovie(movieId: Int)
 
     suspend fun getDetailTvShow(tvId: Int): Flow<DetailTvShow>
 
-//    fun getFavoriteTvById(idTv: Int): Flow<List<DetailTvShow>>
-//
-//    fun insertFavoriteTv(tvShow: DetailTvShow)
-//
-//    fun deleteFavoriteTv(idTv: Int)
+    fun getFavoriteTvById(tvId: Int): Flow<List<DetailTvShow>>
+
+    suspend fun insertFavoriteTv(tvShow: DetailTvShow)
+
+    suspend fun deleteFavoriteTv(tvId: Int)
 }

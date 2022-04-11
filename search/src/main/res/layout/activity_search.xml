@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.SearchActivity">
+    tools:context=".presentation.SearchActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -61,21 +61,21 @@
         </androidx.cardview.widget.CardView>
 
         <ImageView
-            android:id="@+id/delete_recent"
+            android:id="@+id/imgDeleteRecent"
             android:layout_width="25dp"
             android:layout_height="25dp"
             android:elevation="10dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:src="@drawable/ic_baseline_cancel"
             android:visibility="gone"
-            app:layout_constraintBottom_toBottomOf="@+id/recent"
-            app:layout_constraintEnd_toEndOf="@+id/recent"
-            app:layout_constraintTop_toTopOf="@+id/recent"
+            app:layout_constraintBottom_toBottomOf="@+id/tvRecent"
+            app:layout_constraintEnd_toEndOf="@+id/tvRecent"
+            app:layout_constraintTop_toTopOf="@+id/tvRecent"
             app:tint="?android:attr/textColorSecondary"
             android:contentDescription="@string/app_name" />
 
         <TextView
-            android:id="@+id/recent"
+            android:id="@+id/tvRecent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/recent"
@@ -98,7 +98,7 @@
             android:visibility="gone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/recent" />
+            app:layout_constraintTop_toBottomOf="@+id/tvRecent" />
 
         <TextView
             android:id="@+id/result"

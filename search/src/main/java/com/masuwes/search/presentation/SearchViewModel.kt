@@ -17,8 +17,12 @@ class SearchViewModel(
     private val _searchResult = MutableLiveData<Result<List<Search>>>()
     val searchResult: LiveData<Result<List<Search>>> get() = _searchResult
 
+    private val _searchHistoryResult = MutableLiveData<Result<List<Search>>>()
+    val searchHistoryResult: LiveData<Result<List<Search>>> get() = _searchHistoryResult
+
     init {
         _searchResult.value = Result.default()
+        _searchHistoryResult.value = Result.default()
     }
 
     fun getSearch(query: String, page: Int) = viewModelScope.launch {
@@ -28,21 +32,21 @@ class SearchViewModel(
         }
     }
 
-    fun getSearchHistories() {
-
+    fun getSearchHistories() = viewModelScope.launch {
+        _searchHistoryResult.value = Result.loading()
+        collectFlow(_searchHistoryResult) {
+            searchUseCase.getSearchHistories()
+        }
     }
 
     fun insertHistory(search: Search) = viewModelScope.launch {
+        searchUseCase.insertHistory(search)
     }
 
-    fun deleteAllHistories() {
+    fun deleteAllHistories() = viewModelScope.launch {
+        searchUseCase.deleteAllHistories()
     }
 }
-
-
-sealed class SearchState
-data class SearchDataLoaded(val search: List<Search>) : SearchState()
-object DataNotFoundState : SearchState()
 
 
 

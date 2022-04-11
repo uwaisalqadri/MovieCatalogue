@@ -14,7 +14,7 @@ interface SearchHistoryDao {
     suspend fun insertHistory(search: SearchEntity)
 
     @Query("SELECT * FROM search_history ORDER BY id ASC")
-    fun getSearchHistories(): Flow<List<SearchEntity>>
+    fun getSearchHistories(): List<SearchEntity>
 
     @Query("DELETE FROM search_history")
     suspend fun deleteAllHistories()

@@ -64,14 +64,15 @@ class SearchActivity: BaseActivity<ActivitySearchBinding>() {
 
     override fun initProcess() {
         loadKoinModules(searchViewModelModule)
+        searchViewModel.getSearchHistories()
     }
 
     override fun initAction() {
         binding.apply {
-            deleteRecent.setOnClickListener {
+            imgDeleteRecent.setOnClickListener {
                 searchViewModel.deleteAllHistories()
-                recent.isVisible = false
-                deleteRecent.isVisible = false
+                tvRecent.isVisible = false
+                imgDeleteRecent.isVisible = false
                 rvSearchHistory.isVisible = false
             }
 
@@ -121,42 +122,39 @@ class SearchActivity: BaseActivity<ActivitySearchBinding>() {
                 setSearch(it)
             }
         )
+
+        searchViewModel.searchHistoryResult.observeLiveData(
+            owner = this,
+            context = this,
+            onSuccess = {
+                setSearchHistory(it)
+            }
+        )
     }
 
     private fun setSearch(search: List<Search>) {
-        if (search.isNullOrEmpty()) {
-            searchAdapter.clear()
-            binding.apply {
-                pgSearchResult.isVisible = false
-                emptySearch.isVisible = true
-                tvEmpty.isVisible = true
-            }
-        } else {
-            search.map { searchAdapter.add(SearchResultListItem(it, onShowDetail)) }
+        searchAdapter.clear()
+        search.map { searchAdapter.add(SearchResultListItem(it, onShowDetail)) }
 
-            binding.apply {
-                emptySearch.isVisible = false
-                tvEmpty.isVisible = false
-            }
+        binding.apply {
+            emptySearch.isVisible = search.isEmpty()
+            tvEmpty.isVisible = search.isEmpty()
+        }
+    }
+
+    private fun setSearchHistory(search: List<Search>) {
+        recentAdapter.differ.submitList(search.ifEmpty { emptyList() })
+
+        binding.apply {
+            tvRecent.isVisible = search.isNotEmpty()
+            imgDeleteRecent.isVisible = search.isNotEmpty()
+            rvSearchHistory.isVisible = search.isNotEmpty()
         }
     }
 
 //    private fun showRecentSearch() {
 //        searchViewModel.getSearchHistories.observe(this, { searchData ->
-//            if (searchData.isNotEmpty()) {
-//                recentAdapter.differ.submitList(searchData)
-//                binding.apply {
-//                    recent.isVisible = true
-//                    deleteRecent.isVisible = true
-//                    rvSearchHistory.isVisible = true
-//                }
-//            } else {
-//                binding.apply {
-//                    recent.isVisible = false
-//                    deleteRecent.isVisible = false
-//                    rvSearchHistory.isVisible = false
-//                }
-//            }
+//
 //        })
 //    }
 

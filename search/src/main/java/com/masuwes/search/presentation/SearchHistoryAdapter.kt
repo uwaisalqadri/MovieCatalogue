@@ -41,7 +41,7 @@ class SearchHistoryAdapter(
 
     override fun getItemCount(): Int = differ.currentList.size
 
-    inner class ViewHolder(val binding: ItemRecentSearchBinding) : RecyclerView.ViewHolder(binding.root) {
+    inner class ViewHolder(val binding: ItemRecentSearchBinding): RecyclerView.ViewHolder(binding.root) {
         fun bind(search: Search) {
             binding.apply {
                 when(search.mediaType) {
@@ -57,9 +57,4 @@ class SearchHistoryAdapter(
             }
         }
     }
-
-    interface OnItemClick {
-        fun onClick(item: Search)
-    }
-
 }

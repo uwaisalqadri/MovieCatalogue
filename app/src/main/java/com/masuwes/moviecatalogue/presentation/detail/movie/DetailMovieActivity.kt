@@ -71,6 +71,7 @@ class DetailMovieActivity: BaseActivity<ActivityDetailMovieBinding>() {
 
     override fun initProcess() {
         viewModel.getDetailMovie(movieId)
+        viewModel.getFavoriteMovieById(movieId)
     }
 
     override fun initObservers() {
@@ -83,6 +84,13 @@ class DetailMovieActivity: BaseActivity<ActivityDetailMovieBinding>() {
                 hideLoading()
                 setDetailMovie(it)
                 movieDetail = it
+            }
+        )
+
+        viewModel.favMovieResult.observeLiveData(owner = this,
+            context = this,
+            onSuccess = {
+
             }
         )
     }

@@ -4,6 +4,11 @@ import com.masuwes.core.data.model.entity.search.SearchEntity
 import com.masuwes.core.data.model.response.search.SearchItem
 import com.masuwes.core.domain.model.Search
 
+@JvmName("mapSearchEntity")
+fun List<SearchEntity>.map(): List<Search> {
+    return map { it.map() }
+}
+
 fun List<SearchItem>.map(): List<Search> {
     return map { it.map() }
 }

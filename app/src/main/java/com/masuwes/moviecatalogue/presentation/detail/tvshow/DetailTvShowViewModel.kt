@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.masuwes.core.domain.model.DetailMovie
 import com.masuwes.core.domain.model.DetailTvShow
 import com.masuwes.core.domain.usecase.detail.DetailUseCase
 import com.masuwes.moviecatalogue.utils.ui.Result
@@ -17,8 +18,12 @@ class DetailTvShowViewModel(
     private val _detailTvShowResult = MutableLiveData<Result<DetailTvShow>>()
     val detailTvShowResult: LiveData<Result<DetailTvShow>> get() = _detailTvShowResult
 
+    private val _favTvShowResult = MutableLiveData<Result<List<DetailTvShow>>>()
+    val favTvShowResult: LiveData<Result<List<DetailTvShow>>> get() = _favTvShowResult
+
     init {
         _detailTvShowResult.value = Result.default()
+        _favTvShowResult.value = Result.default()
     }
 
     fun saveFavTVShow(tvShow: DetailTvShow) = viewModelScope.launch {
@@ -31,7 +36,11 @@ class DetailTvShowViewModel(
 //        detailTvShowState.value = RemoveTVShowFav
     }
 
-    fun checkFavTVShow(id: Int) {
+    fun getFavoriteTvById(tvId: Int) = viewModelScope.launch {
+        _favTvShowResult.value = Result.loading()
+        collectFlow(_favTvShowResult) {
+            detailUseCase.getFavoriteTvById(tvId)
+        }
     }
 
     fun getDetailTvShow(tvShowId: Int) = viewModelScope.launch {

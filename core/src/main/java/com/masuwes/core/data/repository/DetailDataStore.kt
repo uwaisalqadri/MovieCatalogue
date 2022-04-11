@@ -1,5 +1,7 @@
 package com.masuwes.core.data.repository
 
+import com.masuwes.core.data.model.entity.detail.DetailMovieEntity
+import com.masuwes.core.data.model.entity.detail.DetailTvShowEntity
 import com.masuwes.core.data.model.response.detail.DetailMovieItem
 import com.masuwes.core.data.model.response.detail.DetailTvShowItem
 import com.masuwes.core.data.source.local.MoviesDao
@@ -20,30 +22,32 @@ class DetailDataStore(
         return apiService.getMovieDetail(movieId = movieId)
     }
 
-    override fun getFavoriteMovieById(idMovie: Int): List<DetailMovieItem> {
-        return emptyList()
+    override fun getFavoriteMovieById(movieId: Int): List<DetailMovieEntity> {
+        return moviesDao.getFavoriteMovieById(movieId)
     }
 
-    override suspend fun insertFavoriteMovie(movies: DetailMovieItem) {
-
+    override suspend fun insertFavoriteMovie(movie: DetailMovieEntity) {
+        moviesDao.insertFavoriteMovie(movie)
     }
 
-    override suspend fun deleteFavoriteMovie(idMovie: Int) {
-
+    override suspend fun deleteFavoriteMovie(movieId: Int) {
+        moviesDao.deleteFavoriteMovie(movieId)
     }
 
     override suspend fun getDetailTvShow(tvId: Int): DetailTvShowItem {
         return apiService.getTvShowDetail(tvId = tvId)
     }
 
-    override fun getFavoriteTvById(idTv: Int): List<DetailTvShowItem> {
-        return emptyList()
+    override fun getFavoriteTvById(tvId: Int): List<DetailTvShowEntity> {
+        return tvShowsDao.getFavoriteTvById(tvId)
     }
 
-    override suspend fun insertFavoriteTv(tvShow: DetailTvShowItem) {
+    override suspend fun insertFavoriteTv(tvShow: DetailTvShowEntity) {
+        tvShowsDao.insertFavoriteTv(tvShow)
     }
 
-    override suspend fun deleteFavoriteTv(idTv: Int) {
+    override suspend fun deleteFavoriteTv(tvId: Int) {
+        tvShowsDao.deleteFavoriteTv(tvId)
     }
 
 }

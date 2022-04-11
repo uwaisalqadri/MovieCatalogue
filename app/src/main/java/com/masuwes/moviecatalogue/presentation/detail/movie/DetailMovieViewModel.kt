@@ -18,8 +18,12 @@ class DetailMovieViewModel(
     private val _detailMovieResult = MutableLiveData<Result<DetailMovie>>()
     val detailMovieResult: LiveData<Result<DetailMovie>> get() = _detailMovieResult
 
+    private val _favMovieResult = MutableLiveData<Result<List<DetailMovie>>>()
+    val favMovieResult: LiveData<Result<List<DetailMovie>>> get() = _favMovieResult
+
     init {
         _detailMovieResult.value = Result.default()
+        _favMovieResult.value = Result.default()
     }
 
     fun saveFavMovie(movie: DetailMovie) = viewModelScope.launch {
@@ -32,8 +36,11 @@ class DetailMovieViewModel(
 //        detailMovieState.value = RemoveMovieFav
     }
 
-    fun checkFavMovie(id: Int) {
-
+    fun getFavoriteMovieById(movieId: Int) = viewModelScope.launch {
+        _favMovieResult.value = Result.loading()
+        collectFlow(_favMovieResult) {
+            detailUseCase.getFavoriteMovieById(movieId)
+        }
     }
 
     fun getDetailMovie(movieId: Int) = viewModelScope.launch {

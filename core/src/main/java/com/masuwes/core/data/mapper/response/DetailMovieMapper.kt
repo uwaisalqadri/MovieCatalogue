@@ -4,6 +4,10 @@ import com.masuwes.core.data.model.entity.detail.DetailMovieEntity
 import com.masuwes.core.data.model.response.detail.DetailMovieItem
 import com.masuwes.core.domain.model.DetailMovie
 
+fun List<DetailMovieEntity>.map(): List<DetailMovie> {
+    return map { it.map() }
+}
+
 fun DetailMovieItem.map(): DetailMovie {
     return DetailMovie(
         adult = adult ?: false,
