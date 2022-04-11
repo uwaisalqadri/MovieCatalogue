@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface DetailUseCase {
 
-    fun getDetailMovie(movieId: Int) : Flow<DetailMovie>
+    suspend fun getDetailMovie(movieId: Int) : Flow<DetailMovie>
 
 //    fun getFavoriteMovieById(idMovie: Int): Flow<List<DetailMovie>>
 //
@@ -15,7 +15,7 @@ interface DetailUseCase {
 //
 //    fun deleteFavoriteMovie(idMovie: Int)
 
-    fun getDetailTvShow(tvId: Int): Flow<DetailTvShow>
+    suspend fun getDetailTvShow(tvId: Int): Flow<DetailTvShow>
 
 //    fun getFavoriteTvById(idTv: Int): Flow<List<DetailTvShow>>
 //

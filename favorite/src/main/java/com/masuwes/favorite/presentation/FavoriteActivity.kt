@@ -1,20 +1,17 @@
 package com.masuwes.favorite.presentation
 
-import androidx.appcompat.app.AppCompatActivity
-import android.os.Bundle
-import by.kirich1409.viewbindingdelegate.viewBinding
 import com.masuwes.favorite.R
 import com.masuwes.favorite.databinding.ActivityFavoriteBinding
 import com.masuwes.favorite.di.favoriteViewModelModule
+import com.masuwes.moviecatalogue.utils.ui.BaseActivity
 import org.koin.core.context.loadKoinModules
 
-class FavoriteActivity : AppCompatActivity(R.layout.activity_favorite) {
+class FavoriteActivity: BaseActivity<ActivityFavoriteBinding>() {
 
-    private val binding: ActivityFavoriteBinding by viewBinding()
+    override fun getViewBinding(): ActivityFavoriteBinding =
+        ActivityFavoriteBinding.inflate(layoutInflater)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        loadKoinModules(favoriteViewModelModule) // koin
+    override fun initUI() {
         supportActionBar?.apply {
             title = getString(R.string.favorite)
             setDisplayHomeAsUpEnabled(true)
@@ -24,6 +21,10 @@ class FavoriteActivity : AppCompatActivity(R.layout.activity_favorite) {
             viewPagerFavorite.adapter = FavoritePagerAdapter(this@FavoriteActivity, supportFragmentManager)
             tabLayout.setupWithViewPager(viewPagerFavorite)
         }
+    }
+
+    override fun initProcess() {
+        loadKoinModules(favoriteViewModelModule)
     }
 
     override fun onSupportNavigateUp(): Boolean {

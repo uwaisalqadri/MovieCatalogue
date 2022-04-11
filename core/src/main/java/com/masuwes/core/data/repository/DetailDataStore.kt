@@ -16,25 +16,23 @@ class DetailDataStore(
     private val executor: Executor,
 ) : DetailRepository {
 
-    override fun getDetailMovie(movieId: Int): DetailMovieItem {
-        val test = apiService.getMovieDetail(movieId = movieId)
-        Timber.d("$test anjay tailah")
-        return test
+    override suspend fun getDetailMovie(movieId: Int): DetailMovieItem {
+        return apiService.getMovieDetail(movieId = movieId)
     }
 
     override fun getFavoriteMovieById(idMovie: Int): List<DetailMovieItem> {
         return emptyList()
     }
 
-    override fun insertFavoriteMovie(movies: DetailMovieItem) {
+    override suspend fun insertFavoriteMovie(movies: DetailMovieItem) {
 
     }
 
-    override fun deleteFavoriteMovie(idMovie: Int) {
+    override suspend fun deleteFavoriteMovie(idMovie: Int) {
 
     }
 
-    override fun getDetailTvShow(tvId: Int): DetailTvShowItem {
+    override suspend fun getDetailTvShow(tvId: Int): DetailTvShowItem {
         return apiService.getTvShowDetail(tvId = tvId)
     }
 
@@ -42,10 +40,10 @@ class DetailDataStore(
         return emptyList()
     }
 
-    override fun insertFavoriteTv(tvShow: DetailTvShowItem) {
+    override suspend fun insertFavoriteTv(tvShow: DetailTvShowItem) {
     }
 
-    override fun deleteFavoriteTv(idTv: Int) {
+    override suspend fun deleteFavoriteTv(idTv: Int) {
     }
 
 }

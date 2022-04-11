@@ -8,7 +8,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.masuwes.moviecatalogue.R
 import com.masuwes.moviecatalogue.databinding.ActivitySplashScreenBinding
 
-class SplashScreenActivity : AppCompatActivity(R.layout.activity_splash_screen) {
+class SplashScreenActivity: AppCompatActivity(R.layout.activity_splash_screen) {
 
     private val handler = Handler(Looper.getMainLooper())
     private val binding: ActivitySplashScreenBinding by viewBinding()

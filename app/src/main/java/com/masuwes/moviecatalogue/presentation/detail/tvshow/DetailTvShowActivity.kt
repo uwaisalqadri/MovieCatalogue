@@ -65,12 +65,9 @@ class DetailTvShowActivity: BaseActivity<ActivityDetailTvShowBinding>() {
     }
 
     override fun initAction() {
-        binding.fabDetailTvshow.setOnClickListener {
-            when(isFavorite) {
-                true -> tvShowDetail?.id?.let { viewModel.removeFavTVShow(it) }
-                false -> tvShowDetail?.let { viewModel.saveFavTVShow(it) }
-                else -> tvShowDetail?.let { viewModel.saveFavTVShow(it) }
-            }
+        binding.fabDetailTvshow.setOnClickListener { view ->
+            if (isFavorite) viewModel.removeFavTVShow(tvShowDetail?.id ?: 0)
+            else tvShowDetail?.let { viewModel.saveFavTVShow(it) }
         }
     }
 

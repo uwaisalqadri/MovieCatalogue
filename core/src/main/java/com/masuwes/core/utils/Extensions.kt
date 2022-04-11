@@ -1,8 +1,10 @@
 package com.masuwes.core.utils
 
 import android.os.Build
+import android.view.MenuItem
 import android.widget.ImageView
 import com.bumptech.glide.Glide
+import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.masuwes.core.R
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -22,5 +24,12 @@ fun String.formatDate() : String {
         currentDate.format(DateTimeFormatter.ofPattern(Constants.FORMATTED_DATE))
     } else {
         if (this.isEmpty()) "Unknown Date" else this
+    }
+}
+
+fun BottomNavigationView.onItemSelected(onItemSelectedListener: (item: MenuItem) -> Unit) {
+    this.setOnNavigationItemSelectedListener {
+        onItemSelectedListener.invoke(it)
+        return@setOnNavigationItemSelectedListener true
     }
 }

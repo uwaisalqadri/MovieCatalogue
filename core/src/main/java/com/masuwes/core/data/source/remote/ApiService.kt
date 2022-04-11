@@ -26,19 +26,19 @@ interface ApiService {
     ): TvShowResponse
 
     @GET("search/multi")
-    fun getSearch(
+    suspend fun getSearch(
         @Query("query") query: String,
         @Query("page") page: Int
     ): SearchResponse
 
     // detail
     @GET("movie/{movie_id}")
-    fun getMovieDetail(
+    suspend fun getMovieDetail(
         @Path("movie_id") movieId: Int
     ): DetailMovieItem
 
     @GET("tv/{tv_id}")
-    fun getTvShowDetail(
+    suspend fun getTvShowDetail(
         @Path("tv_id") tvId: Int
     ): DetailTvShowItem
 }

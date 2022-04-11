@@ -9,16 +9,14 @@ import io.reactivex.Single
 import kotlinx.coroutines.flow.Flow
 import timber.log.Timber
 
-class DetailInteractor(private val detailRepository: DetailRepository) : DetailUseCase {
-    override fun getDetailMovie(movieId: Int): Flow<DetailMovie> {
+class DetailInteractor(private val detailRepository: DetailRepository): DetailUseCase {
+    override suspend fun getDetailMovie(movieId: Int): Flow<DetailMovie> {
         return execute {
-            val response = detailRepository.getDetailMovie(movieId).map()
-            Timber.d("$response anjay tailah")
-            response
+            detailRepository.getDetailMovie(movieId).map()
         }
     }
 
-    override fun getDetailTvShow(tvId: Int): Flow<DetailTvShow> {
+    override suspend fun getDetailTvShow(tvId: Int): Flow<DetailTvShow> {
         return execute {
             detailRepository.getDetailTvShow(tvId).map()
         }

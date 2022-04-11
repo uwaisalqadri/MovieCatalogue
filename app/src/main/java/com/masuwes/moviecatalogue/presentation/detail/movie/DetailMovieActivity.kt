@@ -63,23 +63,18 @@ class DetailMovieActivity: BaseActivity<ActivityDetailMovieBinding>() {
     }
 
     override fun initAction() {
-        binding.fabDetailMovie.setOnClickListener {
-            when(isFavorite) {
-                true -> movieDetail?.id?.let { viewModel.removeFavMovie(it) }
-                false -> movieDetail?.let { viewModel.saveFavMovie(it) }
-                else -> movieDetail?.let { viewModel.saveFavMovie(it) }
-            }
+        binding.fabDetailMovie.setOnClickListener { view ->
+            if (isFavorite) viewModel.removeFavMovie(movieDetail?.id ?: 0)
+            else movieDetail?.let { viewModel.saveFavMovie(it) }
         }
     }
 
     override fun initProcess() {
         viewModel.getDetailMovie(movieId)
-        Timber.d("anjay tailah")
     }
 
     override fun initObservers() {
-        viewModel.detailMovieResult.observeLiveData(
-            owner = this,
+        viewModel.detailMovieResult.observeLiveData(owner = this,
             context = this,
             onLoading = {
                 showLoading()
@@ -87,7 +82,6 @@ class DetailMovieActivity: BaseActivity<ActivityDetailMovieBinding>() {
             onSuccess = {
                 hideLoading()
                 setDetailMovie(it)
-                Timber.d(it.toString())
                 movieDetail = it
             }
         )

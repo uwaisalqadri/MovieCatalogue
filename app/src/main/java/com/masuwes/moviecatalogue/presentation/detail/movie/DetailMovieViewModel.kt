@@ -41,7 +41,6 @@ class DetailMovieViewModel(
         collectFlow(_detailMovieResult) {
             detailUseCase.getDetailMovie(movieId)
         }
-        Timber.d("anjay tailah")
     }
 }
 
