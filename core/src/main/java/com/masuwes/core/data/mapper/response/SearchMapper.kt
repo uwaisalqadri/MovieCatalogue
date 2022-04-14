@@ -1,7 +1,7 @@
 package com.masuwes.core.data.mapper.response
 
-import com.masuwes.core.data.model.entity.search.SearchEntity
-import com.masuwes.core.data.model.response.search.SearchItem
+import com.masuwes.core.data.model.search.entity.SearchEntity
+import com.masuwes.core.data.model.search.response.SearchItem
 import com.masuwes.core.domain.model.Search
 
 @JvmName("mapSearchEntity")

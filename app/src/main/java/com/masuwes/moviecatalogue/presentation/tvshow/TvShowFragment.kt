@@ -32,7 +32,6 @@ class TvShowFragment: BaseFragment<FragmentTvShowBinding>() {
     ): FragmentTvShowBinding = FragmentTvShowBinding.inflate(layoutInflater)
 
     override fun initUI() {
-
         val staggeredLayout = StaggeredGridLayoutManager(Constants.SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL)
 
         binding.apply {
@@ -68,7 +67,8 @@ class TvShowFragment: BaseFragment<FragmentTvShowBinding>() {
     }
 
     override fun initObservers() {
-        viewModel.tvShowsResult.observeLiveData(owner = viewLifecycleOwner,
+        viewModel.tvShowsResult.observeData(
+            owner = viewLifecycleOwner,
             context = requireContext(),
             onLoading = {
                 showLoading()
@@ -76,11 +76,15 @@ class TvShowFragment: BaseFragment<FragmentTvShowBinding>() {
             onSuccess = {
                 hideLoading()
                 setTvShows(it)
+            },
+            onFailure = {
+                hideLoading()
             }
         )
     }
 
     private fun setTvShows(tvShows: List<TvShow>) {
+        tvShowAdapter.clear()
         tvShows.map {
             tvShowAdapter.add(TvShowListItem(it, onShowDetail))
         }
@@ -142,24 +146,3 @@ class TvShowFragment: BaseFragment<FragmentTvShowBinding>() {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

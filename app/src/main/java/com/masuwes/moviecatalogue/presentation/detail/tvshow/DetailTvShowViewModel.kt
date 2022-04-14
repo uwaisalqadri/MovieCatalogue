@@ -4,9 +4,9 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.masuwes.core.domain.model.DetailMovie
 import com.masuwes.core.domain.model.DetailTvShow
 import com.masuwes.core.domain.usecase.detail.DetailUseCase
+import com.masuwes.moviecatalogue.utils.ui.FavoriteState
 import com.masuwes.moviecatalogue.utils.ui.Result
 import com.masuwes.moviecatalogue.utils.ui.collectFlow
 import kotlinx.coroutines.launch
@@ -21,25 +21,27 @@ class DetailTvShowViewModel(
     private val _favTvShowResult = MutableLiveData<Result<List<DetailTvShow>>>()
     val favTvShowResult: LiveData<Result<List<DetailTvShow>>> get() = _favTvShowResult
 
+    private val _favoriteState = MutableLiveData<FavoriteState>()
+    val favoriteState: LiveData<FavoriteState> = _favoriteState
+
     init {
         _detailTvShowResult.value = Result.default()
         _favTvShowResult.value = Result.default()
     }
 
     fun saveFavTVShow(tvShow: DetailTvShow) = viewModelScope.launch {
-//        detailUseCase.insertFavoriteTv(tvShow)
-//        detailTvShowState.value = FavTVShowSave
+        detailUseCase.insertFavoriteTv(tvShow)
+        _favoriteState.value = FavoriteState.AddFavorite
     }
 
-    fun removeFavTVShow(idShow: Int) {
-//        detailUseCase.deleteFavoriteTv(idShow)
-//        detailTvShowState.value = RemoveTVShowFav
+    fun removeFavTVShow(tvShowId: Int) = viewModelScope.launch {
+        detailUseCase.deleteFavoriteTv(tvShowId)
+        _favoriteState.value = FavoriteState.RemoveFavorite
     }
 
     fun getFavoriteTvById(tvId: Int) = viewModelScope.launch {
-        _favTvShowResult.value = Result.loading()
-        collectFlow(_favTvShowResult) {
-            detailUseCase.getFavoriteTvById(tvId)
+        detailUseCase.getFavoriteTvById(tvId).collect { result ->
+            result.map { _favoriteState.value = FavoriteState.FavoriteFound(it.id == tvId) }
         }
     }
 
@@ -50,26 +52,3 @@ class DetailTvShowViewModel(
         }
     }
 }
-
-
-sealed class DetailTvShowState
-data class DetailTvShowLoaded(val detailTvShow: DetailTvShow) : DetailTvShowState()
-data class FavTVShowDataFound(val detailTvShow: List<DetailTvShow>) : DetailTvShowState()
-object DataNotFoundState : DetailTvShowState()
-object FavTVShowSave : DetailTvShowState()
-object RemoveTVShowFav : DetailTvShowState()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

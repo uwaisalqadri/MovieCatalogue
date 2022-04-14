@@ -1,4 +1,4 @@
-package com.masuwes.core.data.model.response.search
+package com.masuwes.core.data.model.search.response
 
 data class SearchItem(
    val id: Int,

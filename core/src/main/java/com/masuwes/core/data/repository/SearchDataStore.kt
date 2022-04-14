@@ -1,7 +1,7 @@
 package com.masuwes.core.data.repository
 
-import com.masuwes.core.data.model.entity.search.SearchEntity
-import com.masuwes.core.data.model.response.search.SearchItem
+import com.masuwes.core.data.model.search.entity.SearchEntity
+import com.masuwes.core.data.model.search.response.SearchItem
 import com.masuwes.core.data.source.local.SearchHistoryDao
 import com.masuwes.core.data.source.remote.ApiService
 import com.masuwes.core.domain.repository.SearchRepository
@@ -9,12 +9,11 @@ import java.util.concurrent.Executor
 
 class SearchDataStore(
     private val apiService: ApiService,
-    private val searchHistoryDao: SearchHistoryDao,
-    private val executor: Executor
+    private val searchHistoryDao: SearchHistoryDao
 ): SearchRepository {
 
     override suspend fun getSearch(query: String, page: Int): List<SearchItem> {
-        return apiService.getSearch(query, page).results
+        return apiService.getSearch(query, page).data
     }
 
     override suspend fun getSearchHistories(): List<SearchEntity> {

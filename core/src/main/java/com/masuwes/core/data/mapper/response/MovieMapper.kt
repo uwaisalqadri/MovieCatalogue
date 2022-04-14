@@ -1,6 +1,6 @@
 package com.masuwes.core.data.mapper.response
 
-import com.masuwes.core.data.model.response.movie.MovieItem
+import com.masuwes.core.data.model.movie.MovieItem
 import com.masuwes.core.domain.model.Movie
 
 fun List<MovieItem>.map(): List<Movie> {

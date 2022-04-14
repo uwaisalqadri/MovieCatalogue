@@ -1,4 +1,4 @@
-package com.masuwes.core.data.model.entity.detail
+package com.masuwes.core.data.model.detail.entity
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

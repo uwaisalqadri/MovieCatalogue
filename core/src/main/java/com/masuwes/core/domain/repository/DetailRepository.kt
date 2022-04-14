@@ -1,14 +1,14 @@
 package com.masuwes.core.domain.repository
 
-import com.masuwes.core.data.model.entity.detail.DetailMovieEntity
-import com.masuwes.core.data.model.entity.detail.DetailTvShowEntity
-import com.masuwes.core.data.model.response.detail.DetailMovieItem
-import com.masuwes.core.data.model.response.detail.DetailTvShowItem
+import com.masuwes.core.data.model.detail.entity.DetailMovieEntity
+import com.masuwes.core.data.model.detail.entity.DetailTvShowEntity
+import com.masuwes.core.data.model.detail.response.DetailMovieItem
+import com.masuwes.core.data.model.detail.response.DetailTvShowItem
 
 interface DetailRepository {
     suspend fun getDetailMovie(movieId: Int): DetailMovieItem
 
-    fun getFavoriteMovieById(movieId: Int): List<DetailMovieEntity>
+    suspend fun getFavoriteMovieById(movieId: Int): List<DetailMovieEntity>
 
     suspend fun insertFavoriteMovie(movie: DetailMovieEntity)
 
@@ -16,7 +16,7 @@ interface DetailRepository {
 
     suspend fun getDetailTvShow(tvId: Int): DetailTvShowItem
 
-    fun getFavoriteTvById(tvId: Int): List<DetailTvShowEntity>
+    suspend fun getFavoriteTvById(tvId: Int): List<DetailTvShowEntity>
 
     suspend fun insertFavoriteTv(tvShow: DetailTvShowEntity)
 

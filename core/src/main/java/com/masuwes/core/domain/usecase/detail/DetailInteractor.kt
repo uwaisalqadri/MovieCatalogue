@@ -17,7 +17,7 @@ class DetailInteractor(private val detailRepository: DetailRepository): DetailUs
         }
     }
 
-    override fun getFavoriteMovieById(movieId: Int): Flow<List<DetailMovie>> {
+    override suspend fun getFavoriteMovieById(movieId: Int): Flow<List<DetailMovie>> {
         return execute {
             detailRepository.getFavoriteMovieById(movieId).map()
         }
@@ -37,7 +37,7 @@ class DetailInteractor(private val detailRepository: DetailRepository): DetailUs
         }
     }
 
-    override fun getFavoriteTvById(tvId: Int): Flow<List<DetailTvShow>> {
+    override suspend fun getFavoriteTvById(tvId: Int): Flow<List<DetailTvShow>> {
         return execute {
             detailRepository.getFavoriteTvById(tvId).map()
         }

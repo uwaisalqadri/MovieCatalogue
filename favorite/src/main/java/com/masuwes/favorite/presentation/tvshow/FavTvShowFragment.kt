@@ -1,60 +1,34 @@
 package com.masuwes.favorite.presentation.tvshow
 
-import android.content.Intent
-import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import androidx.fragment.app.Fragment
+import androidx.core.view.isVisible
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.masuwes.core.domain.model.DetailTvShow
 import com.masuwes.core.utils.Constants
 import com.masuwes.favorite.databinding.FragmentFavTvshowBinding
 import com.masuwes.moviecatalogue.presentation.detail.tvshow.DetailTvShowActivity
+import com.masuwes.moviecatalogue.utils.base.BaseFragment
+import com.masuwes.moviecatalogue.utils.ui.observeData
+import com.xwray.groupie.GroupAdapter
+import com.xwray.groupie.GroupieViewHolder
 import org.koin.android.ext.android.inject
 
-class FavTvShowFragment : Fragment() {
+class FavTvShowFragment: BaseFragment<FragmentFavTvshowBinding>() {
 
     private val viewModel: FavTvShowViewModel by inject()
-    private lateinit var binding: FragmentFavTvshowBinding
+    private val tvShowAdapter = GroupAdapter<GroupieViewHolder>()
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
+    private var onItemSelected: ((DetailTvShow) -> Unit)? = null
 
+    override fun getViewBinding(
+        layoutInflater: LayoutInflater,
+        container: ViewGroup?,
+        attachToRoot: Boolean
+    ): FragmentFavTvshowBinding = FragmentFavTvshowBinding.inflate(layoutInflater)
+
+    override fun initUI() {
         binding.apply {
-            val tvShowAdapter = context?.let {
-                FavTvShowAdapter(it, object : FavTvShowAdapter.OnItemClick {
-                    override fun onClick(item: DetailTvShow) {
-                        startActivity(
-                            Intent(context, DetailTvShowActivity::class.java)
-                                .putExtra(DetailTvShowActivity.SHOW_ID, item.id)
-                        )
-                    }
-
-                })
-            }
-
-//            viewModel.getTvShowPage.observe(viewLifecycleOwner, { response ->
-//                if (response != null) {
-//                    when(response.status) {
-//                        Status.LOADING -> {
-//                            progressCircularFavtvshow.isVisible = true
-//                        }
-//
-//                        Status.SUCCESS -> {
-//                            progressCircularFavtvshow.isVisible = false
-//                            tvShowAdapter?.submitList(response.data)
-//                            tvShowAdapter?.notifyDataSetChanged()
-//                        }
-//
-//                        Status.ERROR -> {
-//                            progressCircularFavtvshow.isVisible = false
-//                            context?.showToast(getString(R.string.error))
-//                        }
-//                    }
-//                }
-//            })
-
             rvFavTvshow.apply {
                 layoutManager = StaggeredGridLayoutManager(Constants.SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL)
                 adapter = tvShowAdapter
@@ -63,17 +37,51 @@ class FavTvShowFragment : Fragment() {
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View {
-        binding = FragmentFavTvshowBinding.inflate(inflater, container, false)
-        return binding.root
+    override fun initAction() {
+        onItemSelected = {
+            DetailTvShowActivity.start(requireContext(), it.id)
+        }
+    }
+
+    override fun initProcess() {
+        viewModel.getFavoriteTvShow()
+    }
+
+    override fun initObservers() {
+        viewModel.favoriteTvShows.observeData(
+            owner = viewLifecycleOwner,
+            context = requireContext(),
+            onLoading = {
+                showLoading()
+            },
+            onSuccess = {
+                hideLoading()
+                setFavorite(it)
+            },
+            onFailure = {
+                hideLoading()
+            }
+        )
+    }
+
+    private fun setFavorite(tvShows: List<DetailTvShow>) {
+        tvShowAdapter.clear()
+        tvShows.map {
+            tvShowAdapter.add(FavTvShowListItem(it, onItemSelected))
+        }
+    }
+
+    override fun showLoading() {
+       binding.progressCircularFavtvshow.isVisible = true
+    }
+
+    override fun hideLoading() {
+        binding.progressCircularFavtvshow.isVisible = false
     }
 
     override fun onResume() {
         super.onResume()
+        viewModel.getFavoriteTvShow()
         binding.apply {
             rvFavTvshow.setEmptyView(imageView, tvEmpty)
         }

@@ -1,28 +1,26 @@
 package com.masuwes.core.data.repository
 
-import com.masuwes.core.data.model.entity.detail.DetailMovieEntity
-import com.masuwes.core.data.model.entity.detail.DetailTvShowEntity
-import com.masuwes.core.data.model.response.detail.DetailMovieItem
-import com.masuwes.core.data.model.response.detail.DetailTvShowItem
+import com.masuwes.core.data.model.detail.entity.DetailMovieEntity
+import com.masuwes.core.data.model.detail.entity.DetailTvShowEntity
+import com.masuwes.core.data.model.detail.response.DetailMovieItem
+import com.masuwes.core.data.model.detail.response.DetailTvShowItem
 import com.masuwes.core.data.source.local.MoviesDao
 import com.masuwes.core.data.source.local.TvShowsDao
 import com.masuwes.core.data.source.remote.ApiService
 import com.masuwes.core.domain.repository.DetailRepository
-import timber.log.Timber
 import java.util.concurrent.Executor
 
 class DetailDataStore(
     private val apiService: ApiService,
     private val moviesDao: MoviesDao,
-    private val tvShowsDao: TvShowsDao,
-    private val executor: Executor,
+    private val tvShowsDao: TvShowsDao
 ) : DetailRepository {
 
     override suspend fun getDetailMovie(movieId: Int): DetailMovieItem {
         return apiService.getMovieDetail(movieId = movieId)
     }
 
-    override fun getFavoriteMovieById(movieId: Int): List<DetailMovieEntity> {
+    override suspend fun getFavoriteMovieById(movieId: Int): List<DetailMovieEntity> {
         return moviesDao.getFavoriteMovieById(movieId)
     }
 
@@ -38,7 +36,7 @@ class DetailDataStore(
         return apiService.getTvShowDetail(tvId = tvId)
     }
 
-    override fun getFavoriteTvById(tvId: Int): List<DetailTvShowEntity> {
+    override suspend fun getFavoriteTvById(tvId: Int): List<DetailTvShowEntity> {
         return tvShowsDao.getFavoriteTvById(tvId)
     }
 

@@ -1,8 +1,7 @@
 package com.masuwes.core.domain.repository
 
-import com.masuwes.core.data.model.entity.search.SearchEntity
-import com.masuwes.core.data.model.response.search.SearchItem
-import com.masuwes.core.data.model.response.search.SearchResponse
+import com.masuwes.core.data.model.search.entity.SearchEntity
+import com.masuwes.core.data.model.search.response.SearchItem
 
 interface SearchRepository {
 

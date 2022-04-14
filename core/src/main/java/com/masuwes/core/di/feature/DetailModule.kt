@@ -7,6 +7,6 @@ import com.masuwes.core.domain.usecase.detail.DetailUseCase
 import org.koin.dsl.module
 
 val detailModule = module {
-    single<DetailRepository> { DetailDataStore(get(), get(), get(), get()) }
+    single<DetailRepository> { DetailDataStore(get(), get(), get()) }
     single<DetailUseCase> { DetailInteractor(get()) }
 }

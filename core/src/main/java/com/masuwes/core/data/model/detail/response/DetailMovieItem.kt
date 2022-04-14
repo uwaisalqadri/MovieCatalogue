@@ -1,4 +1,4 @@
-package com.masuwes.core.data.model.response.detail
+package com.masuwes.core.data.model.detail.response
 
 data class DetailMovieItem(
    val id: Int?,

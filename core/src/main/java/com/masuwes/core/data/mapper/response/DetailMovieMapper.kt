@@ -1,7 +1,7 @@
 package com.masuwes.core.data.mapper.response
 
-import com.masuwes.core.data.model.entity.detail.DetailMovieEntity
-import com.masuwes.core.data.model.response.detail.DetailMovieItem
+import com.masuwes.core.data.model.detail.entity.DetailMovieEntity
+import com.masuwes.core.data.model.detail.response.DetailMovieItem
 import com.masuwes.core.domain.model.DetailMovie
 
 fun List<DetailMovieEntity>.map(): List<DetailMovie> {

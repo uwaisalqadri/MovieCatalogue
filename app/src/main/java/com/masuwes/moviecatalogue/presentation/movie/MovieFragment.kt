@@ -11,7 +11,8 @@ import com.masuwes.moviecatalogue.presentation.detail.movie.DetailMovieActivity
 import com.masuwes.moviecatalogue.utils.base.BaseFragment
 import com.masuwes.moviecatalogue.utils.ui.LoadMoreItemView
 import com.masuwes.moviecatalogue.utils.ui.PaginationScrollListener
-import com.masuwes.moviecatalogue.utils.ui.observeLiveData
+import com.masuwes.moviecatalogue.utils.ui.observeData
+import com.masuwes.moviecatalogue.utils.ui.showToast
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import org.koin.android.ext.android.inject
@@ -19,7 +20,7 @@ import org.koin.android.ext.android.inject
 class MovieFragment: BaseFragment<FragmentMovieBinding>() {
 
     private val viewModel: MovieViewModel by inject()
-    private val adapterMovie = GroupAdapter<GroupieViewHolder>()
+    private val movieAdapter = GroupAdapter<GroupieViewHolder>()
     private var page = 1
     private var isLoadMore = false
     private var isLastPages = false
@@ -38,7 +39,7 @@ class MovieFragment: BaseFragment<FragmentMovieBinding>() {
         binding.apply {
             rvMovie.apply {
                 layoutManager = staggeredLayout
-                adapter = adapterMovie
+                adapter = movieAdapter
             }
 
             rvMovie.addOnScrollListener(object : PaginationScrollListener(staggeredLayout) {
@@ -68,7 +69,8 @@ class MovieFragment: BaseFragment<FragmentMovieBinding>() {
     }
 
     override fun initObservers() {
-        viewModel.moviesResult.observeLiveData(owner = viewLifecycleOwner,
+        viewModel.moviesResult.observeData(
+            owner = viewLifecycleOwner,
             context = requireContext(),
             onLoading = {
                 showLoading()
@@ -77,12 +79,17 @@ class MovieFragment: BaseFragment<FragmentMovieBinding>() {
                 hideLoading()
                 setMovies(it)
             },
+            onFailure = {
+                hideLoading()
+                requireContext().showToast(it.statusMessage)
+            }
         )
     }
 
     private fun setMovies(movies: List<Movie>) {
+        movieAdapter.clear()
         movies.map {
-            adapterMovie.add(MovieListItem(it, onShowDetail))
+            movieAdapter.add(MovieListItem(it, onShowDetail))
         }
     }
 

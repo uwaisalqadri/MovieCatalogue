@@ -1,7 +1,7 @@
 package com.masuwes.core.data.mapper.response
 
-import com.masuwes.core.data.model.entity.detail.DetailTvShowEntity
-import com.masuwes.core.data.model.response.detail.DetailTvShowItem
+import com.masuwes.core.data.model.detail.entity.DetailTvShowEntity
+import com.masuwes.core.data.model.detail.response.DetailTvShowItem
 import com.masuwes.core.domain.model.DetailTvShow
 
 fun List<DetailTvShowEntity>.map(): List<DetailTvShow> {

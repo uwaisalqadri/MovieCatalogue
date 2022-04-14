@@ -7,6 +7,6 @@ import com.masuwes.core.domain.usecase.search.SearchUseCase
 import org.koin.dsl.module
 
 val searchModule = module {
-    single<SearchRepository> { SearchDataStore(get(), get(), get()) }
+    single<SearchRepository> { SearchDataStore(get(), get()) }
     single<SearchUseCase> { SearchInteractor(get()) }
 }

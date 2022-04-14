@@ -1,6 +1,6 @@
 package com.masuwes.core.data.mapper.response
 
-import com.masuwes.core.data.model.response.tvshow.TvShowItem
+import com.masuwes.core.data.model.tvshow.TvShowItem
 import com.masuwes.core.domain.model.TvShow
 
 fun List<TvShowItem>.map(): List<TvShow> {

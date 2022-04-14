@@ -9,7 +9,7 @@ import com.masuwes.moviecatalogue.presentation.detail.movie.DetailMovieActivity
 import com.masuwes.moviecatalogue.presentation.detail.tvshow.DetailTvShowActivity
 import com.masuwes.moviecatalogue.utils.base.BaseActivity
 import com.masuwes.moviecatalogue.utils.ui.LoadMoreItemView
-import com.masuwes.moviecatalogue.utils.ui.observeLiveData
+import com.masuwes.moviecatalogue.utils.ui.observeData
 import com.masuwes.moviecatalogue.utils.ui.searchListener
 import com.masuwes.search.R
 import com.masuwes.search.databinding.ActivitySearchBinding
@@ -111,7 +111,7 @@ class SearchActivity: BaseActivity<ActivitySearchBinding>() {
     }
 
     override fun initObservers() {
-        searchViewModel.searchResult.observeLiveData(
+        searchViewModel.searchResult.observeData(
             owner = this,
             context = this,
             onLoading = {
@@ -120,14 +120,20 @@ class SearchActivity: BaseActivity<ActivitySearchBinding>() {
             onSuccess = {
                 hideLoading()
                 setSearch(it)
+            },
+            onFailure = {
+                hideLoading()
             }
         )
 
-        searchViewModel.searchHistoryResult.observeLiveData(
+        searchViewModel.searchHistoryResult.observeData(
             owner = this,
             context = this,
             onSuccess = {
                 setSearchHistory(it)
+            },
+            onFailure = {
+
             }
         )
     }
@@ -196,6 +202,11 @@ class SearchActivity: BaseActivity<ActivitySearchBinding>() {
 
     override fun hideLoading() {
         binding.pgSearchResult.isVisible = false
+    }
+
+    override fun onStart() {
+        super.onStart()
+        searchViewModel.getSearchHistories()
     }
 }
 

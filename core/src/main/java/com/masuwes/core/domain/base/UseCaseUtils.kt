@@ -1,5 +1,6 @@
 package com.masuwes.core.domain.base
 
+import com.masuwes.core.data.base.ApiException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -14,8 +15,8 @@ fun <T>execute(
         try {
             val out = block.invoke()
             emit(out)
-        } catch (e: Throwable) {
-            throw e
+        } catch (e: ApiException) {
+            throw e.map()
         }
     }.flowOn(context)
 }
