@@ -20,9 +20,9 @@ class DetailMovieActivity: BaseActivity<ActivityDetailMovieBinding>() {
 
     private lateinit var infoBinding: IncludeInfoBinding
     private lateinit var overviewBinding: IncludeOverviewBinding
+    private lateinit var movieDetail: DetailMovie
 
     private var isFavorite: Boolean = false
-    private var movieDetail: DetailMovie? = null
     private var movieId: Int = 0
 
     companion object {
@@ -63,10 +63,10 @@ class DetailMovieActivity: BaseActivity<ActivityDetailMovieBinding>() {
 
     override fun initAction() {
         binding.fabDetailMovie.setOnClickListener { view ->
-            if (isFavorite) viewModel.removeFavMovie(movieDetail?.id ?: 0)
-            else movieDetail?.let { viewModel.saveFavMovie(it) }
+            if (isFavorite) viewModel.removeFavMovie(movieDetail.id)
+            else viewModel.saveFavMovie(movieDetail)
 
-            view.snackBar(getString(if (isFavorite) R.string.success else R.string.success_remove))
+            view.snackBar(getString(if (isFavorite) R.string.success_remove else R.string.success))
         }
     }
 

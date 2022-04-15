@@ -5,8 +5,8 @@ import androidx.annotation.StringRes
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.masuwes.favorite.presentation.movie.FavMovieFragment
-import com.masuwes.favorite.presentation.tvshow.FavTvShowFragment
+import com.masuwes.favorite.presentation.movie.FavoriteMovieFragment
+import com.masuwes.favorite.presentation.tvshow.FavoriteTvShowFragment
 import com.masuwes.moviecatalogue.R
 
 class FavoritePagerAdapter(private val context: Context, fragmentManager: FragmentManager) :
@@ -19,8 +19,8 @@ class FavoritePagerAdapter(private val context: Context, fragmentManager: Fragme
     )
 
     private val pages = listOf(
-        FavMovieFragment(),
-        FavTvShowFragment()
+        FavoriteMovieFragment(),
+        FavoriteTvShowFragment()
     )
 
     override fun getItem(position: Int): Fragment {

@@ -11,7 +11,7 @@ import com.masuwes.moviecatalogue.utils.ui.Result
 import com.masuwes.moviecatalogue.utils.ui.collectFlow
 import kotlinx.coroutines.launch
 
-class FavMovieViewModel(
+class FavoriteMovieViewModel(
     private val movieUseCase: MovieUseCase
 ): ViewModel() {
 

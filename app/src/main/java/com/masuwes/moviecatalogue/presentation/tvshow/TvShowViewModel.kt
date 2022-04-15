@@ -28,9 +28,3 @@ class TvShowViewModel(
         }
     }
 }
-
-sealed class TvShowState
-data class TvShowLoadedState(val tvShow: List<TvShow>) : TvShowState()
-object LoadingState : TvShowState()
-object LastPageState : TvShowState()
-object DataNotFoundState : TvShowState()

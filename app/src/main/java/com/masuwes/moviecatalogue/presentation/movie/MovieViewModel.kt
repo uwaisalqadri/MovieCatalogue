@@ -29,9 +29,3 @@ class MovieViewModel(
     }
 
 }
-
-sealed class MovieState
-data class MovieDataLoaded(val movie: List<Movie>) : MovieState()
-object LoadingState : MovieState()
-object LastPageState : MovieState()
-object DataNotFoundState : MovieState()

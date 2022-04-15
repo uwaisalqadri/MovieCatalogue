@@ -24,7 +24,6 @@ class MovieFragment: BaseFragment<FragmentMovieBinding>() {
     private var page = 1
     private var isLoadMore = false
     private var isLastPages = false
-    private var loadMoreItemView = LoadMoreItemView()
 
     private var onShowDetail: ((Movie) -> Unit)? = null
 
@@ -93,51 +92,6 @@ class MovieFragment: BaseFragment<FragmentMovieBinding>() {
         }
     }
 
-//    private val movieObserver = Observer<MovieState> { movieState ->
-//        when(movieState) {
-//            is LoadingState -> {
-//                if (isLoadMore) {
-//                    adapterMovie.add(loadMoreItemView)
-//                }
-//            }
-//
-//            is MovieDataLoaded -> {
-//                if (isLoadMore) {
-//                    adapterMovie.remove(loadMoreItemView)
-//                    isLoadMore = false
-//                }
-//
-//                if (page == 1) adapterMovie.clear()
-//
-//                movieState.movie.map {
-//                    adapterMovie.add(MovieListItem(it, object : MovieListItem.OnItemClick {
-//                        override fun onClick(item: Movie) {
-//                            startActivity(
-//                                Intent(context, DetailMovieActivity::class.java)
-//                                .putExtra(DetailMovieActivity.MOVIE_ID, item.id))
-//                        }
-//
-//                    }))
-//                }
-//            }
-//
-//            is DataNotFoundState -> {
-//                adapterMovie.clear()
-//            }
-//
-//            is LastPageState -> {
-//                if (isLoadMore) {
-//                    adapterMovie.remove(loadMoreItemView)
-//                    isLoadMore = false
-//                    if (!isLastPages) {
-//                        context?.showToast("Last Page")
-//                        isLastPages = true
-//                    }
-//                }
-//            }
-//        }
-//    }
-
     override fun showLoading() {
         binding.progressCircular.isVisible = true
     }
@@ -151,18 +105,3 @@ class MovieFragment: BaseFragment<FragmentMovieBinding>() {
         binding.rvMovie.adapter = null
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

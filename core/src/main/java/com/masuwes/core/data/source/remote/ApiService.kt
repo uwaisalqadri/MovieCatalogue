@@ -4,12 +4,8 @@ import com.masuwes.core.data.base.BaseResponse
 import com.masuwes.core.data.model.detail.response.DetailMovieItem
 import com.masuwes.core.data.model.detail.response.DetailTvShowItem
 import com.masuwes.core.data.model.movie.MovieItem
-import com.masuwes.core.data.model.movie.MovieResponse
 import com.masuwes.core.data.model.search.response.SearchItem
-import com.masuwes.core.data.model.search.response.SearchResponse
 import com.masuwes.core.data.model.tvshow.TvShowItem
-import com.masuwes.core.data.model.tvshow.TvShowResponse
-import retrofit2.Response
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query

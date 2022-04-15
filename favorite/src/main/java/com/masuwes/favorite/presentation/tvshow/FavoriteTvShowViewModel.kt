@@ -11,12 +11,16 @@ import com.masuwes.moviecatalogue.utils.ui.Result
 import com.masuwes.moviecatalogue.utils.ui.collectFlow
 import kotlinx.coroutines.launch
 
-class FavTvShowViewModel(
+class FavoriteTvShowViewModel(
     private val tvShowUseCase: TvShowUseCase
 ) : ViewModel() {
 
     private val _favoriteTvShows = MutableLiveData<Result<List<DetailTvShow>>>()
     val favoriteTvShows: LiveData<Result<List<DetailTvShow>>> get() = _favoriteTvShows
+
+    init {
+        _favoriteTvShows.value = Result.default()
+    }
 
     fun getFavoriteTvShow() = viewModelScope.launch {
         _favoriteTvShows.value = Result.loading()

@@ -14,9 +14,9 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import org.koin.android.ext.android.inject
 
-class FavTvShowFragment: BaseFragment<FragmentFavTvshowBinding>() {
+class FavoriteTvShowFragment: BaseFragment<FragmentFavTvshowBinding>() {
 
-    private val viewModel: FavTvShowViewModel by inject()
+    private val viewModel: FavoriteTvShowViewModel by inject()
     private val tvShowAdapter = GroupAdapter<GroupieViewHolder>()
 
     private var onItemSelected: ((DetailTvShow) -> Unit)? = null
@@ -32,7 +32,6 @@ class FavTvShowFragment: BaseFragment<FragmentFavTvshowBinding>() {
             rvFavTvshow.apply {
                 layoutManager = StaggeredGridLayoutManager(Constants.SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL)
                 adapter = tvShowAdapter
-                setEmptyView(imageView, tvEmpty)
             }
         }
     }
@@ -67,7 +66,7 @@ class FavTvShowFragment: BaseFragment<FragmentFavTvshowBinding>() {
     private fun setFavorite(tvShows: List<DetailTvShow>) {
         tvShowAdapter.clear()
         tvShows.map {
-            tvShowAdapter.add(FavTvShowListItem(it, onItemSelected))
+            tvShowAdapter.add(FavoriteTvShowListItem(it, onItemSelected))
         }
     }
 
@@ -82,9 +81,6 @@ class FavTvShowFragment: BaseFragment<FragmentFavTvshowBinding>() {
     override fun onResume() {
         super.onResume()
         viewModel.getFavoriteTvShow()
-        binding.apply {
-            rvFavTvshow.setEmptyView(imageView, tvEmpty)
-        }
     }
 
 }

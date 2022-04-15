@@ -48,6 +48,7 @@ fun <U> LiveData<Result<U>>.observeData(
                 if (it.throwable is ApiError) {
                     apiError = it.throwable
                     onFailure.invoke(apiError)
+                    context.showToast(apiError.statusMessage)
                 }
             }
 

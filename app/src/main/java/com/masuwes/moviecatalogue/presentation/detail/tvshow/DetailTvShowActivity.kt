@@ -20,9 +20,9 @@ class DetailTvShowActivity: BaseActivity<ActivityDetailTvShowBinding>() {
 
     private lateinit var infoBinding: IncludeInfoBinding
     private lateinit var overviewBinding: IncludeOverviewBinding
+    private lateinit var tvShowDetail: DetailTvShow
 
     private var isFavorite: Boolean = false
-    private var tvShowDetail: DetailTvShow? = null
     private var tvShowId: Int = 0
 
     companion object {
@@ -66,10 +66,10 @@ class DetailTvShowActivity: BaseActivity<ActivityDetailTvShowBinding>() {
 
     override fun initAction() {
         binding.fabDetailTvshow.setOnClickListener { view ->
-            if (isFavorite) viewModel.removeFavTVShow(tvShowDetail?.id ?: 0)
-            else tvShowDetail?.let { viewModel.saveFavTVShow(it) }
+            if (isFavorite) viewModel.removeFavTVShow(tvShowDetail.id)
+            else viewModel.saveFavTVShow(tvShowDetail)
 
-            view.snackBar(getString(if (isFavorite) R.string.success else R.string.success_remove))
+            view.snackBar(getString(if (isFavorite) R.string.success_remove else R.string.success))
         }
     }
 
@@ -144,26 +144,3 @@ class DetailTvShowActivity: BaseActivity<ActivityDetailTvShowBinding>() {
         return super.onSupportNavigateUp()
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

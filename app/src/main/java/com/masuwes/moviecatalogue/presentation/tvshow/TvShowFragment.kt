@@ -21,7 +21,6 @@ class TvShowFragment: BaseFragment<FragmentTvShowBinding>() {
     private var page = 1
     private var isLoadMore = false
     private var isLastPages = false
-    private var loadMoreItemView = LoadMoreItemView()
 
     private var onShowDetail: ((TvShow) -> Unit)? = null
 
@@ -89,48 +88,6 @@ class TvShowFragment: BaseFragment<FragmentTvShowBinding>() {
             tvShowAdapter.add(TvShowListItem(it, onShowDetail))
         }
     }
-
-//    private val tvShowObserver = Observer<TvShowState> { tvShowState ->
-//        when(tvShowState) {
-//            is LoadingState -> {
-//                if (isLoadMore) {
-//                    tvShowAdapter.add(loadMoreItemView)
-//                }
-//            }
-//
-//            is TvShowLoadedState -> {
-//                if (isLoadMore) {
-//                    tvShowAdapter.remove(loadMoreItemView)
-//                    isLoadMore = false
-//                }
-//
-//                if (page == 1) tvShowAdapter.clear()
-//
-//                tvShowState.tvShow.map {
-//                    tvShowAdapter.add(TvShowListItem(it, object: TvShowListItem.OnItemClick {
-//                        override fun onClick(item: TvShow) {
-//                            onShowDetail?.invoke(item)
-//                        }
-//                    }))
-//                }
-//            }
-//
-//            is DataNotFoundState -> {
-//                tvShowAdapter.clear()
-//            }
-//
-//            is LastPageState -> {
-//                if (isLoadMore) {
-//                    tvShowAdapter.remove(loadMoreItemView)
-//                    isLoadMore = false
-//                    if (!isLastPages) {
-//                        context?.showToast("Last Page")
-//                        isLastPages = true
-//                    }
-//                }
-//            }
-//        }
-//    }
 
     override fun showLoading() {
         binding.progressCircular.isVisible = true

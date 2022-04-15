@@ -14,9 +14,9 @@ import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import org.koin.android.ext.android.inject
 
-class FavMovieFragment: BaseFragment<FragmentFavMovieBinding>() {
+class FavoriteMovieFragment: BaseFragment<FragmentFavMovieBinding>() {
 
-    private val viewModel: FavMovieViewModel by inject()
+    private val viewModel: FavoriteMovieViewModel by inject()
     private val movieAdapter = GroupAdapter<GroupieViewHolder>()
 
     private var onItemSelect: ((DetailMovie) -> Unit)? = null
@@ -32,7 +32,6 @@ class FavMovieFragment: BaseFragment<FragmentFavMovieBinding>() {
             rvFavMovie.apply {
                 layoutManager = StaggeredGridLayoutManager(Constants.SPAN_COUNT, StaggeredGridLayoutManager.VERTICAL)
                 adapter = movieAdapter
-                setEmptyView(imageView, tvEmpty)
             }
         }
     }
@@ -65,9 +64,9 @@ class FavMovieFragment: BaseFragment<FragmentFavMovieBinding>() {
     }
 
     private fun setFavorite(movies: List<DetailMovie>) {
-//        movieAdapter.clear()
+        movieAdapter.clear()
         movies.map {
-            movieAdapter.add(FavMovieListItem(it, onItemSelect))
+            movieAdapter.add(FavoriteMovieListItem(it, onItemSelect))
         }
     }
 
@@ -82,9 +81,6 @@ class FavMovieFragment: BaseFragment<FragmentFavMovieBinding>() {
     override fun onResume() {
         super.onResume()
         viewModel.getFavoriteMovie()
-        binding.apply {
-            rvFavMovie.setEmptyView(imageView, tvEmpty)
-        }
     }
 
 }

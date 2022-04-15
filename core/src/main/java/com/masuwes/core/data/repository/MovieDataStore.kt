@@ -20,23 +20,3 @@ class MovieDataStore(
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

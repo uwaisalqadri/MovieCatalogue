@@ -3,9 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable/ic_launcher_foreground.xml" value="0.1405" />
         <entry key="app/src/main/res/layout/activity_detail_movie.xml" value="0.19947916666666668" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.19947916666666668" />
+        <entry key="app/src/main/res/layout/activity_splash_screen.xml" value="0.19947916666666668" />
+        <entry key="app/src/main/res/layout/fragment_movie.xml" value="0.19947916666666668" />
         <entry key="app/src/main/res/menu/bottom_nav_menu.xml" value="0.19947916666666668" />
+        <entry key="app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1405" />
+        <entry key="core/src/main/res/drawable/placeholder_image.xml" value="0.1405" />
+        <entry key="favorite/src/main/res/layout/activity_favorite.xml" value="0.19947916666666668" />
+        <entry key="favorite/src/main/res/layout/fragment_fav_movie.xml" value="0.19947916666666668" />
+        <entry key="favorite/src/main/res/layout/fragment_fav_tvshow.xml" value="0.19947916666666668" />
         <entry key="search/src/main/res/layout/activity_search.xml" value="0.19947916666666668" />
       </map>
     </option>

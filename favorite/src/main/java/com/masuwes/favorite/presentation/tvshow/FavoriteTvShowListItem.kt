@@ -12,7 +12,7 @@ import com.masuwes.moviecatalogue.utils.ui.formatDate
 import com.masuwes.moviecatalogue.utils.ui.loadImage
 import com.xwray.groupie.viewbinding.BindableItem
 
-class FavTvShowListItem(
+class FavoriteTvShowListItem(
     private val tvShow: DetailTvShow,
     private val onClick: ((DetailTvShow) -> Unit)?
 ) : BindableItem<ItemRvBinding>() {

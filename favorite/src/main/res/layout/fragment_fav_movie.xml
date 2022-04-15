@@ -7,9 +7,9 @@
     android:paddingStart="16dp"
     android:paddingEnd="16dp"
     android:paddingTop="16dp"
-    tools:context=".presentation.tvshow.FavTvShowFragment">
+    tools:context=".presentation.tvshow.FavoriteTvShowFragment">
 
-    <com.masuwes.favorite.presentation.EmptyRecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_fav_movie"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -35,6 +35,7 @@
         android:layout_height="@dimen/_50sdp"
         android:src="@drawable/ic_favorite"
         android:contentDescription="@string/empty"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,6 +48,7 @@
         android:layout_height="wrap_content"
         android:text="@string/empty"
         android:textColor="?android:attr/textColorPrimary"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
